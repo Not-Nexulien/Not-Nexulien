@@ -4,8 +4,9 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
-import definePlugin from "@utils/types";
+import definePlugin, { OptionType } from "@utils/types";
 import { React, useEffect, useRef } from "webpack/common/react";
 
 const blockReact = (data, output, className, _) => {
@@ -17,6 +18,9 @@ const blockReact = (data, output, className, _) => {
 };
 
 const characterReact = (data, output, className, animLength) => {
+    if (!settings.store.slowEffects) {
+        return blockReact(data, output, "invalid-mm-effect", animLength);
+    }
     let offset = 0;
     const traverse = raw => {
         const children = !Array.isArray(raw) ? [raw] : raw;
@@ -51,6 +55,9 @@ const characterReact = (data, output, className, animLength) => {
 };
 
 const delayReact = (data, output, className, delay) => {
+    if (!settings.store.slowEffects) {
+        return blockReact(data, output, "invalid-mm-effect", delay);
+    }
     let offset = 0;
     const traverse = raw => {
         const children = !Array.isArray(raw) ? [raw] : raw;
@@ -104,6 +111,9 @@ const ShadowDomComponent = ({ children, ...props }) => {
 };
 
 const HTMLReact = (data, _1, _2, _3) => {
+    if (!settings.store.html) {
+        return blockReact(data, _1, "invalid-mm-effect", 0);
+    }
     let trueContent = "";
     for (const child of data.content) {
         try {
@@ -118,6 +128,7 @@ const HTMLReact = (data, _1, _2, _3) => {
             console.error(data.content);
         }
     }
+    // eslint-disable-next-line react/no-children-prop
     return <ShadowDomComponent className="HTMLMessageContent" children={{ __html: trueContent }} />;
 };
 
@@ -290,15 +301,15 @@ span.HTMLMessageContent {
 };
 
 const rules = [
-    // createRule("wiggly", 24, [")~", "~("], "character", 1200),
+    createRule("wiggly", 24, [")~", "~("], "character", 1200),
     createRule("highlighted", 24, ["==", "=="], "block"),
     createRule("spinning", 24, ["@@", "@@"], "block"),
-    createRule("glowing", 24, ["++", "++"], "block"),
-    // createRule("rainbow", 24, ["%%", "%%"], "character", 2400),
-    // createRule("scaling", 24, ["+-", "-+"], "character", 2400),
+    createRule("glowing", 24, ["##", "##"], "block"),
+    createRule("rainbow", 24, ["%%", "%%"], "character", 2400),
+    createRule("scaling", 24, ["+-", "-+"], "character", 2400),
     createRule("bouncing", 24, ["^^", "^^"], "block"),
-    // createRule("html", 24, ["[[", "]]"], "html"),
-    // createRule("slam", 24, [">>", "<<"], "delay", 250),
+    createRule("html", 24, ["|", "|"], "html"),
+    createRule("slam", 24, [">>", "<<"], "delay", 250),
     createRule("cursive", 24, ["&&", "&&"], "block"),
 ];
 
@@ -315,12 +326,26 @@ console.info("Patch: " + patch);
 
 declare const DOMPurify: any;
 
+const settings = definePluginSettings({
+    slowEffects: {
+        type: OptionType.BOOLEAN,
+        description: "Whether to enable animated effects that may slow down your client.",
+        default: false,
+    },
+    html: {
+        type: OptionType.BOOLEAN,
+        description: "Whether to enable HTML effects. WARNING: This can be dangerous.",
+        default: false,
+    }
+});
+
 export default definePlugin({
     name: "MoreMarkdown",
     description: "More markdown capabilities for Nexulien",
     nexulien: true,
     authors: [Devs.Zoid, Devs.Jaegerwald, Devs.SwitchedCube],
     rulesByName: rulesByName,
+    settings,
 
     patches: [
         {

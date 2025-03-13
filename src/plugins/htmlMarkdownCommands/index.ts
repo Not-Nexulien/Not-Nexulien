@@ -52,7 +52,7 @@ span {font-size: 64px; position: absolute;}
     yaris: `<img src="<https://www.fortunacarmats.com/cache/goods/700x700x61ea817c40dc5.png>" class="yaris" draggable="false"/>
 <style>.yaris { animation: bounce 0.22222222222s infinite alternate cubic-bezier(.9,0,.1,1); }
 @keyframes bounce { 0% { transform: translateY(0) scale(1, 1); } 100% { transform: translateY(calc(20%)) scale(1.3, 0.7); } }</style>`,
-    thoughts: `<img src="<https://jaegerwalddev.github.io/assets/images/thoughts.png>" style="position: absolute; display: block; bottom: %TEXT%px; left: 64px;"></img>dawg i can see your thoughts`,
+    thoughts: "<img src=\"<https://jaegerwalddev.github.io/assets/images/thoughts.png>\" style=\"position: absolute; display: block; bottom: %TEXT%px; left: 64px;\"></img>dawg i can see your thoughts",
     gnarpy: `<body><style>
 .boing {margin-bottom: 256px; margin-left: 128px; transform: translateY(64px); animation: boing 1s ease-in-out infinite; width: 64px;}
 .boing-shadow {position: absolute; display: block; background-color: black; border-radius: 50%; opacity: 0.5; filter: blur(8px);
@@ -70,18 +70,18 @@ width: 128px; height: 32px; margin-left: 96px; transform: translateY(-48px) tran
 </style>
 <img class="boing" src="https://jaegerwalddev.github.io/assets/static/school/my_first_website-2/images/gnarpy_cat.png">
 <span class="boing-shadow"></span></body>`,
-    nyanRevolve: `@@[[<img src="<https://www.nyan.cat/cats/original.gif>" style="display:block;position:fixed;height:64px;bottom:256px;"/>]]@@ %TEXT%`,
-    approach: `<body><style>@keyframes scaleAnim{0%{transform:perspective(500px) scale(0);}100%{transform:perspective(500px) scale(1);}}img{width:500px;height:auto;transform-origin:center;animation:scaleAnim 10s cubic-bezier(0.32, 0, 0.67, 0) infinite;}</style><img src="<%TEXT%>"></body>`
+    nyanRevolve: "@@[[<img src=\"<https://www.nyan.cat/cats/original.gif>\" style=\"display:block;position:fixed;height:64px;bottom:256px;\"/>]]@@ %TEXT%",
+    approach: "<body><style>@keyframes scaleAnim{0%{transform:perspective(500px) scale(0);}100%{transform:perspective(500px) scale(1);}}img{width:500px;height:auto;transform-origin:center;animation:scaleAnim 10s cubic-bezier(0.32, 0, 0.67, 0) infinite;}</style><img src=\"<%TEXT%>\"></body>"
 };
 
 function html(htmlText: string) {
-    return `[[${htmlText}]]`;
+    return `|${htmlText}|`;
 }
 function htmlPlaceholder(htmlText: string, replacement: string) {
-    return `[[${htmlText.replace("%TEXT%", replacement)}]]`;
+    return `|${htmlText.replace("%TEXT%", replacement)}|`;
 }
 function htmlPlaceholders(htmlText: string, replacements: string[]) {
-    const result = `[[${htmlText}]]`;
+    const result = `|${htmlText}|`;
     for (let i = 0; i < replacements.length; i++) {
         result.replace(`%TEXT${i + 1}%`, replacements[i]);
     }
