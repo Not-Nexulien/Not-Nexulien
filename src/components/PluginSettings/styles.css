@@ -89,7 +89,7 @@
     box-shadow: var(--elevation-low) !important;
     border-radius: 12px !important;
     border: none !important;
-    color: var(--text-normal) !important;
+    color: var(--text-muted) !important;
 }
 
 .vc-plugins-restart-button {

@@ -1,0 +1,24 @@
+.vc-settings-card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+    padding: 24px !important;
+    padding-top: 16px !important;
+    background-color: var(--background-secondary) !important;
+    box-shadow: var(--elevation-low) !important;
+    border-radius: 12px !important;
+    border: none !important;
+    color: var(--text-muted) !important;
+}
+
+.vc-settings-card-title {
+    color: var(--text-normal);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    line-height: 2; /* i hate this i hate this i hate this i hate this */
+}
+
+.vc-backup-restore-card {
+    background-color: var(--info-warning-background) !important;
+}
