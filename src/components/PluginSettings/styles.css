@@ -59,18 +59,37 @@
 }
 
 .vc-plugins-info-card {
-    padding: 1em;
-    height: 8em;
     display: flex;
     flex-direction: column;
-    gap: 0.25em;
+    margin-bottom: 1em;
+    padding: 24px;
+    padding-top: 16px;
+    background-color: var(--background-secondary) !important;
+    box-shadow: var(--elevation-low) !important;
+    border-radius: 12px !important;
+    border: none !important;
+    color: var(--text-muted) !important;
+}
+
+.vc-plugins-card-title {
+    color: var(--text-normal);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    line-height: 2; /* i hate this i hate this i hate this i hate this */
 }
 
 .vc-plugins-restart-card {
-    padding: 1em;
-    background: var(--info-warning-background);
-    border: 1px solid var(--info-warning-foreground);
-    color: var(--info-warning-text);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+    padding: 24px;
+    padding-top: 16px;
+    background-color: var(--info-warning-background) !important;
+    box-shadow: var(--elevation-low) !important;
+    border-radius: 12px !important;
+    border: none !important;
+    color: var(--text-normal) !important;
 }
 
 .vc-plugins-restart-button {

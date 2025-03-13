@@ -62,25 +62,22 @@ function showErrorToast(message: string) {
 
 function ReloadRequiredCard({ required }: { required: boolean; }) {
     return (
-        <Card className={cl("info-card", { "restart-card": required })}>
+        <>
+            <Card className={cl("info-card")}>
+                <Text className={cl("card-title")} variant="heading-md/bold">Plugin Management</Text>
+                <span>Press the cog wheel or info icon to get more info on a plugin</span>
+                <span>Plugins with a cog wheel have settings you can modify!</span>
+            </Card>
             {required ? (
-                <>
-                    <Forms.FormTitle tag="h5">Restart required!</Forms.FormTitle>
-                    <Forms.FormText className={cl("dep-text")}>
-                        Restart now to apply new plugins and their settings
-                    </Forms.FormText>
+                <Card className={cl("restart-card")}>
+                    <Text className={cl("card-title")} variant="heading-md/bold">Restart required!</Text>
+                    <span>Restart now to apply new plugins and their settings</span>
                     <Button onClick={() => location.reload()} className={cl("restart-button")}>
                         Restart
                     </Button>
-                </>
-            ) : (
-                <>
-                    <Forms.FormTitle tag="h5">Plugin Management</Forms.FormTitle>
-                    <Forms.FormText>Press the cog wheel or info icon to get more info on a plugin</Forms.FormText>
-                    <Forms.FormText>Plugins with a cog wheel have settings you can modify!</Forms.FormText>
-                </>
-            )}
-        </Card>
+                </Card>
+            ) : (<></>)}
+        </>
     );
 }
 
