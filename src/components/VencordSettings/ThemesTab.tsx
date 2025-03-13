@@ -16,6 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import "./styles.css";
+
 import { Settings, useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
 import { Flex } from "@components/Flex";
@@ -28,7 +30,7 @@ import { Margins } from "@utils/margins";
 import { showItemInFolder } from "@utils/native";
 import { useAwaiter } from "@utils/react";
 import { findLazy } from "@webpack";
-import { Card, Forms, React, showToast, TabBar, TextArea, useEffect, useRef, useState } from "@webpack/common";
+import { Card, Forms, React, showToast, TabBar, Text, TextArea, useEffect, useRef, useState } from "@webpack/common";
 import type { ComponentType, Ref, SyntheticEvent } from "react";
 
 import Plugins from "~plugins";
@@ -209,14 +211,14 @@ function ThemesTab() {
         return (
             <>
                 <Card className="vc-settings-card">
-                    <Forms.FormTitle tag="h5">Find Themes:</Forms.FormTitle>
+                    <Text className={cl("card-title")} variant="heading-md/bold">Find Themes:</Text>
                     <div style={{ marginBottom: ".5em", display: "flex", flexDirection: "column" }}>
                         <Link style={{ marginRight: ".5em" }} href="https://betterdiscord.app/themes">
                             BetterDiscord Themes
                         </Link>
                         <Link href="https://github.com/search?q=discord+theme">GitHub</Link>
                     </div>
-                    <Forms.FormText>If using the BD site, click on "Download" and place the downloaded .theme.css file into your themes folder.</Forms.FormText>
+                    <span>If using the BD site, click on "Download" and place the downloaded .theme.css file into your themes folder.</span>
                 </Card>
 
                 <Forms.FormSection title="Local Themes">
@@ -302,10 +304,10 @@ function ThemesTab() {
         return (
             <>
                 <Card className="vc-settings-card vc-text-selectable">
-                    <Forms.FormTitle tag="h5">Paste links to css files here</Forms.FormTitle>
-                    <Forms.FormText>One link per line</Forms.FormText>
-                    <Forms.FormText>You can prefix lines with @light or @dark to toggle them based on your Discord theme</Forms.FormText>
-                    <Forms.FormText>Make sure to use direct links to files (raw or github.io)!</Forms.FormText>
+                    <Text variant="heading-md/bold" className={cl("card-title")}>Paste links to css files here</Text>
+                    <span>One link per line</span>
+                    <span>You can prefix lines with @light or @dark to toggle them based on your Discord theme</span>
+                    <span>Make sure to use direct links to files (raw or github.io)!</span>
                 </Card>
 
                 <Forms.FormSection title="Online Themes" tag="h5">

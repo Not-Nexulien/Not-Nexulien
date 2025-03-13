@@ -16,6 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import "./styles.css";
+
 import { Flex } from "@components/Flex";
 import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
@@ -28,10 +30,8 @@ function BackupRestoreTab() {
     return (
         <SettingsTab title="Backup & Restore">
             <Card className={classes("vc-settings-card", "vc-backup-restore-card")}>
-                <Flex flexDirection="column">
-                    <strong>Warning</strong>
-                    <span>Importing a settings file will overwrite your current settings.</span>
-                </Flex>
+                <Text className="vc-settings-card-title" variant="heading-md/bold">Warning</Text>
+                <span>Importing a settings file will overwrite your current settings.</span>
             </Card>
             <Text variant="text-md/normal" className={Margins.bottom8}>
                 You can import and export your Nexulien settings as a JSON file.
