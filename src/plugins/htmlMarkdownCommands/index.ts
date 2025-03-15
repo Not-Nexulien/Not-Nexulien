@@ -75,13 +75,13 @@ width: 128px; height: 32px; margin-left: 96px; transform: translateY(-48px) tran
 };
 
 function html(htmlText: string) {
-    return `|${htmlText}|`;
+    return `[[[${htmlText}]]]`;
 }
 function htmlPlaceholder(htmlText: string, replacement: string) {
-    return `|${htmlText.replace("%TEXT%", replacement)}|`;
+    return `[[[${htmlText.replace("%TEXT%", replacement)}]]]`;
 }
 function htmlPlaceholders(htmlText: string, replacements: string[]) {
-    const result = `|${htmlText}|`;
+    const result = `[[[${htmlText}]]]`;
     for (let i = 0; i < replacements.length; i++) {
         result.replace(`%TEXT${i + 1}%`, replacements[i]);
     }
