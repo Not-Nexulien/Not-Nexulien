@@ -98,7 +98,8 @@ export default definePlugin({
                 const text = message.content
                     .replace(/```[\s\S]*?```/g, "")
                     .replace(/https?:\/\/\S+/g, "")
-                    .replace(/<[^>]*>/g, "")
+                    .replace(/<@!?&?\d+>/g, "")
+                    .replace(/<#[0-9]+>/g, "")
                     .replace(/:[^:\s]*(?:::[^:\s]*)*:/g, "");
                 const audio = await getAudio(text);
                 if (audio) audios.push(audio);
