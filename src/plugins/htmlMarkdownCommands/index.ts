@@ -52,7 +52,11 @@ span {font-size: 64px; position: absolute;}
     yaris: `<img src="<https://www.fortunacarmats.com/cache/goods/700x700x61ea817c40dc5.png>" class="yaris" draggable="false"/>
 <style>.yaris { animation: bounce 0.22222222222s infinite alternate cubic-bezier(.9,0,.1,1); }
 @keyframes bounce { 0% { transform: translateY(0) scale(1, 1); } 100% { transform: translateY(calc(20%)) scale(1.3, 0.7); } }</style>`,
-    thoughts: "<img src=\"<https://jaegerwalddev.github.io/assets/images/thoughts.png>\" style=\"position: absolute; display: block; bottom: %TEXT%px; left: 64px;\"></img>dawg i can see your thoughts",
+    thoughts: `<img src="<https://jaegerwalddev.github.io/assets/images/thoughts.png>" style="position: absolute; display: block;
+/* -- EDIT THIS -- */
+bottom: %TEXT%px;
+/* --------------- */
+left: 64px;"></img>dawg i can see your thoughts`,
     gnarpy: `<body><style>
 .boing {margin-bottom: 256px; margin-left: 128px; transform: translateY(64px); animation: boing 1s ease-in-out infinite; width: 64px;}
 .boing-shadow {position: absolute; display: block; background-color: black; border-radius: 50%; opacity: 0.5; filter: blur(8px);
@@ -101,7 +105,7 @@ function placeholders(text: string, replacements: string[]) {
 
 // burn this function while you still have the chance
 function getLatestMessage() {
-    const messageList = document.querySelectorAll(".messageListItem_d5deea");
+    const messageList = document.querySelectorAll(".messageListItem__5126c");
     return messageList[messageList.length - 1];
 }
 function emojiToImg(id: string) {
