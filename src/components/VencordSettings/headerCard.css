@@ -32,6 +32,28 @@
     height: 20%;
 }
 
+@keyframes nx-settings-logo-boioioing {
+    0% {
+        transform: scale(1) scaleX(1) scaleY(1);
+    }
+
+    10% {
+        transform: scale(1.05) scaleX(1.1) scaleY(0.6);
+    }
+
+    70% {
+        transform: scale(1.05) scaleY(1.1);
+    }
+
+    90% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1) scaleX(1) scaleY(1);
+    }
+}
+
 .nx-settings-logo {
     width: auto;
     height: 100%;
