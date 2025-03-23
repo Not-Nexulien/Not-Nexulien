@@ -74,7 +74,7 @@ width: 128px; height: 32px; margin-left: 96px; transform: translateY(-48px) tran
 </style>
 <img class="boing" src="https://jaegerwalddev.github.io/assets/static/school/my_first_website-2/images/gnarpy_cat.png">
 <span class="boing-shadow"></span></body>`,
-    nyanRevolve: "@@[[<img src=\"<https://www.nyan.cat/cats/original.gif>\" style=\"display:block;position:fixed;height:64px;bottom:256px;\"/>]]@@ %TEXT%",
+    nyanRevolve: "@@[[[<img src=\"<https://www.nyan.cat/cats/original.gif>\" style=\"display:block;position:fixed;height:64px;bottom:256px;\"/>]]]@@ %TEXT%",
     approach: "<body><style>@keyframes scaleAnim{0%{transform:perspective(500px) scale(0);}100%{transform:perspective(500px) scale(1);}}img{width:500px;height:auto;transform-origin:center;animation:scaleAnim 10s cubic-bezier(0.32, 0, 0.67, 0) infinite;}</style><img src=\"<%TEXT%>\"></body>"
 };
 
