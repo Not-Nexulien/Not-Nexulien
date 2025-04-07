@@ -10,6 +10,7 @@ import definePlugin from "@utils/types";
 import { findByPropsLazy } from "@webpack";
 import { DraftType, UploadManager } from "@webpack/common";
 import { Jimp } from "jimp";
+import floydSteinberg from 'floyd-steinberg';
 
 import { brailleMap } from "./braille_map";
 const UploadStore = findByPropsLazy("getUpload");
@@ -21,10 +22,17 @@ const UploadStore = findByPropsLazy("getUpload");
  * @returns 0 for black, 1 for white (depending on color theme)
  */
 function mapToZeroOrOne(color: number) {
-    if (color > 255) {
+    let cleanColor = removeBit(color, 8);
+    cleanColor = removeBit(cleanColor, 7);
+    if (color > 0x808080) {
         return 1;
     }
     return 0;
+}
+
+function removeBit(number, bitPosition) {
+    const mask = ~(1 << bitPosition);
+    return number & mask;
 }
 
 /**
@@ -36,18 +44,20 @@ function mapToZeroOrOne(color: number) {
  * @returns Braille character
  */
 function getBrailleCharacter(image: any, xOff: number, yOff: number) {
+    const trueOffsetX = xOff * 2;
+    const trueOffsetY = yOff * 2;
     const thing = [
         [
-            mapToZeroOrOne(image.getPixelColor(0 + (xOff * 2), 0 + (yOff * 2))),
-            mapToZeroOrOne(image.getPixelColor(1 + (xOff * 2), 0 + (yOff * 2)))
+            mapToZeroOrOne(image.getPixelColor(0 + trueOffsetX, 0 + trueOffsetY)),
+            mapToZeroOrOne(image.getPixelColor(1 + trueOffsetX, 0 + trueOffsetY))
         ],
         [
-            mapToZeroOrOne(image.getPixelColor(0 + (xOff * 2), 1 + (yOff * 2))),
-            mapToZeroOrOne(image.getPixelColor(1 + (xOff * 2), 1 + (yOff * 2)))
+            mapToZeroOrOne(image.getPixelColor(0 + trueOffsetX, 1 + trueOffsetY)),
+            mapToZeroOrOne(image.getPixelColor(1 + trueOffsetX, 1 + trueOffsetY))
         ],
         [
-            mapToZeroOrOne(image.getPixelColor(0 + (xOff * 2), 2 + (yOff * 2))),
-            mapToZeroOrOne(image.getPixelColor(1 + (xOff * 2), 2 + (yOff * 2)))
+            mapToZeroOrOne(image.getPixelColor(0 + trueOffsetX, 2 + trueOffsetY)),
+            mapToZeroOrOne(image.getPixelColor(1 + trueOffsetX, 2 + trueOffsetY))
         ]
     ];
 
@@ -79,7 +89,25 @@ export default definePlugin({
                     name: "width",
                     description: "The width of the text, will print max size if not provided",
                     required: false
-                }
+                },
+                {
+                    type: ApplicationCommandOptionType.NUMBER,
+                    name: "brightness",
+                    description: "The brightness of the text",
+                    required: false
+                },
+                {
+                    type: ApplicationCommandOptionType.BOOLEAN,
+                    name: "invert",
+                    description: "Invert colors of the image",
+                    required: false
+                },
+                {
+                    type: ApplicationCommandOptionType.BOOLEAN,
+                    name: "dither",
+                    description: "Enable dithering on the image",
+                    required: false
+                },
             ],
             execute: async (opts, ctx) => {
                 const upload = UploadStore.getUpload(ctx.channel.id, opts.find(o => o.name === "image")!.name, DraftType.SlashCommand);
@@ -100,11 +128,31 @@ export default definePlugin({
 
                 // do processing
                 const imageData = await Jimp.read(await rawImage.arrayBuffer());
-                const image = imageData.greyscale().contrast(1);
+
+                const ditherParam = opts.find(o => o.name === "dither");
+                const invertParam = opts.find(o => o.name === "invert");
+
+                let image = imageData.greyscale()
                 let s = "```\n";
 
                 if (opts.find(o => o.name === "width")) {
                     image.resize({ w: parseInt(opts.find(o => o.name === "width")!.value) });
+                }
+
+                if (opts.find(o => o.name === "brightness")) {
+                    image.brightness(parseInt(opts.find(o => o.name === "brightness")!.value) / 128);
+                }
+
+
+                if (ditherParam && ditherParam!.value) {
+                    const bmp = floydSteinberg(image.bitmap)
+                    image = Jimp.fromBitmap(bmp)
+                } else {
+                    image.contrast(1).threshold({ max: 128 });
+                }
+
+                if (invertParam && invertParam!.value) {
+                    image.invert()
                 }
 
                 // write characters
@@ -120,6 +168,6 @@ export default definePlugin({
                 });
             }
         }
-    ]
+    ],
 
 });
