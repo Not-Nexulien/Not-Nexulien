@@ -1,5 +1,9 @@
 .nx-updater-changes {
-    margin-bottom: 16px !important;
+    background: var(--background-code);
+    border: 1px solid var(--border-normal);
+    margin-top: 16px !important;
+    padding: .5em;
+    border-radius: 4px;
 }
 
 .nx-updater-controls {
