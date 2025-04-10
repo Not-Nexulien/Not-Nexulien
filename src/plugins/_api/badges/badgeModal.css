@@ -42,8 +42,10 @@
 
 .nx-badge-modal-description {
     padding: 16px;
-    background-color: var(--modal-footer-background);
+    background-color: var(--input-background);
     border-radius: 8px;
+    border: 1px solid var(--input-border);
+    color: var(--text-normal);
 }
 
 .nx-badge-modal-badge.yucky-vencord {

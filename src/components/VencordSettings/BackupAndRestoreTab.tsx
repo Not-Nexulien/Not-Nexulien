@@ -20,19 +20,19 @@ import "./styles.css";
 
 import { Flex } from "@components/Flex";
 import { Margins } from "@utils/margins";
-import { classes } from "@utils/misc";
 import { downloadSettingsBackup, uploadSettingsBackup } from "@utils/settingsSync";
-import { Button, Card, Text } from "@webpack/common";
+import { Button, Text } from "@webpack/common";
 
+import { NxCard } from "./NxCard";
 import { SettingsTab, wrapTab } from "./shared";
 
 function BackupRestoreTab() {
     return (
         <SettingsTab title="Backup & Restore">
-            <Card className={classes("vc-settings-card", "vc-backup-restore-card")}>
-                <Text className="vc-settings-card-title" variant="heading-md/bold">Warning</Text>
+            <NxCard className="nx-backup-restore-card">
+                <Text className="nx-settings-card-title" variant="heading-md/bold">Warning</Text>
                 <span>Importing a settings file will overwrite your current settings.</span>
-            </Card>
+            </NxCard>
             <Text variant="text-md/normal" className={Margins.bottom8}>
                 You can import and export your Nexulien settings as a JSON file.
                 This allows you to easily transfer your settings to another device,

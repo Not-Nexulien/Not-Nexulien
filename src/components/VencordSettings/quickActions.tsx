@@ -14,8 +14,10 @@ import { classNameFactory } from "@api/Styles";
 import { InfoIcon } from "@components/Icons";
 import { classes } from "@utils/misc";
 import { findByPropsLazy } from "@webpack";
-import { Alerts, Card, Text } from "@webpack/common";
+import { Alerts, Text } from "@webpack/common";
 import type { ComponentType, PropsWithChildren, ReactNode } from "react";
+
+import { NxCard } from "./NxCard";
 
 const cl = classNameFactory("nx-settings-quickActions-");
 const ButtonClasses = findByPropsLazy("button", "disabled", "enabled");
@@ -43,7 +45,7 @@ export function QuickAction(props: QuickActionProps) {
 
 export function QuickActionContainer({ title, children }: PropsWithChildren<QuickActionContainerProps>) {
     return (
-        <Card className={cl("container")}>
+        <NxCard className={cl("container")}>
             <Text className={cl("title")} variant="heading-md/bold">
                 {title}
                 <button
@@ -53,8 +55,10 @@ export function QuickActionContainer({ title, children }: PropsWithChildren<Quic
                             title: "Information",
                             body: (
                                 <>
-                                    <img height="64px" width="64px" src="https://cdn.discordapp.com/emojis/1348781960453161011.gif" draggable="false"></img>
-                                    <p>No one's around to help.</p>
+                                    <div className={cl("help")}>
+                                        <img height="64px" width="64px" src="https://cdn.discordapp.com/emojis/1348781960453161011.gif" draggable="false"></img>
+                                        <p>No one's around to help.</p>
+                                    </div>
                                 </>
                             ),
                             confirmText: "(≧∀≦)ゞ",
@@ -67,6 +71,6 @@ export function QuickActionContainer({ title, children }: PropsWithChildren<Quic
                 </button>
             </Text>
             <span className={cl("containerButtons")}>{children}</span>
-        </Card>
+        </NxCard>
     );
 }

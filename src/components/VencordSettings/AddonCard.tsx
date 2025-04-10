@@ -24,7 +24,7 @@ import { Switch } from "@components/Switch";
 import { Text, useRef } from "@webpack/common";
 import type { MouseEventHandler, ReactNode } from "react";
 
-const cl = classNameFactory("vc-addon-");
+const cl = classNameFactory("nx-addon-");
 
 interface Props {
     name: ReactNode;

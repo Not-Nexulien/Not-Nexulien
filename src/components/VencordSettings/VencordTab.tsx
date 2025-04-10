@@ -17,10 +17,11 @@ import { identity, isPluginDev } from "@utils/misc";
 import { closeAllModals } from "@utils/modal";
 import { relaunch, showItemInFolder } from "@utils/native";
 import { useAwaiter } from "@utils/react";
-import { Button, Card, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, Select, Switch, UserStore } from "@webpack/common";
+import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, Select, Switch, UserStore } from "@webpack/common";
 
 import { boykisserIcon, Flex, FolderIcon, GithubIcon, LogIcon, PaintbrushIcon, RestartIcon } from "..";
 import { openNotificationSettingsModal } from "./NotificationSettings";
+import { NxCard } from "./NxCard";
 import { QuickAction, QuickActionContainer } from "./quickActions";
 import { SettingsTab, wrapTab } from "./shared";
 import { SpecialCard } from "./SpecialCard";
@@ -283,7 +284,7 @@ function nexulien() {
 
 function HeaderCard({ image }: HeaderCardProps) {
     return (
-        <Card className={cl("card", "header")}>
+        <NxCard className={cl("card", "header")}>
             <div>
                 <span className={cl("logo-container")} onClick={() => nexulien()}>
                     <svg width="250" height="50" viewBox="0 0 250 50" fill="none" xmlns="http://www.w3.org/2000/svg" className={cl("logo")} id={cl("logo")}>
@@ -323,14 +324,14 @@ function HeaderCard({ image }: HeaderCardProps) {
                 role="presentation"
                 src="https://raw.githubusercontent.com/Nexulien/assets/refs/heads/main/low_res_lyra_menu.png"
                 alt=""
-                height={192}
+                height={128}
                 draggable="false"
                 style={{
                     marginLeft: "auto"
                 }}
                 className={cl("mascot")}
             />
-        </Card>
+        </NxCard>
     );
 }
 

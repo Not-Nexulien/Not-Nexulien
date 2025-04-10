@@ -1,7 +1,7 @@
-.vc-plugin-modal-info {
+.nx-plugin-modal-info {
     align-items: center;
 }
 
-.vc-plugin-modal-description {
+.nx-plugin-modal-description {
     flex-grow: 1;
 }

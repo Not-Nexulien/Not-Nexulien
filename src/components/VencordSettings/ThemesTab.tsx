@@ -30,12 +30,13 @@ import { Margins } from "@utils/margins";
 import { showItemInFolder } from "@utils/native";
 import { useAwaiter } from "@utils/react";
 import { findLazy } from "@webpack";
-import { Card, Forms, React, showToast, TabBar, Text, TextArea, useEffect, useRef, useState } from "@webpack/common";
+import { Forms, React, showToast, TabBar, Text, TextArea, useEffect, useRef, useState } from "@webpack/common";
 import type { ComponentType, Ref, SyntheticEvent } from "react";
 
 import Plugins from "~plugins";
 
 import { AddonCard } from "./AddonCard";
+import { NxCard } from "./NxCard";
 import { QuickAction, QuickActionContainer } from "./quickActions";
 import { SettingsTab, wrapTab } from "./shared";
 
@@ -48,7 +49,7 @@ type FileInput = ComponentType<{
 
 const FileInput: FileInput = findLazy(m => m.prototype?.activateUploadDialogue && m.prototype.setRef);
 
-const cl = classNameFactory("vc-settings-theme-");
+const cl = classNameFactory("nx-settings-theme-");
 
 function Validator({ link }: { link: string; }) {
     const [res, err, pending] = useAwaiter(() => fetch(link).then(res => {
@@ -88,18 +89,14 @@ function Validators({ themeLinks }: { themeLinks: string[]; }) {
                         return { label: `[${mode} mode only] ${link}`, link };
                     })();
 
-                    return <Card style={{
-                        padding: ".5em",
-                        marginBottom: ".5em",
-                        marginTop: ".5em"
-                    }} key={link}>
+                    return <NxCard key={link}>
                         <Forms.FormTitle tag="h5" style={{
                             overflowWrap: "break-word"
                         }}>
                             {label}
                         </Forms.FormTitle>
                         <Validator link={link} />
-                    </Card>;
+                    </NxCard>;
                 })}
             </div>
         </>
@@ -210,7 +207,7 @@ function ThemesTab() {
     function renderLocalThemes() {
         return (
             <>
-                <Card className="vc-settings-card">
+                <NxCard className={cl("info-card")}>
                     <Text className={cl("card-title")} variant="heading-md/bold">Find Themes:</Text>
                     <div style={{ marginBottom: ".5em", display: "flex", flexDirection: "column" }}>
                         <Link style={{ marginRight: ".5em" }} href="https://betterdiscord.app/themes">
@@ -218,8 +215,8 @@ function ThemesTab() {
                         </Link>
                         <Link href="https://github.com/search?q=discord+theme">GitHub</Link>
                     </div>
-                    <span>If using the BD site, click on "Download" and place the downloaded .theme.css file into your themes folder.</span>
-                </Card>
+                    <span>If using the BetterDiscord site, click on "Download" and place the downloaded .theme.css file into your themes folder.</span>
+                </NxCard>
 
                 <Forms.FormSection title="Local Themes">
                     <QuickActionContainer title="Theme-related Quick Actions">
@@ -303,12 +300,12 @@ function ThemesTab() {
     function renderOnlineThemes() {
         return (
             <>
-                <Card className="vc-settings-card vc-text-selectable">
+                <NxCard className={`${cl("info-card")} nx-text-selectable`}>
                     <Text variant="heading-md/bold" className={cl("card-title")}>Paste links to css files here</Text>
                     <span>One link per line</span>
                     <span>You can prefix lines with @light or @dark to toggle them based on your Discord theme</span>
                     <span>Make sure to use direct links to files (raw or github.io)!</span>
-                </Card>
+                </NxCard>
 
                 <Forms.FormSection title="Online Themes" tag="h5">
                     <TextArea

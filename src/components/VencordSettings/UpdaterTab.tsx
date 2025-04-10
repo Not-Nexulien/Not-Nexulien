@@ -32,6 +32,7 @@ import { Alerts, Button, Forms, Parser, React, Switch, Toasts } from "@webpack/c
 
 import gitHash from "~git-hash";
 
+import { NxCard } from "./NxCard";
 import { handleSettingsTabError, SettingsTab, wrapTab } from "./shared";
 
 function withDispatcher(dispatcher: React.Dispatch<React.SetStateAction<boolean>>, action: () => any) {
@@ -112,7 +113,7 @@ function Updatable(props: CommonProps) {
     const isOutdated = (updates?.length ?? 0) > 0;
 
     return (
-        <div className="nx-updater-controls">
+        <NxCard className="nx-updater-controls">
             {!updates && updateError ? (
                 <>
                     <Forms.FormText>Failed to check updates. Check the console for more info</Forms.FormText>
@@ -176,7 +177,7 @@ function Updatable(props: CommonProps) {
             </Flex>
 
             {isOutdated && <Changes updates={updates} {...props} />}
-        </div>
+        </NxCard>
     );
 }
 
