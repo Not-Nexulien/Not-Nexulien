@@ -1,27 +1,28 @@
-.vc-settings-tab-bar {
+.nx-settings-tab-bar {
     margin-top: 20px;
     margin-bottom: 10px;
     border-bottom: 2px solid var(--background-modifier-accent);
 }
 
-.vc-settings-tab-bar-item {
+.nx-settings-tab-bar-item {
     margin-right: 32px;
     padding-bottom: 16px;
     margin-bottom: -2px;
 }
 
-.vc-settings-card {
+.nx-settings-card {
     padding: 1em;
     margin-bottom: 1em;
 }
 
-.vc-backup-restore-card {
+.nx-backup-restore-card {
     background-color: var(--info-warning-background);
     border-color: var(--info-warning-foreground);
     color: var(--info-warning-text);
+    margin-bottom: 16px;
 }
 
-.vc-settings-theme-links {
+.nx-settings-theme-links {
     /* Needed to fix bad themes that hide certain textarea elements for whatever eldritch reason */
     display: inline-block !important;
     color: var(--text-normal) !important;
@@ -36,27 +37,27 @@
     width: 100%;
 }
 
-.vc-settings-theme-links::placeholder {
+.nx-settings-theme-links::placeholder {
     color: var(--header-secondary);
 }
 
-.vc-settings-theme-links:focus {
+.nx-settings-theme-links:focus {
     background-color: var(--background-tertiary);
 }
 
-.vc-cloud-settings-sync-grid {
+.nx-cloud-settings-sync-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1em;
 }
 
-.vc-cloud-erase-data-danger-btn {
+.nx-cloud-erase-data-danger-btn {
     color: var(--white-500);
     background-color: var(--button-danger-background);
 }
 
-.vc-text-selectable,
-.vc-text-selectable :where([class*="text" i], [class*="title" i]) {
+.nx-text-selectable,
+.nx-text-selectable :where([class*="text" i], [class*="title" i]) {
     /* make text selectable, silly discord makes the entirety of settings not selectable */
     user-select: text;
 
@@ -64,10 +65,10 @@
     cursor: initial;
 }
 
-.vc-updater-modal {
+.nx-updater-modal {
     padding: 1.5em !important;
 }
 
-.vc-updater-modal-close-button {
+.nx-updater-modal-close-button {
     float: right;
 }

@@ -49,7 +49,7 @@ import {
 import { openContributorModal } from "./ContributorModal";
 import { GithubButton, WebsiteButton } from "./LinkIconButton";
 
-const cl = classNameFactory("vc-plugin-modal-");
+const cl = classNameFactory("nx-plugin-modal-");
 
 const UserSummaryItem = findComponentByCodeLazy("defaultRenderUser", "showDefaultAvatarsForNullUsers");
 const AvatarStyles = findByPropsLazy("moreUsers", "emptyUser", "avatarContainer", "clickableAvatar");

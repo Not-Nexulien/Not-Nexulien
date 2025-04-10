@@ -17,14 +17,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     justify-content: center;
-    margin-bottom: 1em;
-    padding: 24px;
-    background-color: var(--background-secondary) !important;
-    box-shadow: var(--elevation-low) !important;
-    border-radius: 12px !important;
-    border: none !important;
-    color: var(--text-muted);
-    padding-bottom: 0;
+    padding-bottom: 10px;
 }
 
 .nx-settings-logo-container {
@@ -62,7 +55,7 @@
 
 .nx-settings-mascot {
     /* scuffed but hey it works, permanently frfr */
-    transform: scale(1.5) translate(-16px) translateY(-32px);
+    transform: scale(2) translateX(-24px) translateY(-8px);
 }
 
 .nx-settings-header > div {
@@ -79,21 +72,27 @@
 
 .nx-settings-buttonRow > button {
     all: unset;
-    background-color: var(--brand-500);
-    color: var(--white-500);
+    background-color: var(--button-filled-brand-background);
+    color: var(--button-filled-brand-text);
     display: flex;
     align-items: center;
     gap: 0.5em;
-    padding: 8px 16px;
-    border-radius: 4px;
-    height: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 2px 16px;
+    border: 1px solid var(--button-filled-brand-border);
+    border-radius: 8px;
+    transition-duration: .2s;
+    height: var(--custom-button-button-md-height);
+    min-width: var(--custom-button-button-md-width);
+    min-height: var(--custom-button-button-md-height);
     cursor: pointer;
-    transition-duration: 0.1s;
+    box-sizing: border-box;
 }
 
 .nx-settings-buttonRow > button:hover {
-    background-color: var(--brand-600);
-    transition-duration: 0.1s;
+    background-color: var(--button-filled-brand-background-hover);
 }
 
 .nx-settings-buttonRow > button:focus-visible {

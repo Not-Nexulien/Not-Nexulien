@@ -81,7 +81,7 @@ function SettingsSyncSection() {
             >
                 Settings Sync
             </Switch>
-            <div className="vc-cloud-settings-sync-grid">
+            <div className="nx-cloud-settings-sync-grid">
                 <Button
                     size={Button.Sizes.SMALL}
                     disabled={!sectionEnabled}

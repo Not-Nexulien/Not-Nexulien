@@ -4,21 +4,14 @@
     grid-template-rows: auto auto;
     justify-content: center;
     margin-bottom: 1em;
-    padding: 24px;
-    padding-top: 16px;
-    background-color: var(--background-secondary) !important;
-    box-shadow: var(--elevation-low) !important;
-    border-radius: 12px !important;
-    border: none !important;
 }
 
 .nx-settings-quickActions-title {
-    margin-bottom: 16px;
     color: var(--text-normal);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    line-height: 2; /* i hate this i hate this i hate this i hate this */
+    padding-bottom: 12px;
 }
 
 .nx-settings-quickActions-containerButtons {
@@ -30,14 +23,22 @@
 .nx-settings-quickActions-button {
     all: unset;
     background-color: var(--button-secondary-background);
-    color: var(--white-500);
+    color: var(--button-secondary-text);
     display: flex;
     align-items: center;
     gap: 0.5em;
-    padding: 8px 12px;
-    border-radius: 4px; /* original: border-radius: 9999px; */
-    height: 24px;
-    transition-duration: 0.1s;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 2px 16px;
+    border: 1px solid var(--button-filled-brand-border);
+    border-radius: 8px;
+    transition-duration: .2s;
+    height: var(--custom-button-button-md-height);
+    min-width: var(--custom-button-button-md-width);
+    min-height: var(--custom-button-button-md-height);
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
 .nx-settings-quickActions-button:hover {
@@ -63,6 +64,8 @@
     background: transparent;
     margin: 0;
     color: var(--interactive-normal);
+    align-self: flex-start;
+    margin-top: -8px !important;
 }
 
 .nx-settings-quickActions-info-button:hover {
@@ -73,4 +76,10 @@
     border-radius: 100%;
     outline: 2px solid var(--focus-primary);
     outline-offset: -2px;
+}
+
+.nx-settings-quickActions-help {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

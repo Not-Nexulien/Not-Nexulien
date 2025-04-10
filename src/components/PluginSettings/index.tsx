@@ -25,6 +25,7 @@ import { classNameFactory } from "@api/Styles";
 import { CogWheel, InfoIcon } from "@components/Icons";
 import { openPluginModal } from "@components/PluginSettings/PluginModal";
 import { AddonCard } from "@components/VencordSettings/AddonCard";
+import { NxCard } from "@components/VencordSettings/NxCard";
 import { SettingsTab } from "@components/VencordSettings/shared";
 import { ChangeList } from "@utils/ChangeList";
 import { proxyLazy } from "@utils/lazy";
@@ -34,7 +35,7 @@ import { classes, isObjectEmpty } from "@utils/misc";
 import { useAwaiter } from "@utils/react";
 import { Plugin } from "@utils/types";
 import { findByPropsLazy } from "@webpack";
-import { Alerts, Button, Card, Forms, lodash, Parser, React, Select, Text, TextInput, Toasts, Tooltip, useMemo } from "@webpack/common";
+import { Alerts, Button, Forms, lodash, Parser, React, Select, Text, TextInput, Toasts, Tooltip, useMemo } from "@webpack/common";
 import { JSX } from "react";
 
 import Plugins, { ExcludedPlugins } from "~plugins";
@@ -42,7 +43,7 @@ import Plugins, { ExcludedPlugins } from "~plugins";
 // Avoid circular dependency
 const { startDependenciesRecursive, startPlugin, stopPlugin } = proxyLazy(() => require("../../plugins"));
 
-const cl = classNameFactory("vc-plugins-");
+const cl = classNameFactory("nx-plugins-");
 const logger = new Logger("PluginSettings", "#a6d189");
 
 const InputStyles = findByPropsLazy("inputWrapper", "inputDefault", "error");
@@ -63,19 +64,19 @@ function showErrorToast(message: string) {
 function ReloadRequiredCard({ required }: { required: boolean; }) {
     return (
         <>
-            <Card className={cl("info-card")}>
+            <NxCard className={cl("info-card")}>
                 <Text className={cl("card-title")} variant="heading-md/bold">Plugin Management</Text>
                 <span>Press the cog wheel or info icon to get more info on a plugin</span>
                 <span>Plugins with a cog wheel have settings you can modify!</span>
-            </Card>
+            </NxCard>
             {required ? (
-                <Card className={cl("restart-card")}>
+                <NxCard className={cl("restart-card")}>
                     <Text className={cl("card-title")} variant="heading-md/bold">Restart required!</Text>
                     <span>Restart now to apply new plugins and their settings</span>
                     <Button onClick={() => location.reload()} className={cl("restart-button")}>
                         Restart
                     </Button>
-                </Card>
+                </NxCard>
             ) : (<></>)}
         </>
     );
