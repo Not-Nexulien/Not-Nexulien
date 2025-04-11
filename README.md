@@ -20,6 +20,9 @@
     - In-built core functions [ex.: Server Themes]
 - Alien Cats
 
+> [!NOTE]
+> Server themes are currently disabled, as they'll be rewritten soon.
+
 ## Disclaimer
 
 Discord is trademark of Discord Inc. and solely mentioned for the sake of descriptivity.
