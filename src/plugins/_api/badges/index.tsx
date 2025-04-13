@@ -64,7 +64,11 @@ async function loadBadges(noCache = false) {
 
     NexulienBadges = await fetch("https://raw.githubusercontent.com/defautluser0/nexassets/main/badges.json", init)
         .then(r => r.json());
-
+    
+    await fetch("https://raw.githubusercontent.com/defautluser0/nexassets/main/badgesnew.json", init)
+         .then(r => r.json())
+         .then(r => NexulienBadges = {...NexulienBadges, ...r});
+    
     DonorBadges = await fetch("https://badges.vencord.dev/badges.json", init)
         .then(r => r.json());
 
