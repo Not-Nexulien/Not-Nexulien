@@ -141,10 +141,10 @@ function VencordSettings() {
                     action={() => VencordNative.native.openExternal("https://github.com/" + gitRemote)}
                 />
                 <QuickAction
-                    Icon={boykisserIcon}
-                    text="i will give this button a purpose someday"
+                    Icon={BlobcatCozy}
+                    text="Request a badge (NOT IMPLEMENTED)"
                     action={function () {
-                        console.warn("you silly goober");
+                        console.warn("not implemented yet");
                     }}
                 />
             </QuickActionContainer>
