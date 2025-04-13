@@ -13,6 +13,7 @@
 
 - Heavily polished menu redesigns, with a focus on UX
 - Extra API Functions (ex.: Dev-build only commands)
+- Easily identify other Nexulien users in the wild
 - Everything from Vencord ([read more](https://github.com/Vendicated/Vencord/?tab=readme-ov-file#features))
 - More Plugins
     - Utility (ex.: ToneIndicators)
@@ -31,7 +32,7 @@
 > Discord is trademark of Discord Inc. and solely mentioned for the sake of descriptivity.
 > Mention of it does not imply any affiliation with or endorsement by Discord Inc.
 
-> [!WARNING]
+> [!CAUTION]
 >
 > <details>
 > <summary>Using Nexulien violates Discord's terms of service</summary>
