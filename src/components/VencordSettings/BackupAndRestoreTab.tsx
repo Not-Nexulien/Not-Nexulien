@@ -29,8 +29,8 @@ import { SettingsTab, wrapTab } from "./shared";
 function BackupRestoreTab() {
     return (
         <SettingsTab title="Backup & Restore">
-            <NxCard className="nx-backup-restore-card">
-                <Text className="nx-settings-card-title" variant="heading-md/bold">Warning</Text>
+            <NxCard className={`nx-card-warning ${Margins.bottom16}`}>
+                <Text className="nx-card-title" variant="heading-md/bold">Warning</Text>
                 <span>Importing a settings file will overwrite your current settings.</span>
             </NxCard>
             <Text variant="text-md/normal" className={Margins.bottom8}>

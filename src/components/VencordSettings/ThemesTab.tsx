@@ -89,7 +89,7 @@ function Validators({ themeLinks }: { themeLinks: string[]; }) {
                         return { label: `[${mode} mode only] ${link}`, link };
                     })();
 
-                    return <NxCard key={link}>
+                    return <NxCard key={link} className={cl("validator-card")}>
                         <Forms.FormTitle tag="h5" style={{
                             overflowWrap: "break-word"
                         }}>
@@ -210,16 +210,24 @@ function ThemesTab() {
                 <NxCard className={cl("info-card")}>
                     <Text className={cl("card-title")} variant="heading-md/bold">Find Themes:</Text>
                     <div style={{ marginBottom: ".5em", display: "flex", flexDirection: "column" }}>
-                        <Link style={{ marginRight: ".5em" }} href="https://betterdiscord.app/themes">
-                            BetterDiscord Themes
-                        </Link>
-                        <Link href="https://github.com/search?q=discord+theme">GitHub</Link>
+                        <ul>
+                            <li>
+                                &mdash;&nbsp;
+                                <Link style={{ marginRight: ".5em" }} href="https://betterdiscord.app/themes">
+                                    BetterDiscord Themes
+                                </Link>
+                            </li>
+                            <li>
+                                &mdash;&nbsp;
+                                <Link href="https://github.com/search?q=discord+theme">GitHub</Link>
+                            </li>
+                        </ul>
                     </div>
                     <span>If using the BetterDiscord site, click on "Download" and place the downloaded .theme.css file into your themes folder.</span>
                 </NxCard>
 
                 <Forms.FormSection title="Local Themes">
-                    <QuickActionContainer title="Theme-related Quick Actions">
+                    <QuickActionContainer title="Manage Local Themes">
                         <>
                             {IS_WEB ?
                                 (
@@ -301,7 +309,7 @@ function ThemesTab() {
         return (
             <>
                 <NxCard className={`${cl("info-card")} nx-text-selectable`}>
-                    <Text variant="heading-md/bold" className={cl("card-title")}>Paste links to css files here</Text>
+                    <Text variant="heading-md/bold" className="nx-card-title">Paste links to css files here</Text>
                     <span>One link per line</span>
                     <span>You can prefix lines with @light or @dark to toggle them based on your Discord theme</span>
                     <span>Make sure to use direct links to files (raw or github.io)!</span>

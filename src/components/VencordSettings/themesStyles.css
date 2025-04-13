@@ -32,3 +32,7 @@
 .nx-settings-theme-author::before {
     content: "by ";
 }
+
+.nx-settings-theme-validator-card {
+    margin-top: 16px;
+}
