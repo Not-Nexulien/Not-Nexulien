@@ -46,3 +46,7 @@
 > Additionally, make sure not to post screenshots with Nexulien in a server where you might get banned for it.
 > 
 > </details>
+
+## Installing
+Clone this repository, run ```pnpm build``` and then run ```pnpm inject```. Select your discord version and press enter.
+im too lazy to make a real installer,,
