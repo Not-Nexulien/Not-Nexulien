@@ -102,7 +102,7 @@ async function init() {
                 await update();
                 if (Settings.autoUpdateNotification && !isImportant)
                     setTimeout(() => showNotification({
-                        title: "Nexulien has been updated!",
+                        title: "Nexulien2 has been updated!",
                         body: "Click here to restart",
                         permanent: true,
                         noPersist: true,
@@ -111,7 +111,7 @@ async function init() {
                 if (isImportant) {
                     setTimeout(() => {
                         showNotification({
-                            title: "Nexulien has been updated!",
+                            title: "Nexulien2 has been updated!",
                             body: "Important update prioritized, restarting in 10 seconds.",
                             permanent: true,
                             noPersist: true,
@@ -123,7 +123,7 @@ async function init() {
             }
 
             setTimeout(() => showNotification({
-                title: "A Nexulien update is available!",
+                title: "A Nexulien2 update is available!",
                 body: "Click here to view the update",
                 permanent: true,
                 noPersist: true,
