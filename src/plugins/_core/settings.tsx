@@ -192,6 +192,11 @@ export default definePlugin({
     },
 
     options: {
+        showHint: {
+            type: OptionType.BOOLEAN,
+            description: "If the hint referring to these settings should show",
+            default: true
+        },
         settingsLocation: {
             type: OptionType.SELECT,
             description: "Where to put the Nexulien settings section",
@@ -202,6 +207,15 @@ export default definePlugin({
                 { label: "Above Activity Settings", value: "aboveActivity" },
                 { label: "Below Activity Settings", value: "belowActivity" },
                 { label: "At the very bottom", value: "bottom" },
+            ]
+        },
+        headerCardSize: {
+            type: OptionType.SELECT,
+            description: "Change how much space the Nexulien header takes up",
+            options: [
+                { label: "Default - as much as intended", value: "default", default: true },
+                { label: "Minimal - small card with logo and buttons", value: "minimal" },
+                { label: "None", value: "none" },
             ]
         },
     },

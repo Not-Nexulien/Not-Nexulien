@@ -21,29 +21,9 @@
 }
 
 .nx-settings-quickActions-button {
-    all: unset;
-    background-color: var(--button-secondary-background);
-    color: var(--button-secondary-text);
     display: flex;
     align-items: center;
     gap: 0.5em;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 16px;
-    padding: 2px 16px;
-    border: 1px solid var(--button-filled-brand-border);
-    border-radius: 8px;
-    transition-duration: .2s;
-    height: var(--custom-button-button-md-height);
-    min-width: var(--custom-button-button-md-width);
-    min-height: var(--custom-button-button-md-height);
-    cursor: pointer;
-    box-sizing: border-box;
-}
-
-.nx-settings-quickActions-button:hover {
-    background-color: var(--button-secondary-background-hover);
-    transition-duration: 0.1s;
 }
 
 .nx-settings-quickActions-button:focus-visible {

@@ -14,7 +14,7 @@ import { classNameFactory } from "@api/Styles";
 import { InfoIcon } from "@components/Icons";
 import { classes } from "@utils/misc";
 import { findByPropsLazy } from "@webpack";
-import { Alerts, Text } from "@webpack/common";
+import { Alerts, Button, Text } from "@webpack/common";
 import type { ComponentType, PropsWithChildren, ReactNode } from "react";
 
 import { NxCard } from "./NxCard";
@@ -36,10 +36,12 @@ export function QuickAction(props: QuickActionProps) {
     const { Icon, action, text, disabled } = props;
 
     return (
-        <button className={cl("button")} onClick={action} disabled={disabled}>
-            <Icon className={cl("img")} />
-            {text}
-        </button>
+        <Button look={Button.Looks.FILLED} color={Button.Colors.PRIMARY} onClick={action} disabled={disabled}>
+            <div className={cl("button")}>
+                <Icon className={cl("img")} />
+                {text}
+            </div>
+        </Button>
     );
 }
 

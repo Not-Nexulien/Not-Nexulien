@@ -65,7 +65,7 @@ function ReloadRequiredCard({ required }: { required: boolean; }) {
     return (
         <>
             <NxCard className={cl("info-card")}>
-                <Text className={cl("card-title")} variant="heading-md/bold">Plugin Management</Text>
+                <Text className="nx-card-title" variant="heading-md/bold">Plugin Management</Text>
                 <span>Press the cog wheel or info icon to get more info on a plugin</span>
                 <span>Plugins with a cog wheel have settings you can modify!</span>
             </NxCard>
@@ -333,9 +333,9 @@ export default function PluginSettings() {
         <SettingsTab title="Plugins">
             <ReloadRequiredCard required={changes.hasChanges} />
 
-            <Forms.FormTitle tag="h5" className={classes(Margins.top20, Margins.bottom8)}>
+            {/* <Forms.FormTitle tag="h5" className={classes(Margins.top20, Margins.bottom8)}>
                 Filters
-            </Forms.FormTitle>
+            </Forms.FormTitle> */}
 
             <div className={classes(Margins.bottom20, cl("filter-controls"))}>
                 <TextInput autoFocus value={searchValue.value} placeholder="Search for a plugin..." onChange={onSearch} />
