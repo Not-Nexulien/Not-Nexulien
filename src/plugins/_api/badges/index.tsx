@@ -271,7 +271,7 @@ export default definePlugin({
                                 <div className="nx-badge-modal-description">
                                     <Forms.FormText>
 					{badge.description2||"Currently the only way to get one is by asking @thezoidmaster, asking @defautluser0 (for this fork only), or getting a PR accepted in the assets repo."}
-				                    </Forms.FormText> // or you could recompile to add new badges
+				                    </Forms.FormText>
                                 </div>
                             </ModalContent>
                             <ModalFooter>
