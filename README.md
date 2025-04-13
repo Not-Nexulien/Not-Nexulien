@@ -17,34 +17,31 @@
 - More Plugins
     - Utility (ex.: ToneIndicators)
     - Fun (ex.: DecTalk, MoreMarkdown)
-    - In-built core functions [ex.: Server Themes]
+    - In-built core functions (ex.: Server Themes)
 - Alien Cats
 
 > [!NOTE]
 > Server themes are currently disabled, as they'll be rewritten soon.
 
-## Disclaimer
+---
 
-Discord is trademark of Discord Inc. and solely mentioned for the sake of descriptivity.
-Mention of it does not imply any affiliation with or endorsement by Discord Inc.
+> [!IMPORTANT]
+> ## Disclaimer
+> 
+> Discord is trademark of Discord Inc. and solely mentioned for the sake of descriptivity.
+> Mention of it does not imply any affiliation with or endorsement by Discord Inc.
 
-<details>
-<summary>Using Nexulien violates Discord's terms of service</summary>
-
-Client modifications are against Discord's Terms of Service.
-
-However, Discord is pretty indifferent about them and there are no known cases of users getting banned for using client mods! So you should generally be fine as long as you don’t use any plugins that implement abusive behaviour. But no worries, all inbuilt plugins are safe to use!
-
-Regardless, if your account is very important to you and it getting disabled would be a disaster for you, you should probably not use any client mods (not exclusive to Nexulien), just to be safe
-
-Additionally, make sure not to post screenshots with Nexulien in a server where you might get banned for it
-
-</details>
-
-<!-- <table>
-    <tr>
-        <td>Centro comercial Moctezuma</td>
-        <td>Francisco Chang</td>
-        <td>Mexico</td>
-    </tr>
-</table> -->
+> [!WARNING]
+>
+> <details>
+> <summary>Using Nexulien violates Discord's terms of service</summary>
+> 
+> ## Client modifications are against Discord's Terms of Service.
+> 
+> However, Discord is pretty indifferent about them and there are no known cases of users getting banned for using client mods! So you should generally be fine as long as you don’t use any plugins that implement abusive behaviour. But no worries, all inbuilt plugins are > safe to use!
+> 
+> Regardless, if your account is very important to you and it getting disabled would be a disaster for you, you should probably not use any client mods (not exclusive to Nexulien), just to be safe.
+> 
+> Additionally, make sure not to post screenshots with Nexulien in a server where you might get banned for it.
+> 
+> </details>
