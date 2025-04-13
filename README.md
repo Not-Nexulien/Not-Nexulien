@@ -48,5 +48,8 @@
 > </details>
 
 ## Installing
-Clone this repository, run ```pnpm build``` and then run ```pnpm inject```. Select your discord version and press enter.
-im too lazy to make a real installer,,
+### Prequisites
+You will need [pnpm](https://pnpm.io/installation) and [nodejs](https://nodejs.org/en/download/)
+### Building and installing
+Clone this repository and cd into it, run ```pnpm install --frozen-lockfile```, then run ```pnpm build``` and then ```pnpm inject```. Select your discord version and press enter.
+im too lazy to make a real installer so just build it.
