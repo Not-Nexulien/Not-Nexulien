@@ -170,7 +170,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
             });
 
             return <NxCard className={Margins.top16}>
-                <Flex flexDirection="column" style={{ gap: 12, marginBottom: 16 }}>{options}</Flex>
+                <Flex flexDirection="column" style={{ gap: 12 }}>{options}</Flex>
             </NxCard>;
         }
     }
