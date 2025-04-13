@@ -232,7 +232,7 @@ export default definePlugin({
                 const modalKey = openModal(props => (
                     <ErrorBoundary noop onError={() => {
                         closeModal(modalKey);
-                        VencordNative.native.openExternal("https://github.com/Nexulien/Nexulien/blob/main/src/plugins/_api/badges/index.tsx");
+                        VencordNative.native.openExternal("https://github.com/defautluser0/Nexulien2/blob/main/src/plugins/_api/badges/index.tsx");
                     }}>
                         <ModalRoot {...props}>
                             <ModalHeader>
@@ -264,20 +264,20 @@ export default definePlugin({
                                             {badge.name||badge.tooltip} <NxSpark />
                                         </Forms.FormTitle>
                                         <Forms.FormText>
-                                            {badge.description||"This Badge was granted to this user by the owner of Nexulien."}
+                                            {badge.description||"This Badge was granted to this user by the owner of Nexulien or Nexulien2."}
                                         </Forms.FormText>
                                     </div>
                                 </div>
                                 <div className="nx-badge-modal-description">
                                     <Forms.FormText>
-					{badge.description2||"Currently the only way to get one is by asking @thezoidmaster, or getting a PR accepted in the assets repo."}
-				    </Forms.FormText>
+					{badge.description2||"Currently the only way to get one is by asking @thezoidmaster, asking @defautluser0 (for this fork only), or getting a PR accepted in the assets repo."}
+				                    </Forms.FormText> // or you could recompile to add new badges
                                 </div>
                             </ModalContent>
                             <ModalFooter>
                                 <Flex style={{ width: "100%", justifyContent: "center" }}>
                                     <Forms.FormText>
-                                        <Link href={`${badge.link || "https://github.com/Nexulien/assets"}`}>{badge.linkdesc||"Visit the assets repo"}</Link>
+                                        <Link href={`${badge.link || "https://github.com/defautluser0/nexassets"}`}>{badge.linkdesc||"Visit the assets repo"}</Link>
                                     </Forms.FormText>
                                 </Flex>
                             </ModalFooter>
