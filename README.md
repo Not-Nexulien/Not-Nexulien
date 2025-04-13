@@ -32,7 +32,7 @@
 > Discord is trademark of Discord Inc. and solely mentioned for the sake of descriptivity.
 > Mention of it does not imply any affiliation with or endorsement by Discord Inc.
 
-> [!WARNING]
+> [!CAUTION]
 >
 > <details>
 > <summary>Using Nexulien violates Discord's terms of service</summary>
