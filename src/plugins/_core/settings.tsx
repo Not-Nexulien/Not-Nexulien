@@ -86,12 +86,12 @@ export default definePlugin({
         return [
             {
                 section: SectionTypes.HEADER,
-                label: "Nexulien",
+                label: "Nexulien2",
                 className: "vc-settings-header"
             },
             {
                 section: "VencordSettings",
-                label: "Nexulien",
+                label: "Nexulien2",
                 element: VencordTab,
                 className: "vc-settings"
             },
