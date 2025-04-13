@@ -23,6 +23,7 @@ import { useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
+import { NxCard } from "@components/VencordSettings/NxCard";
 import { gitRemote } from "@shared/vencordUserAgent";
 import { proxyLazy } from "@utils/lazy";
 import { Margins } from "@utils/margins";
@@ -141,7 +142,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
 
     function renderSettings() {
         if (!hasSettings || !plugin.options) {
-            return <Forms.FormText>There are no settings for this plugin.</Forms.FormText>;
+            return <NxCard className={classes("nx-card-help", Margins.top16)}>There are no settings for this plugin.</NxCard>;
         } else {
             const options = Object.entries(plugin.options).map(([key, setting]) => {
                 if (setting.type === OptionType.CUSTOM || setting.hidden) return null;
@@ -168,7 +169,9 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                 );
             });
 
-            return <Flex flexDirection="column" style={{ gap: 12, marginBottom: 16 }}>{options}</Flex>;
+            return <NxCard className={Margins.top16}>
+                <Flex flexDirection="column" style={{ gap: 12, marginBottom: 16 }}>{options}</Flex>
+            </NxCard>;
         }
     }
 
@@ -241,7 +244,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                 </Text>
 
                 {!pluginMeta.userPlugin && (
-                    <div className="vc-settings-modal-links" style={{ paddingRight: 16 }}>
+                    <div className="nx-settings-modal-links" style={{ paddingRight: 16 }}>
                         <WebsiteButton
                             text="View more info"
                             href={`https://vencord.dev/plugins/${plugin.name}`}
@@ -275,11 +278,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                         </Forms.FormSection>
                     </div>
                 )}
-                <Forms.FormDivider className={Margins.top8 + " " + Margins.bottom8} />
-                <Forms.FormSection className={Margins.bottom16}>
-                    <Forms.FormTitle tag="h3">Settings</Forms.FormTitle>
-                    {renderSettings()}
-                </Forms.FormSection>
+                {renderSettings()}
             </ModalContent>
             {hasSettings && <ModalFooter>
                 <Flex flexDirection="column" style={{ width: "100%" }}>

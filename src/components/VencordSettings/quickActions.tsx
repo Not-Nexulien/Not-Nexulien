@@ -12,9 +12,11 @@ import "./quickActions.css";
 
 import { classNameFactory } from "@api/Styles";
 import { InfoIcon } from "@components/Icons";
+import { openInviteModal } from "@utils/discord";
 import { classes } from "@utils/misc";
+import { closeAllModals } from "@utils/modal";
 import { findByPropsLazy } from "@webpack";
-import { Alerts, Button, Text } from "@webpack/common";
+import { Alerts, Button, FluxDispatcher, GuildStore, NavigationRouter, Text } from "@webpack/common";
 import type { ComponentType, PropsWithChildren, ReactNode } from "react";
 
 import { NxCard } from "./NxCard";
@@ -61,10 +63,25 @@ export function QuickActionContainer({ title, children }: PropsWithChildren<Quic
                                         <img height="64px" width="64px" src="https://cdn.discordapp.com/emojis/1348781960453161011.gif" draggable="false"></img>
                                         <p>No one's around to help.</p>
                                     </div>
+                                    <NxCard className="nx-card-help">
+                                        If you are looking for actual help, please go ask in our Discord server (not Vencord's)! We'll always be there to help you out.
+                                    </NxCard>
                                 </>
                             ),
-                            confirmText: "(≧∀≦)ゞ",
-                            onConfirm: () => console.log("sigma or sugma?")
+                            cancelText: "(≧∀≦)ゞ",
+                            confirmText: "Join our Server",
+                            onConfirm: async () => {
+                                if (!GuildStore.getGuild("1297010632591278090")) {
+                                    const inviteAccepted = await openInviteModal("VS2wePpjnt");
+                                    if (inviteAccepted) {
+                                        closeAllModals();
+                                        FluxDispatcher.dispatch({ type: "LAYER_POP_ALL" });
+                                    }
+                                } else {
+                                    FluxDispatcher.dispatch({ type: "LAYER_POP_ALL" });
+                                    NavigationRouter.transitionToGuild("1297010632591278090");
+                                }
+                            }
                         });
                     }}
                     className={classes(ButtonClasses.button, cl("info-button"))}

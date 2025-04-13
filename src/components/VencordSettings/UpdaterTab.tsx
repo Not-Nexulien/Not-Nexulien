@@ -113,7 +113,7 @@ function Updatable(props: CommonProps) {
     const isOutdated = (updates?.length ?? 0) > 0;
 
     return (
-        <NxCard className="nx-updater-controls">
+        <NxCard className={classes(isOutdated ? "nx-card-warning" : (!updates && updateError ? "nx-card-danger" : "nx-card-positive"), Margins.bottom16)}>
             {!updates && updateError ? (
                 <>
                     <Forms.FormText>Failed to check updates. Check the console for more info</Forms.FormText>
@@ -183,12 +183,12 @@ function Updatable(props: CommonProps) {
 
 function Newer(props: CommonProps) {
     return (
-        <>
+        <NxCard className="nx-card-help">
             <Forms.FormText className={Margins.bottom8}>
                 Your local copy has more recent commits. Please stash or reset them.
             </Forms.FormText>
             <Changes {...props} updates={changes} />
-        </>
+        </NxCard>
     );
 }
 
@@ -230,23 +230,24 @@ function Updater() {
 
             {isNewer ? <Newer {...commonProps} /> : <Updatable {...commonProps} />}
 
-            <Forms.FormDivider className={Margins.top8 + " " + Margins.bottom8} />
 
-            <Forms.FormTitle tag="h5">Repo</Forms.FormTitle>
+            <NxCard>
+                <Forms.FormText className="nx-card-title" variant="heading-md/bold">Repository</Forms.FormText>
 
-            <Forms.FormText className="vc-text-selectable">
-                {repoPending
-                    ? repo
-                    : err
-                        ? "Failed to retrieve - check console"
-                        : (
-                            <Link href={repo}>
-                                {repo.split("/").slice(-2).join("/")}
-                            </Link>
-                        )
-                }
-                {" "}(<HashLink hash={gitHash} repo={repo} disabled={repoPending} />)
-            </Forms.FormText>
+                <Forms.FormText className="vc-text-selectable">
+                    {repoPending
+                        ? repo
+                        : err
+                            ? "Failed to retrieve - check console"
+                            : (
+                                <Link href={repo}>
+                                    {repo.split("/").slice(-2).join("/")}
+                                </Link>
+                            )
+                    }
+                    {" "}(<HashLink hash={gitHash} repo={repo} disabled={repoPending} />)
+                </Forms.FormText>
+            </NxCard>
         </SettingsTab>
     );
 }
