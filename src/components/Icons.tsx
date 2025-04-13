@@ -435,7 +435,7 @@ export function WebsiteIcon(props: IconProps) {
     );
 }
 
-export function boykisserIcon(props: ImageProps) {
-    const src = "https://cdn.discordapp.com/emojis/1258290490961559633.png";
+export function BlobcatCozy(props: ImageProps) {
+    const src = "https://cdn.discordapp.com/emojis/1280871637691928647.png";
     return <img {...props} src={src} />;
 }
