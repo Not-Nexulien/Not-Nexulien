@@ -1,54 +1,20 @@
-name: Build DevBuild
-permissions: write-all
+name: Fork Sync
 
 on:
-    push:
-        branches:
-            - main
-env:
-    FORCE_COLOR: true
+  workflow_dispatch:
+  schedule:
+    - cron: '*/30 * * * *'  # every 30 minutes
 
 jobs:
-    Build:
-        runs-on: ubuntu-latest
-
-        steps:
-            - uses: actions/checkout@v4
-
-            - uses: pnpm/action-setup@v3
-
-            - name: Use Node.js 20
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 20
-                  cache: "pnpm"
-
-            - name: Install dependencies
-              run: pnpm install --frozen-lockfile
-
-            - name: Build web
-              run: pnpm buildWebStandalone
-
-            - name: Build standalone
-              run: pnpm build --standalone
-
-            - name: Generate plugin list
-              run: pnpm generatePluginJson dist/plugins.json dist/plugin-readmes.json
-
-            - name: Clean up obsolete files
-              run: |
-                  rm -rf dist/*-unpacked dist/vendor Vencord.user.css vencordDesktopRenderer.css vencordDesktopRenderer.css.map
-
-            - name: Get some values needed for the release
-              id: release_values
-              run: |
-                  echo "release_tag=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-
-            - name: Upload DevBuild as release
-              if: github.repository == 'Nexulien/Nexulien'
-              run: |
-                  gh release upload devbuild --clobber dist/*
-                  gh release edit devbuild --title "DevBuild $RELEASE_TAG"
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  RELEASE_TAG: ${{ env.release_tag }}
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fork Sync
+        uses: tgymnich/fork-sync@v1.2.1
+        with:
+          owner: defautluser0
+          github_token: ${{ secrets.PERSONAL_TOKEN }}
+          head: main
+          base: main
+          pr_title: Automatic fork sync
+          pr_message: Done by an action
