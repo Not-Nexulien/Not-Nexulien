@@ -261,7 +261,7 @@ function nexulien() {
         "https://github.com/Nexulien/Assets/raw/refs/heads/main/tts/bonzi.wav", // 🟣🐒
         "https://github.com/Nexulien/Assets/raw/refs/heads/main/tts/car.wav", // 🔷🐈
         "https://github.com/Nexulien/Assets/raw/refs/heads/main/tts/kinito.wav", // 🌊🏄‍♀️
-        "https://github.com/Nexulien/Assets/raw/refs/heads/main/tts/paul.wav", // 🎮🔊
+        "https://github.com/Nexulien/Assets/raw/refs/heads/main/tts/paul.wav", // 🌑🚀
         "https://github.com/Nexulien/Assets/raw/refs/heads/main/tts/teto.wav" // 🔻🎤
     ];
 
