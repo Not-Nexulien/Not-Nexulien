@@ -183,7 +183,7 @@ function Updatable(props: CommonProps) {
 
 function Newer(props: CommonProps) {
     return (
-        <NxCard className="nx-card-help">
+        <NxCard className={classes("nx-card-help", Margins.bottom16)}>
             <Forms.FormText className={Margins.bottom8}>
                 Your local copy has more recent commits. Please stash or reset them.
             </Forms.FormText>
