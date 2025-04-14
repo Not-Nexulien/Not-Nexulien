@@ -232,7 +232,7 @@ export default definePlugin({
                 const modalKey = openModal(props => (
                     <ErrorBoundary noop onError={() => {
                         closeModal(modalKey);
-                        VencordNative.native.openExternal("https://github.com/defautluser0/Nexulien2/blob/main/src/plugins/_api/badges/index.tsx");
+                        VencordNative.native.openExternal("https://github.com/defautluser0/Not-Nexulien/blob/main/src/plugins/_api/badges/index.tsx");
                     }}>
                         <ModalRoot {...props}>
                             <ModalHeader>
@@ -264,7 +264,7 @@ export default definePlugin({
                                             {badge.name||badge.tooltip} <NxSpark />
                                         </Forms.FormTitle>
                                         <Forms.FormText>
-                                            {badge.description||"This Badge was granted to this user by the owner of Nexulien or Nexulien2."}
+                                            {badge.description||"This Badge was granted to this user by the owner of Nexulien or Not-Nexulien."}
                                         </Forms.FormText>
                                     </div>
                                 </div>
