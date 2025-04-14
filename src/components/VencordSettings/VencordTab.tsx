@@ -28,7 +28,7 @@ import { SpecialCard } from "./SpecialCard";
 
 const cl = classNameFactory("nx-settings-");
 
-const MASCOT_IMAGE = "https://raw.githubusercontent.com/Nexulien/assets/refs/heads/main/low_res_lyra_menu.png";
+const MASCOT_IMAGE = ""; // removed cuz no permission,,
 
 const CONTRIB_IMAGE = "https://cdn.discordapp.com/emojis/1337858798664024156.png";
 const CONTRIB_BACKGROUND_IMAGE = "https://media.discordapp.net/stickers/1337878381517078649.png?size=2048";
@@ -144,7 +144,7 @@ function VencordSettings() {
                     Icon={BlobcatCozy}
                     text="Request a badge (NOT IMPLEMENTED)"
                     action={function () {
-                        console.warn("not implemented yet");
+                        alert("not implemented lmao");
                     }}
                 />
             </QuickActionContainer>
@@ -300,6 +300,7 @@ function HeaderCard() {
                             {/*                  ↓ Factual Information               */}
                             <span>...the best (worst) discord client mod.</span>
                             <span>Nexulien doesn't need donations! Please go support <a href="https://github.com/sponsors/Vendicated" target="_blank" rel="noreferrer">Vendicated</a> instead!</span>
+                            <span>Go support the <a href="https://github.com/nexulien/nexulien">original project</a>, this is not affiliated</span>
                         </> : <></>}
 
                         <div className={cl("buttonRow", headerCardSize === "minimal" ? "buttonRow-minimal" : "")}>
