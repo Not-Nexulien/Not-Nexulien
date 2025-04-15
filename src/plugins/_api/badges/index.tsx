@@ -16,6 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+const fres = false;
+const fee = true
+
 import "./fixDiscordBadgePadding.css";
 import "./badgeModal.css";
 
