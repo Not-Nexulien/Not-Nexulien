@@ -16,8 +16,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-const fres = false;
-
 export * as Api from "./api";
 export * as Components from "./components";
 export * as Plugins from "./plugins";
