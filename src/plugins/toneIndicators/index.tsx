@@ -6,10 +6,14 @@
 
 import "./tooltip.css";
 
+import { definePluginSettings } from "@api/Settings";
+import { classNameFactory } from "@api/Styles";
 import { Devs } from "@utils/constants";
-import definePlugin from "@utils/types";
+import definePlugin, { OptionType } from "@utils/types";
 import { Tooltip } from "@webpack/common";
 import { React } from "webpack/common/react";
+
+import { ToneListChatBarIcon } from "./ToneListIcon";
 
 function toneIndicator(short: string[], long: string) {
     return {
@@ -22,7 +26,7 @@ interface ToneIndicator {
     long: string,
 }
 
-const toneIndicators = [
+export const toneIndicators = [
     toneIndicator(["j"], "joking"),
     toneIndicator(["hj"], "half-joking"),
     toneIndicator(["s", "sarc"], "sarcastic"),
@@ -83,11 +87,24 @@ interface ReactProps {
 
 type ParseReturn = ReactProps | { type: "text", content: string; };
 
+export const cl = classNameFactory("nx-tone-");
+
+export const settings = definePluginSettings({
+    showToneList: {
+        type: OptionType.BOOLEAN,
+        description: "When disabled, hides the tone list in the chat box.",
+        default: true
+    }
+});
+
 export default definePlugin({
     name: "ToneIndicators",
     description: "Adds descriptions when hovering over tone indicators.",
     nexulien: true,
     authors: [Devs.Jaegerwald, Devs.Zoid, Devs.sadan],
+    settings,
+
+    renderChatBarButton: ToneListChatBarIcon,
 
     patches: [
         {
@@ -145,5 +162,6 @@ export default definePlugin({
             }
         };
     },
+
 
 });
