@@ -30,3 +30,7 @@
 .nx-tone-list-indicators span::before {
     content: "/";
 }
+
+.nx-tone-icon path {
+    scale: 0.85;
+}
