@@ -24,7 +24,7 @@ import { cl, settings } from "./index";
 import { ToneListModal } from "./ToneListModal";
 
 
-export function ToneListIcon({ height = 24, width = 24, className }: { height?: number; width?: number; className?: string; }) {
+export function ToneListIcon({ height = 20, width = 20, className }: { height?: number; width?: number; className?: string; }) {
     return (
         <svg
             height={height}
