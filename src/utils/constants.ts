@@ -1,4 +1,10 @@
-4/*
+/*
+ * Vencord, a Discord client mod
+ * Copyright (c) 2025 Vendicated and contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+4;/*
  * Vencord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
@@ -609,6 +615,10 @@ export const Devs = /* #__PURE__*/ Object.freeze({
     Cobble: {
         name: "Cobblestone",
         id: 425778239760367617n
+    },
+    Niko: {
+        name: "Niko",
+        id: 912035400485330954n
     }
 } satisfies Record<string, Dev>);
 
