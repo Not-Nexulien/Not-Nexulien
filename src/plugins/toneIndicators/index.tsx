@@ -29,6 +29,7 @@ interface ToneIndicator {
 export const toneIndicators = [
     toneIndicator(["j"], "joking"),
     toneIndicator(["hj"], "half-joking"),
+    toneIndicator(["sj"], "slightly-joking"),
     toneIndicator(["s", "sarc"], "sarcastic"),
     toneIndicator(["gen", "g"], "genuine"),
     toneIndicator(["srs"], "serious"),
