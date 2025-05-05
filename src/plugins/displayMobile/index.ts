@@ -16,7 +16,7 @@ export default definePlugin({
             find: '.verbose("[IDENTIFY]");',
             replacement: [
                 {
-                    match: /B\.verbose\("\[IDENTIFY\]"\)/,
+                    match: /\.verbose\("\[IDENTIFY\]"\)/,
                     replace: 'l.browser="Discord Android";l.os="Android";B.verbose("[IDENTIFY]")'
                 }
             ]
