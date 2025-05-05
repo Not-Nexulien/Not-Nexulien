@@ -13,7 +13,7 @@ export default definePlugin({
     authors: [Devs.Niko],
     patches: [
         {
-            find: 'B.verbose("[IDENTIFY]")',
+            find: '.verbose("[IDENTIFY]");',
             replacement: [
                 {
                     match: /B\.verbose\("\[IDENTIFY\]"\)/,
