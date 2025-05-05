@@ -13,13 +13,14 @@ export default definePlugin({
     authors: [Devs.Niko],
     patches: [
         {
-            find: '.verbose("[IDENTIFY]");',
+            find: '.verbose("[IDENTIFY]")',
             replacement: [
                 {
-                    match: /\.verbose\("\[IDENTIFY\]"\)/,
-                    replace: 'l.browser="Discord Android";l.os="Android";B.verbose("[IDENTIFY]")'
-                }
-            ]
-        }
+                    match: /(\w+)\.verbose\("\[IDENTIFY\]"\)/,
+                    replace:
+                        'l.browser="Discord Android";l.os="Android";$1.verbose("[IDENTIFY]")',
+                },
+            ],
+        },
     ],
 });
