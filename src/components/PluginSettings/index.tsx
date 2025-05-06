@@ -70,8 +70,8 @@ function ReloadRequiredCard({ required }: { required: boolean; }) {
                 <span>Plugins with a cog wheel have settings you can modify!</span>
             </NxCard>
             {required ? (
-                <NxCard className={cl("restart-card")}>
-                    <Text className={cl("card-title")} variant="heading-md/bold">Restart required!</Text>
+                <NxCard className={classes("nx-card-warning", Margins.bottom16)}>
+                    <Text className="nx-card-title" variant="heading-md/bold">Restart required!</Text>
                     <span>Restart now to apply new plugins and their settings</span>
                     <Button onClick={() => location.reload()} className={cl("restart-button")}>
                         Restart
