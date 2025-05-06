@@ -107,7 +107,7 @@ function VencordSettings() {
                     description="Since you've contributed to Nexulien, you now have a cool new badge!"
                     cardImage={CONTRIB_IMAGE}
                     backgroundImage={CONTRIB_BACKGROUND_IMAGE}
-                    backgroundGradient="linear-gradient(to left, #00ff99, #7700ee)"
+                    backgroundGradient="linear-gradient(to left, var(--nx-green), var(--nx-purple))"
                 />
             )}
             <QuickActionContainer title="Quick Actions">
