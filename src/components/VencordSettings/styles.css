@@ -1,3 +1,8 @@
+:root {
+    --nx-green: #0f9;
+    --nx-purple: #70e;
+}
+
 .nx-card {
     border: 1px solid var(--border-subtle);
     background-color: var(--background-surface-high);
