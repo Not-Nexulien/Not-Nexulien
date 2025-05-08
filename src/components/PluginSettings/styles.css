@@ -69,7 +69,6 @@
 .nx-plugins-restart-button {
     margin-top: 0.5em;
     background-color: var(--yellow-300) !important;
-    width: 100%;
 }
 
 .nx-plugins-info-icon:not(:hover, :focus) {
