@@ -30,6 +30,7 @@ export const toneIndicators = [
     toneIndicator(["j"], "joking"),
     toneIndicator(["hj"], "half-joking"),
     toneIndicator(["sj"], "slightly joking"),
+    toneIndicator(["mj"], "mostly joking"),
     toneIndicator(["s", "sarc"], "sarcastic"),
     toneIndicator(["gen", "g"], "genuine"),
     toneIndicator(["srs"], "serious"),
