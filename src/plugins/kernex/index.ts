@@ -139,6 +139,6 @@ export default definePlugin({
             // }
         }
     },
-    antiPiracy: antiPiracy
+    antiPiracy
 });
 

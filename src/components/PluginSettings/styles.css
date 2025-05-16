@@ -74,3 +74,10 @@
 .nx-plugins-info-icon:not(:hover, :focus) {
     color: var(--text-muted);
 }
+
+.nx-plugins-noResults {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: var(--text-muted);
+}
