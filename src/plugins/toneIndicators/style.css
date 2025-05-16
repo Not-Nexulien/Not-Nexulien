@@ -1,9 +1,9 @@
-.nx-tone-list{
+.nx-tone-list {
     display: grid;
     grid-template-columns: calc(50% - 8px) calc(50% - 8px);
     grid-template-rows: auto;
     gap: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 }
 
 .nx-tone-list-indicators {
@@ -33,4 +33,9 @@
 
 .nx-tone-icon path {
     scale: 0.85;
+}
+
+.nx-tone-noResults {
+    text-align: center;
+    color: var(--text-muted);
 }
