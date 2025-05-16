@@ -7,10 +7,13 @@
 import "./style.css";
 
 import { NxCard } from "@components/VencordSettings/NxCard";
+import { Margins } from "@utils/margins";
+import { classes } from "@utils/misc";
 import { ModalCloseButton, ModalContent, ModalHeader, ModalProps, ModalRoot } from "@utils/modal";
-import { Forms } from "@webpack/common";
+import { Forms, React, TextInput } from "@webpack/common";
+import { JSX } from "react";
 
-import { cl, toneIndicators } from "./index";
+import { cl, ToneIndicator, toneIndicators } from "./index";
 
 function ToneItem({ indicators, description, ...props }) {
     return (
@@ -26,6 +29,27 @@ function ToneItem({ indicators, description, ...props }) {
 }
 
 export function ToneListModal({ rootProps }: { rootProps: ModalProps; }) {
+    const [searchValue, setSearchValue] = React.useState({ value: "" });
+
+    const search = searchValue.value.toLowerCase();
+    const onSearch = (query: string) => setSearchValue(prev => ({ ...prev, value: query }));
+
+    const toneFilter = (tone: ToneIndicator) => {
+        if (!search.length) return true;
+
+        return (
+            tone.short.join(" ").includes(search) ||
+            tone.long.toLowerCase().includes(search)
+        );
+    };
+
+    const tones = [] as JSX.Element[];
+    for (const tone of toneIndicators) {
+        if (!toneFilter(tone)) continue;
+
+        tones.push(<ToneItem indicators={tone.short} description={tone.long}></ToneItem>);
+    }
+
     return (
         <ModalRoot {...rootProps}>
             <ModalHeader className={cl("modal-header")}>
@@ -35,12 +59,15 @@ export function ToneListModal({ rootProps }: { rootProps: ModalProps; }) {
                 <ModalCloseButton onClick={rootProps.onClose} />
             </ModalHeader>
 
+            <TextInput placeholder="Search..." value={searchValue.value} onChange={onSearch} className={Margins.all20}></TextInput>
+
             <ModalContent className={cl("modal-content")}>
-                <div className={cl("list")}>
-                    {toneIndicators.map((indicator, index) => (
-                        <ToneItem key={index} indicators={indicator.short} description={indicator.long}></ToneItem>
-                    ))}
-                </div>
+                {tones.length
+                    ? <div className={cl("list")}>
+                        {tones}
+                    </div>
+                    : <Forms.FormText variant="text-md/normal" className={classes(Margins.top16, cl("noResults"))}>There's no indicator for that.</Forms.FormText>
+                }
             </ModalContent>
         </ModalRoot>
     );

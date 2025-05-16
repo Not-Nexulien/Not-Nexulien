@@ -186,9 +186,9 @@ function ExcludedPluginsList({ search }: { search: string; }) {
     };
 
     return (
-        <Text variant="text-md/normal" className={Margins.top16}>
+        <>
             {matchingExcludedPlugins.length
-                ? <>
+                ? <Text variant="text-md/normal" className={Margins.top16}>
                     <Forms.FormText>Are you looking for:</Forms.FormText>
                     <ul>
                         {matchingExcludedPlugins.map(([name, reason]) => (
@@ -197,10 +197,10 @@ function ExcludedPluginsList({ search }: { search: string; }) {
                             </li>
                         ))}
                     </ul>
-                </>
-                : "No plugins meet the search criteria."
+                </Text>
+                : <Text variant="text-md/normal" className={classes(Margins.top16, cl("noResults"))}>No plugins meet the search criteria.</Text>
             }
-        </Text>
+        </>
     );
 }
 
@@ -362,12 +362,14 @@ export default function PluginSettings() {
 
             {plugins.length || requiredPlugins.length
                 ? (
-                    <div className={cl("grid")}>
+                    <>
                         {plugins.length
-                            ? plugins
-                            : <Text variant="text-md/normal">No plugins meet the search criteria.</Text>
+                            ? <div className={cl("grid")}>
+                                {plugins}
+                            </div>
+                            : <Text variant="text-md/normal" className={cl("noResults")}>No plugins meet the search criteria.</Text>
                         }
-                    </div>
+                    </>
                 )
                 : <ExcludedPluginsList search={search} />
             }
@@ -378,12 +380,14 @@ export default function PluginSettings() {
             <Forms.FormTitle tag="h5" className={classes(Margins.top20, Margins.bottom8)}>
                 Required Plugins
             </Forms.FormTitle>
-            <div className={cl("grid")}>
+            <>
                 {requiredPlugins.length
-                    ? requiredPlugins
-                    : <Text variant="text-md/normal">No plugins meet the search criteria.</Text>
+                    ? <div className={cl("grid")}>
+                        {requiredPlugins}
+                    </div>
+                    : <Text variant="text-md/normal" className={cl("noResults")}>No plugins meet the search criteria.</Text>
                 }
-            </div>
+            </>
         </SettingsTab >
     );
 }
