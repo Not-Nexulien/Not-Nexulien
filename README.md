@@ -13,7 +13,6 @@
 
 - Heavily polished menu redesigns, with a focus on UX
 - Extra API Functions (ex.: Dev-build only commands)
-- Easily identify other Nexulien users in the wild
 - Everything from Vencord ([read more](https://github.com/Vendicated/Vencord/?tab=readme-ov-file#features))
 - More Plugins
     - Utility (ex.: ToneIndicators)
