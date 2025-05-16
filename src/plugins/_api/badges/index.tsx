@@ -51,12 +51,10 @@ const ContributorBadge: ProfileBadge = {
 
 let DonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
 let NexulienBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
-let ActiveUserBadges = { users: [] as Array<{ name: string, user: string; }> };
 
 async function loadBadges(noCache = false) {
     DonorBadges = {};
     NexulienBadges = {};
-    ActiveUserBadges = { users: [] };
 
     const init = {} as RequestInit;
     if (noCache)
@@ -66,9 +64,6 @@ async function loadBadges(noCache = false) {
         .then(r => r.json());
 
     DonorBadges = await fetch("https://badges.vencord.dev/badges.json", init)
-        .then(r => r.json());
-
-    ActiveUserBadges = await fetch("https://api.zoid.one/nexulien/users", init)
         .then(r => r.json());
 }
 
@@ -296,20 +291,5 @@ export default definePlugin({
                 ));
             },
         }));
-    },
-
-    getActiveUserBadges(userId: string) {
-        var badge = {
-            image: "https://github.com/Nexulien/Assets/blob/main/badges/active_user.png?raw=true",
-            description: "Active Nexulien User",
-            position: BadgePosition.START,
-            props: {
-                style: {
-                    borderRadius: "50%",
-                    transform: "scale(0.9)" // The image is a bit too big compared to default badges
-                }
-            }
-        };
-        return Object.entries(ActiveUserBadges.users).some(([_, usernames]) => usernames.user.includes(userId)) ? [badge] : [];
     }
 });
