@@ -1,19 +1,7 @@
-/*!
- * Vencord, a modification for Discord's desktop app
- * Copyright (c) 2022 Vendicated and contributors
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+/*
+ * Vencord, a Discord client mod
+ * Copyright (c) 2025 Vendicated and contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 export * as Api from "./api";
@@ -41,7 +29,6 @@ import { relaunch } from "./utils/native";
 import { getCloudSettings, putCloudSettings } from "./utils/settingsSync";
 import {
     checkForUpdates,
-    checkImportantUpdate,
     update,
     UpdateLogger,
 } from "./utils/updater";
@@ -119,7 +106,7 @@ async function runUpdateCheck() {
             await update();
             if (Settings.autoUpdateNotification) {
                 notify({
-                    title: "Vencord has been updated!",
+                    title: "Nexulien has been updated!",
                     body: "Click here to restart",
                     onClick: relaunch,
                 });
@@ -128,7 +115,7 @@ async function runUpdateCheck() {
         }
 
         notify({
-            title: "A Vencord update is available!",
+            title: "A Nexulien update is available!",
             body: "Click here to view the update",
             onClick: openUpdaterModal!,
         });
@@ -150,7 +137,7 @@ async function init() {
 
     if (IS_DEV) {
         const pendingPatches = patches.filter(
-            (p) => !p.all && p.predicate?.() !== false
+            p => !p.all && p.predicate?.() !== false
         );
         if (pendingPatches.length)
             PMLogger.warn(
@@ -160,9 +147,9 @@ async function init() {
                 "You are seeing this warning because this is a Development build of Vencord.",
                 "\nThe following patches have not been applied:",
                 "\n\n" +
-                    pendingPatches
-                        .map((p) => `${p.plugin}: ${p.find}`)
-                        .join("\n")
+                pendingPatches
+                    .map(p => `${p.plugin}: ${p.find}`)
+                    .join("\n")
             );
     }
 }
