@@ -16,9 +16,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-const fres = false;
-const fee = true
-
 import "./fixDiscordBadgePadding.css";
 import "./badgeModal.css";
 
@@ -44,7 +41,7 @@ import { NxSpark } from "./NxSpark";
 const CONTRIBUTOR_BADGE = "https://github.com/Nexulien/assets/blob/main/badges/contributor.png?raw=true";
 
 const ContributorBadge: ProfileBadge = {
-    description: "Nexulien Contributor",
+    description: "(Not) Nexulien Contributor",
     image: CONTRIBUTOR_BADGE,
     position: BadgePosition.START,
     shouldShow: ({ userId }) => isPluginDev(userId),
