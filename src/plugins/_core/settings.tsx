@@ -97,12 +97,6 @@ export default definePlugin({
                 className: "nx-settings"
             },
             {
-                section: "NexulienNotifications",
-                label: "Notifications",
-                element: NotificationsTab,
-                className: "nx-settings"
-            },
-            {
                 section: "NexulienPlugins",
                 label: "Plugins",
                 element: PluginsTab,
@@ -119,6 +113,12 @@ export default definePlugin({
                 label: "Updater",
                 element: UpdaterTab,
                 className: "nx-updater"
+            },
+            {
+                section: "NexulienNotifications",
+                label: "Notifications",
+                element: NotificationsTab,
+                className: "nx-settings"
             },
             {
                 section: "VencordCloud",
