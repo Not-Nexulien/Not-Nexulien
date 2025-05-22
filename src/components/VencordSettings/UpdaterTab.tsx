@@ -22,6 +22,7 @@ import { useSettings } from "@api/Settings";
 import { ErrorCard } from "@components/ErrorCard";
 import { Flex } from "@components/Flex";
 import { Link } from "@components/Link";
+import { NxCard } from "@components/NxCard";
 import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
 import { ModalCloseButton, ModalContent, ModalProps, ModalRoot, ModalSize, openModal } from "@utils/modal";
@@ -32,7 +33,6 @@ import { Alerts, Button, Forms, Parser, React, Switch, Toasts } from "@webpack/c
 
 import gitHash from "~git-hash";
 
-import { NxCard } from "./NxCard";
 import { handleSettingsTabError, SettingsTab, wrapTab } from "./shared";
 
 function withDispatcher(dispatcher: React.Dispatch<React.SetStateAction<boolean>>, action: () => any) {

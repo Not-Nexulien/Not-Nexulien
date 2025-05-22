@@ -19,6 +19,7 @@
 import { Settings } from "@api/Settings";
 import BackupAndRestoreTab from "@components/VencordSettings/BackupAndRestoreTab";
 import CloudTab from "@components/VencordSettings/CloudTab";
+import NotificationsTab from "@components/VencordSettings/NotificationsTab";
 import PatchHelperTab from "@components/VencordSettings/PatchHelperTab";
 import PluginsTab from "@components/VencordSettings/PluginsTab";
 import ThemesTab from "@components/VencordSettings/ThemesTab";
@@ -87,31 +88,37 @@ export default definePlugin({
             {
                 section: SectionTypes.HEADER,
                 label: "Nexulien",
-                className: "vc-settings-header"
+                className: "nx-settings-header"
             },
             {
-                section: "VencordSettings",
+                section: "NexulienSettings",
                 label: "Nexulien",
                 element: VencordTab,
-                className: "vc-settings"
+                className: "nx-settings"
             },
             {
-                section: "VencordPlugins",
+                section: "NexulienPlugins",
                 label: "Plugins",
                 element: PluginsTab,
-                className: "vc-plugins"
+                className: "nx-plugins"
             },
             {
-                section: "VencordThemes",
+                section: "NexulienThemes",
                 label: "Themes",
                 element: ThemesTab,
-                className: "vc-themes"
+                className: "nx-themes"
             },
             !IS_UPDATER_DISABLED && {
-                section: "VencordUpdater",
+                section: "NexulienUpdater",
                 label: "Updater",
                 element: UpdaterTab,
-                className: "vc-updater"
+                className: "nx-updater"
+            },
+            {
+                section: "NexulienNotifications",
+                label: "Notifications",
+                element: NotificationsTab,
+                className: "nx-settings"
             },
             {
                 section: "VencordCloud",
@@ -196,6 +203,11 @@ export default definePlugin({
             type: OptionType.BOOLEAN,
             description: "If the hint referring to these settings should show",
             default: true
+        },
+        hideContributorCard: {
+            type: OptionType.BOOLEAN,
+            description: "If the contributor card should be hidden, even if you are a contributor.",
+            default: false
         },
         settingsLocation: {
             type: OptionType.SELECT,

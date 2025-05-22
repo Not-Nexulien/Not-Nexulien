@@ -42,6 +42,8 @@
 
 .nx-author-modal-links {
     margin-left: auto;
+    gap: 4px;
+    display: flex;
 }
 
 .nx-author-modal-plugins {
