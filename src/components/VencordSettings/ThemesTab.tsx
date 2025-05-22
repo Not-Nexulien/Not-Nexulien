@@ -23,6 +23,7 @@ import { classNameFactory } from "@api/Styles";
 import { Flex } from "@components/Flex";
 import { DeleteIcon, FolderIcon, PaintbrushIcon, PencilIcon, PlusIcon, RestartIcon } from "@components/Icons";
 import { Link } from "@components/Link";
+import { NxCard } from "@components/NxCard";
 import { openPluginModal } from "@components/PluginSettings/PluginModal";
 import type { UserThemeHeader } from "@main/themes";
 import { openInviteModal } from "@utils/discord";
@@ -36,7 +37,6 @@ import type { ComponentType, Ref, SyntheticEvent } from "react";
 import Plugins from "~plugins";
 
 import { AddonCard } from "./AddonCard";
-import { NxCard } from "./NxCard";
 import { QuickAction, QuickActionContainer } from "./quickActions";
 import { SettingsTab, wrapTab } from "./shared";
 

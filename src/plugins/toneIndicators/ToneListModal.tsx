@@ -6,7 +6,7 @@
 
 import "./style.css";
 
-import { NxCard } from "@components/VencordSettings/NxCard";
+import { NxCard } from "@components/NxCard";
 import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
 import { ModalCloseButton, ModalContent, ModalHeader, ModalProps, ModalRoot } from "@utils/modal";

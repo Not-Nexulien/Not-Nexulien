@@ -9,6 +9,7 @@ import "./headerCard.css";
 import { openNotificationLogModal } from "@api/Notifications/notificationLog";
 import { Settings, useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
+import { NxCard } from "@components/NxCard";
 import { openPluginModal } from "@components/PluginSettings/PluginModal";
 import { gitRemote } from "@shared/vencordUserAgent";
 import { openInviteModal } from "@utils/discord";
@@ -19,16 +20,13 @@ import { relaunch, showItemInFolder } from "@utils/native";
 import { useAwaiter } from "@utils/react";
 import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, Select, Switch, UserStore } from "@webpack/common";
 
-import { BlobcatCozy, Flex, FolderIcon, GithubIcon, LogIcon, PaintbrushIcon, RestartIcon } from "..";
-import { openNotificationSettingsModal } from "./NotificationSettings";
-import { NxCard } from "./NxCard";
+import { BlobcatCozy, FolderIcon, GithubIcon, LogIcon, PaintbrushIcon, RestartIcon } from "..";
+import { NxMascot } from "./Mascot";
 import { QuickAction, QuickActionContainer } from "./quickActions";
 import { SettingsTab, wrapTab } from "./shared";
 import { SpecialCard } from "./SpecialCard";
 
 const cl = classNameFactory("nx-settings-");
-
-const MASCOT_IMAGE = ""; // removed cuz no permission,,
 
 const CONTRIB_IMAGE = "https://cdn.discordapp.com/emojis/1337858798664024156.png";
 const CONTRIB_BACKGROUND_IMAGE = "https://media.discordapp.net/stickers/1337878381517078649.png?size=2048";
@@ -38,7 +36,7 @@ type KeysOfType<Object, Type> = {
 }[keyof Object];
 
 function VencordSettings() {
-    const { showHint } = Settings.plugins.Settings;
+    const { showHint, hideContributorCard } = Settings.plugins.Settings;
 
     const [settingsDir, , settingsDirPending] = useAwaiter(VencordNative.settings.getSettingsDir, {
         fallbackValue: "Loading..."
@@ -96,7 +94,7 @@ function VencordSettings() {
     return (
         <SettingsTab title="Nexulien Settings">
             <HeaderCard />
-            {isPluginDev(user?.id) && (
+            {isPluginDev(user?.id) && !hideContributorCard && (
                 <SpecialCard
                     title="Thank you for contributing!"
                     description="Since you've contributed to Nexulien, you now have a cool new badge!"
@@ -233,17 +231,6 @@ function VencordSettings() {
                     isSelected={v => settings.macosVibrancyStyle === v}
                     serialize={identity} />
             </>}
-
-            <Forms.FormSection className={Margins.top16} title="Nexulien Notifications" tag="h5">
-                <Flex>
-                    <Button onClick={openNotificationSettingsModal}>
-                        Notification Settings
-                    </Button>
-                    <Button onClick={openNotificationLogModal}>
-                        View Notification Log
-                    </Button>
-                </Flex>
-            </Forms.FormSection>
         </SettingsTab>
     );
 }
@@ -261,7 +248,7 @@ function nexulien() {
     ];
 
     audioElement.src = audioArray[Math.floor(Math.random() * audioArray.length)];
-    audioElement.volume = 1;
+    audioElement.volume = 0.5;
     audioElement.play();
     window.setTimeout(function () {
         logo!.style = "animation: nx-settings-logo-boioioing 0.4s cubic-bezier(0.215, 0.610, 0.355, 1);";
@@ -320,17 +307,7 @@ function HeaderCard() {
                         </div>
                     </div>
 
-                    {headerCardSize === "default" ? <img
-                        role="presentation"
-                        src={MASCOT_IMAGE}
-                        alt=""
-                        height={128}
-                        draggable="false"
-                        style={{
-                            marginLeft: "auto"
-                        }}
-                        className={cl("mascot")}
-                    /> : <></>}
+                    {headerCardSize === "default" ? <NxMascot /> : <></>}
                 </NxCard>
                 : <></>}
         </>
