@@ -45,8 +45,8 @@ jobs:
               if: github.repository == 'defautluser0/Not-Nexulien'
               run: |
                   gh release create "$RELEASE_TAG" --notes "Not-Nexulien development build $RELEASE_TAG"
-                  gh release upload devbuild --clobber dist/*
-                  gh release edit devbuild --title "DevBuild $RELEASE_TAG"
+                  gh release upload "$RELEASE_TAG" --clobber dist/*
+                  gh release edit "$RELEASE_TAG" --title "DevBuild $RELEASE_TAG"
               env:
                   GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
                   RELEASE_TAG: ${{ env.release_tag }}
