@@ -6,7 +6,6 @@
 
 import "./headerCard.css";
 
-import { openNotificationLogModal } from "@api/Notifications/notificationLog";
 import { Settings, useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
 import { NxCard } from "@components/NxCard";
@@ -20,7 +19,7 @@ import { relaunch, showItemInFolder } from "@utils/native";
 import { useAwaiter } from "@utils/react";
 import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, Select, Switch, UserStore } from "@webpack/common";
 
-import { BlobcatCozy, FolderIcon, GithubIcon, LogIcon, PaintbrushIcon, RestartIcon } from "..";
+import { BlobcatCozy, FolderIcon, GithubIcon, PaintbrushIcon, RestartIcon } from "..";
 import { NxMascot } from "./Mascot";
 import { QuickAction, QuickActionContainer } from "./quickActions";
 import { SettingsTab, wrapTab } from "./shared";
@@ -104,11 +103,6 @@ function VencordSettings() {
                 />
             )}
             <QuickActionContainer title="Quick Actions">
-                <QuickAction
-                    Icon={LogIcon}
-                    text="Notification Log"
-                    action={openNotificationLogModal}
-                />
                 <QuickAction
                     Icon={PaintbrushIcon}
                     text="Edit QuickCSS"
