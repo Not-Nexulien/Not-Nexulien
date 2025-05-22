@@ -44,7 +44,6 @@ jobs:
             - name: Upload DevBuild as release
               if: github.repository == 'defautluser0/Not-Nexulien'
               run: |
-                  gh release create devbuild --notes "Not-Nexulien DevBuild $RELEASE_TAG"
                   gh release upload devbuild --clobber dist/*
                   gh release edit devbuild --title "DevBuild $RELEASE_TAG"
               env:
