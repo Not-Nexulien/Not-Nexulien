@@ -19,11 +19,11 @@
 import "./styles.css";
 
 import { Flex } from "@components/Flex";
+import { NxCard } from "@components/NxCard";
 import { Margins } from "@utils/margins";
 import { downloadSettingsBackup, uploadSettingsBackup } from "@utils/settingsSync";
 import { Button, Text } from "@webpack/common";
 
-import { NxCard } from "./NxCard";
 import { SettingsTab, wrapTab } from "./shared";
 
 function BackupRestoreTab() {

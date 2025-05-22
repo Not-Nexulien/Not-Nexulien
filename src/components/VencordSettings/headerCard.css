@@ -13,11 +13,12 @@
 .nx-settings-header {
     display: flex;
     flex-direction: row;
-    gap: 64px;
+    gap: 128px;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     justify-content: center;
     max-height: fit-content;
+    padding: 24px;
 }
 
 .nx-settings-header-minimal > div > .nx-settings-logo-container {
@@ -54,7 +55,7 @@
     object-fit: contain;
 }
 
-.nx-settings-mascot {
+.nx-mascot {
     /* scuffed but hey it works, permanently frfr */
     transform: scale(2) translateX(-24px) translateY(-8px);
 }

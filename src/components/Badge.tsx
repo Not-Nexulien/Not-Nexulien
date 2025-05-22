@@ -18,7 +18,7 @@
 
 export function Badge({ text, color }) {
     return (
-        <div className="vc-plugins-badge" style={{
+        <div className="nx-plugins-badge" style={{
             backgroundColor: color,
             justifySelf: "flex-end",
             marginLeft: "auto"

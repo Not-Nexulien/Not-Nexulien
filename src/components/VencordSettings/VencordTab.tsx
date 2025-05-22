@@ -9,6 +9,7 @@ import "./headerCard.css";
 import { openNotificationLogModal } from "@api/Notifications/notificationLog";
 import { Settings, useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
+import { NxCard } from "@components/NxCard";
 import { openPluginModal } from "@components/PluginSettings/PluginModal";
 import { gitRemote } from "@shared/vencordUserAgent";
 import { openInviteModal } from "@utils/discord";
@@ -20,15 +21,13 @@ import { useAwaiter } from "@utils/react";
 import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, Select, Switch, UserStore } from "@webpack/common";
 
 import { boykisserIcon, Flex, FolderIcon, GithubIcon, LogIcon, PaintbrushIcon, RestartIcon } from "..";
+import { NxMascot } from "./Mascot";
 import { openNotificationSettingsModal } from "./NotificationSettings";
-import { NxCard } from "./NxCard";
 import { QuickAction, QuickActionContainer } from "./quickActions";
 import { SettingsTab, wrapTab } from "./shared";
 import { SpecialCard } from "./SpecialCard";
 
 const cl = classNameFactory("nx-settings-");
-
-const MASCOT_IMAGE = "https://raw.githubusercontent.com/Nexulien/assets/refs/heads/main/low_res_lyra_menu.png";
 
 const CONTRIB_IMAGE = "https://cdn.discordapp.com/emojis/1337858798664024156.png";
 const CONTRIB_BACKGROUND_IMAGE = "https://media.discordapp.net/stickers/1337878381517078649.png?size=2048";
@@ -261,7 +260,7 @@ function nexulien() {
     ];
 
     audioElement.src = audioArray[Math.floor(Math.random() * audioArray.length)];
-    audioElement.volume = 1;
+    audioElement.volume = 0.5;
     audioElement.play();
     window.setTimeout(function () {
         logo!.style = "animation: nx-settings-logo-boioioing 0.4s cubic-bezier(0.215, 0.610, 0.355, 1);";
@@ -319,17 +318,7 @@ function HeaderCard() {
                         </div>
                     </div>
 
-                    {headerCardSize === "default" ? <img
-                        role="presentation"
-                        src={MASCOT_IMAGE}
-                        alt=""
-                        height={128}
-                        draggable="false"
-                        style={{
-                            marginLeft: "auto"
-                        }}
-                        className={cl("mascot")}
-                    /> : <></>}
+                    {headerCardSize === "default" ? <NxMascot /> : <></>}
                 </NxCard>
                 : <></>}
         </>

@@ -12,14 +12,13 @@ import "./quickActions.css";
 
 import { classNameFactory } from "@api/Styles";
 import { InfoIcon } from "@components/Icons";
+import { NxCard } from "@components/NxCard";
 import { openInviteModal } from "@utils/discord";
 import { classes } from "@utils/misc";
 import { closeAllModals } from "@utils/modal";
 import { findByPropsLazy } from "@webpack";
 import { Alerts, Button, FluxDispatcher, GuildStore, NavigationRouter, Text } from "@webpack/common";
 import type { ComponentType, PropsWithChildren, ReactNode } from "react";
-
-import { NxCard } from "./NxCard";
 
 const cl = classNameFactory("nx-settings-quickActions-");
 const ButtonClasses = findByPropsLazy("button", "disabled", "enabled");
