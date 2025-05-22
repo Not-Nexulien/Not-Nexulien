@@ -20,9 +20,8 @@ import { relaunch, showItemInFolder } from "@utils/native";
 import { useAwaiter } from "@utils/react";
 import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, Select, Switch, UserStore } from "@webpack/common";
 
-import { boykisserIcon, Flex, FolderIcon, GithubIcon, LogIcon, PaintbrushIcon, RestartIcon } from "..";
+import { boykisserIcon, FolderIcon, GithubIcon, LogIcon, PaintbrushIcon, RestartIcon } from "..";
 import { NxMascot } from "./Mascot";
-import { openNotificationSettingsModal } from "./NotificationSettings";
 import { QuickAction, QuickActionContainer } from "./quickActions";
 import { SettingsTab, wrapTab } from "./shared";
 import { SpecialCard } from "./SpecialCard";
@@ -37,7 +36,7 @@ type KeysOfType<Object, Type> = {
 }[keyof Object];
 
 function VencordSettings() {
-    const { showHint } = Settings.plugins.Settings;
+    const { showHint, hideContributorCard } = Settings.plugins.Settings;
 
     const [settingsDir, , settingsDirPending] = useAwaiter(VencordNative.settings.getSettingsDir, {
         fallbackValue: "Loading..."
@@ -95,7 +94,7 @@ function VencordSettings() {
     return (
         <SettingsTab title="Nexulien Settings">
             <HeaderCard />
-            {isPluginDev(user?.id) && (
+            {isPluginDev(user?.id) && !hideContributorCard && (
                 <SpecialCard
                     title="Thank you for contributing!"
                     description="Since you've contributed to Nexulien, you now have a cool new badge!"
@@ -232,17 +231,6 @@ function VencordSettings() {
                     isSelected={v => settings.macosVibrancyStyle === v}
                     serialize={identity} />
             </>}
-
-            <Forms.FormSection className={Margins.top16} title="Nexulien Notifications" tag="h5">
-                <Flex>
-                    <Button onClick={openNotificationSettingsModal}>
-                        Notification Settings
-                    </Button>
-                    <Button onClick={openNotificationLogModal}>
-                        View Notification Log
-                    </Button>
-                </Flex>
-            </Forms.FormSection>
         </SettingsTab>
     );
 }

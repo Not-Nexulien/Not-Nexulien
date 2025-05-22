@@ -16,6 +16,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/*
+ * Before you go complaining that this component is unecessary,
+ * This code was made *before* Vencord updated their UI, and it's
+ * been used in so many places that deprecating it is not worth
+ * the hastle - also cry about it.
+*/
+
 import "@components/NxCard.css";
 
 export function NxCard({ children, className = "", ...props }) {
