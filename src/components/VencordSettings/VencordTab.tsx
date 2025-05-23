@@ -19,7 +19,7 @@ import { relaunch, showItemInFolder } from "@utils/native";
 import { useAwaiter } from "@utils/react";
 import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, Select, Switch, UserStore } from "@webpack/common";
 
-import { BlobcatCozy, FolderIcon, GithubIcon, PaintbrushIcon, RestartIcon } from "..";
+import { FolderIcon, GithubIcon, PaintbrushIcon, RestartIcon } from "..";
 import { NxMascot } from "./Mascot";
 import { QuickAction, QuickActionContainer } from "./quickActions";
 import { SettingsTab, wrapTab } from "./shared";
@@ -102,7 +102,7 @@ function VencordSettings() {
                     backgroundGradient="linear-gradient(to left, var(--nx-green), var(--nx-purple))"
                 />
             )}
-            <QuickActionContainer title="Quick Actions">
+            <QuickActionContainer title="Quick Actions" customClassName="nx-nexulienSettings-quickActions-containerButtons">
                 <QuickAction
                     Icon={PaintbrushIcon}
                     text="Edit QuickCSS"
@@ -126,13 +126,6 @@ function VencordSettings() {
                     Icon={GithubIcon}
                     text="View Source Code"
                     action={() => VencordNative.native.openExternal("https://github.com/" + gitRemote)}
-                />
-                <QuickAction
-                    Icon={BlobcatCozy}
-                    text="Request a badge (NOT IMPLEMENTED)"
-                    action={function () {
-                        alert("not implemented lmao");
-                    }}
                 />
             </QuickActionContainer>
 
