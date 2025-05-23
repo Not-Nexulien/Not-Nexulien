@@ -31,6 +31,7 @@ export interface QuickActionProps {
 }
 interface QuickActionContainerProps {
     title: string;
+    customClassName?: string;
 }
 
 export function QuickAction(props: QuickActionProps) {
@@ -46,7 +47,7 @@ export function QuickAction(props: QuickActionProps) {
     );
 }
 
-export function QuickActionContainer({ title, children }: PropsWithChildren<QuickActionContainerProps>) {
+export function QuickActionContainer({ title, customClassName, children }: PropsWithChildren<QuickActionContainerProps>) {
     return (
         <NxCard className={cl("container")}>
             <Text className={cl("title")} variant="heading-md/bold">
@@ -88,7 +89,7 @@ export function QuickActionContainer({ title, children }: PropsWithChildren<Quic
                     <InfoIcon />
                 </button>
             </Text>
-            <span className={cl("containerButtons")}>{children}</span>
+            <span className={`${cl("containerButtons")} ${customClassName}`}>{children}</span>
         </NxCard>
     );
 }

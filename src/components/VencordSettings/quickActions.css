@@ -16,6 +16,12 @@
 
 .nx-settings-quickActions-containerButtons {
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.5em;
+}
+
+.nx-nexulienSettings-quickActions-containerButtons {
+    display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 0.5em;
 }
