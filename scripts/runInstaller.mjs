@@ -62,7 +62,7 @@ async function ensureBinary() {
     const downloadName = join(FILE_DIR, filename);
     const outputFile =
         process.platform === "darwin"
-            ? join(FILE_DIR, "NexulienInstaller")
+            ? join(FILE_DIR, "Not-NexulienInstaller")
             : downloadName;
 
     const etag =
