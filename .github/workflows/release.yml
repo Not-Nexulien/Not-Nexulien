@@ -42,11 +42,11 @@ jobs:
                   echo "release_tag=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
             - name: Upload DevBuild as release
-              if: github.repository == 'defautluser0/Not-Nexulien'
+              if: github.repository == 'Not-Nexulien/Not-Nexulien'
               run: |
                   gh release create "$RELEASE_TAG" --notes "Not-Nexulien development build $RELEASE_TAG"
                   gh release upload "$RELEASE_TAG" --clobber dist/*
                   gh release edit "$RELEASE_TAG" --title "DevBuild $RELEASE_TAG"
               env:
-                  GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
                   RELEASE_TAG: ${{ env.release_tag }}
