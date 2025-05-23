@@ -32,7 +32,7 @@ import { finished } from "stream/promises";
 import { fileURLToPath } from "url";
 
 const BASE_URL =
-    "https://github.com/defautluser0/Not-NexInstaller/releases/latest/download/";
+    "https://github.com/Not-Nexulien/Not-NexInstaller/releases/latest/download/";
 const INSTALLER_PATH_DARWIN =
     "Not-NexInstaller.app/Contents/MacOS/Not-NexInstaller";
 
@@ -73,7 +73,7 @@ async function ensureBinary() {
     const res = await fetch(BASE_URL + filename, {
         headers: {
             "User-Agent":
-                "Not-Nexulien (https://github.com/defautluser0/Not-Nexulien)",
+                "Not-Nexulien (https://github.com/Not-Nexulien/Not-Nexulien)",
             "If-None-Match": etag,
         },
     });

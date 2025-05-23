@@ -3,13 +3,13 @@
     "private": "true",
     "version": "1.12.2",
     "description": "the best (worst) discord client mod, now with custom badges and plugins whenever i feel like it",
-    "homepage": "https://github.com/defautluser0/Not-Nexulien",
+    "homepage": "https://github.com/not-nexulien/Not-Nexulien",
     "bugs": {
-        "url": "https://github.com/defautluser0/Not-Nexulien"
+        "url": "https://github.com/not-nexulien/Not-Nexulien"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/defautluser0/Not-Nexulien.git"
+        "url": "git+https://github.com/not-nexulien/Not-Nexulien.git"
     },
     "license": "GPL-3.0-or-later",
     "author": "defautluser0",

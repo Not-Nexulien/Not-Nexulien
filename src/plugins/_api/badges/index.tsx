@@ -62,11 +62,11 @@ async function loadBadges(noCache = false) {
 
     NexulienBadges = await fetch("https://raw.githubusercontent.com/defautluser0/nexassets/main/badges.json", init)
         .then(r => r.json());
-    
+
     await fetch("https://raw.githubusercontent.com/defautluser0/nexassets/main/badgesnew.json", init)
          .then(r => r.json())
          .then(r => NexulienBadges = {...NexulienBadges, ...r});
-    
+
     DonorBadges = await fetch("https://badges.vencord.dev/badges.json", init)
         .then(r => r.json());
 }
@@ -241,7 +241,7 @@ export default definePlugin({
                 const modalKey = openModal(props => (
                     <ErrorBoundary noop onError={() => {
                         closeModal(modalKey);
-                        VencordNative.native.openExternal("https://github.com/defautluser0/Not-Nexulien/blob/main/src/plugins/_api/badges/index.tsx");
+                        VencordNative.native.openExternal("https://github.com/not-nexulien/Not-Nexulien/blob/main/src/plugins/_api/badges/index.tsx");
                     }}>
                         <ModalRoot {...props}>
                             <ModalHeader>
@@ -286,7 +286,7 @@ export default definePlugin({
                             <ModalFooter>
                                 <Flex style={{ width: "100%", justifyContent: "center" }}>
                                     <Forms.FormText>
-                                        <Link href={`${badge.link || "https://github.com/defautluser0/nexassets"}`}>{badge.linkdesc||"Visit the assets repo"}</Link>
+                                        <Link href={`${badge.link || "https://github.com/not-nexulien/nexassets"}`}>{badge.linkdesc||"Visit the assets repo"}</Link>
                                     </Forms.FormText>
                                 </Flex>
                             </ModalFooter>
