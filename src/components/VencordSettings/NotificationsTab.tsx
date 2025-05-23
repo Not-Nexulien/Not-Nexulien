@@ -66,4 +66,4 @@ function NxNotifications() {
     </SettingsTab>;
 }
 
-export default wrapTab(NxNotifications, "Nexulien Notifications");
+export default wrapTab(NxNotifications, "Not-Nexulien Notifications");
