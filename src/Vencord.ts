@@ -108,7 +108,7 @@ async function runUpdateCheck() {
             await update();
             if (Settings.autoUpdateNotification) {
                 notify({
-                    title: "Nexulien has been updated!",
+                    title: "Not-Nexulien has been updated!",
                     body: "Click here to restart",
                     onClick: relaunch,
                 });
@@ -117,7 +117,7 @@ async function runUpdateCheck() {
         }
 
         notify({
-            title: "A Nexulien update is available!",
+            title: "A Not-Nexulien update is available!",
             body: "Click here to view the update",
             onClick: openUpdaterModal!,
         });
@@ -142,7 +142,7 @@ async function init() {
                 await update();
                 if (Settings.autoUpdateNotification && !isImportant)
                     setTimeout(() => showNotification({
-                        title: "Nexulien2 has been updated!",
+                        title: "Not-Nexulien has been updated!",
                         body: "Click here to restart",
                         permanent: true,
                         noPersist: true,
@@ -151,7 +151,7 @@ async function init() {
                 if (isImportant) {
                     setTimeout(() => {
                         showNotification({
-                            title: "Nexulien2 has been updated!",
+                            title: "Not-Nexulien has been updated!",
                             body: "Important update prioritized, restarting in 10 seconds.",
                             permanent: true,
                             noPersist: true,
@@ -163,7 +163,7 @@ async function init() {
             }
 
             setTimeout(() => showNotification({
-                title: "A Nexulien2 update is available!",
+                title: "A Not-Nexulien update is available!",
                 body: "Click here to view the update",
                 permanent: true,
                 noPersist: true,
@@ -185,7 +185,7 @@ async function init() {
                 "Webpack has finished initialising, but some patches haven't been applied yet.",
                 "This might be expected since some Modules are lazy loaded, but please verify",
                 "that all plugins are working as intended.",
-                "You are seeing this warning because this is a Development build of Vencord.",
+                "You are seeing this warning because this is a Development build of Not-Nexulien.",
                 "\nThe following patches have not been applied:",
                 "\n\n" +
                 pendingPatches
