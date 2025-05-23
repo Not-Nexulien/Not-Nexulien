@@ -19,7 +19,7 @@ import { relaunch, showItemInFolder } from "@utils/native";
 import { useAwaiter } from "@utils/react";
 import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, Select, Switch, UserStore } from "@webpack/common";
 
-import { boykisserIcon, FolderIcon, GithubIcon, PaintbrushIcon, RestartIcon } from "..";
+import { FolderIcon, GithubIcon, PaintbrushIcon, RestartIcon } from "..";
 import { NxMascot } from "./Mascot";
 import { QuickAction, QuickActionContainer } from "./quickActions";
 import { SettingsTab, wrapTab } from "./shared";
@@ -126,13 +126,6 @@ function VencordSettings() {
                     Icon={GithubIcon}
                     text="View Source Code"
                     action={() => VencordNative.native.openExternal("https://github.com/" + gitRemote)}
-                />
-                <QuickAction
-                    Icon={boykisserIcon}
-                    text="i will give this button a purpose someday"
-                    action={function () {
-                        console.warn("you silly goober");
-                    }}
                 />
             </QuickActionContainer>
 
