@@ -14,7 +14,7 @@
     padding-bottom: 12px;
 }
 
-.nx-settings-quickActions-containerButtons {
+.nx-settings-quickActions-container .nx-settings-quickActions-containerButtons {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 0.5em;
