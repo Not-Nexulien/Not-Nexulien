@@ -37,7 +37,7 @@
 > [!CAUTION]
 >
 > <details>
-> <summary>Using Nexulien violates Discord's terms of service</summary>
+> <summary>Using Not-Nexulien violates Discord's terms of service</summary>
 >
 > ## Client modifications are against Discord's Terms of Service.
 >
