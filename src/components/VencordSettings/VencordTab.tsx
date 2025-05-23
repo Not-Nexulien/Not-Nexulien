@@ -91,12 +91,12 @@ function VencordSettings() {
         ];
 
     return (
-        <SettingsTab title="Nexulien Settings">
+        <SettingsTab title="Not-Nexulien Settings">
             <HeaderCard />
             {isPluginDev(user?.id) && !hideContributorCard && (
                 <SpecialCard
                     title="Thank you for contributing!"
-                    description="Since you've contributed to Nexulien, you now have a cool new badge!"
+                    description="Since you've contributed to Not-Nexulien, you now have a cool new badge!"
                     cardImage={CONTRIB_IMAGE}
                     backgroundImage={CONTRIB_BACKGROUND_IMAGE}
                     backgroundGradient="linear-gradient(to left, var(--nx-green), var(--nx-purple))"
