@@ -24,7 +24,7 @@ function NxNotifications() {
     const [log, pending] = useLogs();
     const signals = new Set<DispatchWithoutAction>();
 
-    return <SettingsTab title="Nexulien Notifications">
+    return <SettingsTab title="Not-Nexulien Notifications">
         <NxCard className="nx-card-warning">
             <Text className="nx-card-title" variant="heading-md/bold">This section is still under development!</Text>
             <span>Most of the features, and how this section works, isn't final.
