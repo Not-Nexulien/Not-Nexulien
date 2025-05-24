@@ -14,15 +14,15 @@
     padding-bottom: 12px;
 }
 
-.nx-settings-quickActions-containerButtons {
+.nx-settings-quickActions-containerButtons-2 {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 0.5em;
 }
 
-.nx-nexulienSettings-quickActions-containerButtons {
+.nx-settings-quickActions-containerButtons-3 {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 0.5em;
 }
 

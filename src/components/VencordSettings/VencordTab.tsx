@@ -102,7 +102,7 @@ function VencordSettings() {
                     backgroundGradient="linear-gradient(to left, var(--nx-green), var(--nx-purple))"
                 />
             )}
-            <QuickActionContainer title="Quick Actions" customClassName="nx-nexulienSettings-quickActions-containerButtons">
+            <QuickActionContainer title="Quick Actions" columns="2">
                 <QuickAction
                     Icon={PaintbrushIcon}
                     text="Edit QuickCSS"
