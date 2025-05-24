@@ -33,6 +33,7 @@
         "test": "pnpm buildStandalone && pnpm testTsc && pnpm lint && pnpm lint-styles && pnpm generatePluginJson",
         "testWeb": "pnpm lint && pnpm buildWeb && pnpm testTsc",
         "testTsc": "tsc --noEmit",
+        "devusr0": "pnpm build --dev && pnpm inject",
         "defusr0": "pnpm build && pnpm inject"
     },
     "dependencies": {
