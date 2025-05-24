@@ -4,10 +4,6 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-// this code is horrible this code is horrible this code is horrible this code is horrible this code is horrible this code is horrible this code is horrible this code is horrible
-// - love, jae
-// (seriously though what the fuck how does react work)
-
 import "./quickActions.css";
 
 import { classNameFactory } from "@api/Styles";
@@ -31,7 +27,7 @@ export interface QuickActionProps {
 }
 interface QuickActionContainerProps {
     title: string;
-    customClassName?: string;
+    columns: "2" | "3";
 }
 
 export function QuickAction(props: QuickActionProps) {
@@ -47,7 +43,7 @@ export function QuickAction(props: QuickActionProps) {
     );
 }
 
-export function QuickActionContainer({ title, customClassName, children }: PropsWithChildren<QuickActionContainerProps>) {
+export function QuickActionContainer({ title, children, columns = "3" }: PropsWithChildren<QuickActionContainerProps>) {
     return (
         <NxCard className={cl("container")}>
             <Text className={cl("title")} variant="heading-md/bold">
@@ -64,7 +60,7 @@ export function QuickActionContainer({ title, customClassName, children }: Props
                                         <p>No one's around to help.</p>
                                     </div>
                                     <NxCard className="nx-card-help">
-                                        If you are looking for actual help, please go ask in our Discord server (not Vencord's)! We'll always be there to help you out.
+                                        If you're looking for actual help, please go ask in our Discord server (not Vencord's)! We'll always be there to help you out.
                                     </NxCard>
                                 </>
                             ),
@@ -89,7 +85,7 @@ export function QuickActionContainer({ title, customClassName, children }: Props
                     <InfoIcon />
                 </button>
             </Text>
-            <span className={`${cl("containerButtons")} ${customClassName}`}>{children}</span>
+            <span className={cl("containerButtons-" + columns)}>{children}</span>
         </NxCard>
     );
 }
