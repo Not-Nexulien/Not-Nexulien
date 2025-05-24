@@ -11,7 +11,7 @@ import definePlugin, { OptionType } from "@utils/types";
 export default definePlugin({
   name: "Cobblestone Padding",
   description: "Add padding to Cobblestone's messages via CSS.",
-  authors: [Devs.niko],
+  authors: [Devs.Niko],
 
   settings: definePluginSettings({
     padding: {
