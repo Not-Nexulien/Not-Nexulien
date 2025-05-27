@@ -48,6 +48,7 @@ export function SpecialCard({ title, description, cardImage, backgroundImage, ba
                             src={cardImage}
                             alt=""
                             className={cl("image")}
+                            draggable="false"
                         />
                     </div>
                 )}
