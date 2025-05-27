@@ -92,7 +92,7 @@ export default definePlugin({
             },
             {
                 section: "NexulienSettings",
-                label: "Nexulien",
+                label: "Settings",
                 element: VencordTab,
                 className: "nx-settings"
             },
