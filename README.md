@@ -35,7 +35,6 @@
 > Mention of it does not imply any affiliation with or endorsement by Discord Inc.
 
 > [!CAUTION]
->
 > <details>
 > <summary>Using Not-Nexulien violates Discord's terms of service</summary>
 >
