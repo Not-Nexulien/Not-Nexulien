@@ -227,11 +227,11 @@ function nexulien() {
     const logo = document.getElementById("nx-settings-logo");
 
     const audioArray = [
-        "https://github.com/Nexulien/Assets/raw/refs/heads/main/tts/bonzi.wav", // 🟣🐒
-        "https://github.com/Nexulien/Assets/raw/refs/heads/main/tts/car.wav", // 🔷🐈
-        "https://github.com/Nexulien/Assets/raw/refs/heads/main/tts/kinito.wav", // 🌊🏄‍♀️
-        "https://github.com/Nexulien/Assets/raw/refs/heads/main/tts/paul.wav", // 🌑🚀
-        "https://github.com/Nexulien/Assets/raw/refs/heads/main/tts/teto.wav" // 🔻🎤
+        "https://github.com/Not-Nexulien/nexassets/raw/refs/heads/main/tts/bonzi.wav", // 🟣🐒
+        "https://github.com/Not-Nexulien/nexassets/raw/refs/heads/main/tts/car.wav", // 🔷🐈
+        "https://github.com/Not-Nexulien/nexassets/raw/refs/heads/main/tts/kinito.wav", // 🌊🏄‍♀️
+        "https://github.com/Not-Nexulien/nexassets/raw/refs/heads/main/tts/paul.wav", // 🌑🚀
+        "https://github.com/Not-Nexulien/nexassets/raw/refs/heads/main/tts/teto.wav" // 🔻🎤
     ];
 
     audioElement.src = audioArray[Math.floor(Math.random() * audioArray.length)];
@@ -254,6 +254,7 @@ function HeaderCard() {
                 <NxCard className={cl("card", "header", headerCardSize === "minimal" ? "header-minimal" : "")}>
                     <div>
                         <span className={cl("logo-container")} onClick={() => nexulien()}>
+                            <span className={cl("not-text")}>Not-</span>
                             <svg width="250" height="50" viewBox="0 0 250 50" fill="none" xmlns="http://www.w3.org/2000/svg" className={cl("logo")} id={cl("logo")}>
                                 <path d="M15.3596 13.8152C26.3784 13.8152 30.7191 22.2959 30.7191 28.246V48.6269H22.7055V28.4512C22.7055 23.5953 19.2329 21.4068 15.3596 21.4068C11.4863 21.4068 8.01369 23.5953 8.01369 28.4512V48.6269H0V28.246C0 22.2959 4.34075 13.8152 15.3596 13.8152Z" fill="var(--header-primary)" />
                                 <path d="M45.9806 26.7414H62.7426C61.3402 23.3901 58.3351 21.4752 54.3282 21.4752C50.3882 21.4752 47.383 23.3901 45.9806 26.7414ZM54.3282 41.7193C57.6673 41.7193 60.2717 40.4198 61.8745 38.0261H70.6227C68.419 44.9337 62.4755 49.2424 54.395 49.2424C44.044 49.2424 37.0988 42.1296 37.0988 31.5288C37.0988 20.9964 44.044 13.952 54.395 13.952C64.746 13.952 71.6244 20.9964 71.6244 31.5288C71.6244 32.4863 71.5577 33.3754 71.4909 34.2645H45.3796C46.2478 38.9836 49.5868 41.7193 54.3282 41.7193Z" fill="var(--header-primary)" />
@@ -275,7 +276,7 @@ function HeaderCard() {
 
                         <div className={cl("buttonRow", headerCardSize === "minimal" ? "buttonRow-minimal" : "")}>
                             <Button
-                                onClick={() => window.open("https://github.com/Nexulien")}
+                                onClick={() => window.open("https://github.com/Not-Nexulien")}
                             >Contribute</Button>
                             <Button
                                 onClick={async () => {

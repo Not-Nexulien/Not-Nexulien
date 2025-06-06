@@ -45,6 +45,11 @@
     background-color: var(--background-tertiary);
 }
 
+.nx-settings-not-text {
+    font-size: 50px;
+    display: inline;
+}
+
 .nx-cloud-settings-sync-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

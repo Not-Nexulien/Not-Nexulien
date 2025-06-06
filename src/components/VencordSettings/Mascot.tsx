@@ -34,14 +34,14 @@ export function NxMascot({ ...props }) {
             style={{
                 marginLeft: "auto",
                 backgroundImage: !loaded ? "url(" + LQ_FALLBACK_B64 + ")" : "none",
-                backgroundSize: 128
+                backgroundSize: 64
             }}
             src={TEMP_MASCOT_IMAGE}
             role="presentation"
             alt=""
             draggable="false"
-            height={128}
-            width={128}
+            height={64}
+            width={64}
             onLoad={() => setLoaded(true)}
         ></img>
     );
