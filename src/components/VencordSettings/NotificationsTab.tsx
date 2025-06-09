@@ -10,10 +10,10 @@ import { DataStore } from "@api/index";
 import { NotificationLog, signals, useLogs } from "@api/Notifications/notificationLog";
 import { classNameFactory } from "@api/Styles";
 import { Flex } from "@components/Flex";
-import { NxCard } from "@components/NxCard";
+import { NxCard, NxCardTitle } from "@components/NxCard";
 import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
-import { Alerts, Button, TabBar, Text, useState } from "@webpack/common";
+import { Alerts, Button, TabBar, useState } from "@webpack/common";
 
 import { NotificationSettings } from "./NotificationSettings";
 import { SettingsTab, wrapTab } from "./shared";
@@ -69,7 +69,7 @@ function NotificationsTab() {
 
     return <SettingsTab title="Not-Nexulien Notifications">
         <NxCard className="nx-card-help">
-            <Text className="nx-card-title" variant="heading-md/bold">This section is still under development!</Text>
+            <NxCardTitle>This section is still under development!</NxCardTitle>
             <span>Most of the features, and how this section works, aren't final.
                 Please give us feedback! :3</span><br></br><br></br>
             <span>&mdash; Love, Jae</span>

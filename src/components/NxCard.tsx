@@ -25,10 +25,19 @@
 
 import "@components/NxCard.css";
 
+import { classes } from "@utils/misc";
+import { Text } from "@webpack/common";
+
 export function NxCard({ children, className = "", ...props }) {
     return (
         <div className={`${"nx-card"} ${className}`} {...props}>
             {children}
         </div>
+    );
+}
+
+export function NxCardTitle({ children, className = "", ...props }) {
+    return (
+        <Text variant="heading-md/bold" className={classes("nx-card-title", className)} {...props}>{children}</Text>
     );
 }

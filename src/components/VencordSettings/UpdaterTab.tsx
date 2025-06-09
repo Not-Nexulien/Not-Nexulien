@@ -22,7 +22,7 @@ import { useSettings } from "@api/Settings";
 import { ErrorCard } from "@components/ErrorCard";
 import { Flex } from "@components/Flex";
 import { Link } from "@components/Link";
-import { NxCard } from "@components/NxCard";
+import { NxCard, NxCardTitle } from "@components/NxCard";
 import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
 import { ModalCloseButton, ModalContent, ModalProps, ModalRoot, ModalSize, openModal } from "@utils/modal";
@@ -232,7 +232,7 @@ function Updater() {
 
 
             <NxCard>
-                <Forms.FormText className="nx-card-title" variant="heading-md/bold">Repository</Forms.FormText>
+                <NxCardTitle>Repository</NxCardTitle>
 
                 <Forms.FormText className="vc-text-selectable">
                     {repoPending
