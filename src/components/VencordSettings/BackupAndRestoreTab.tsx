@@ -34,9 +34,9 @@ function BackupRestoreTab() {
                 <span>Importing a settings file will overwrite your current settings.</span>
             </NxCard>
             <Text variant="text-md/normal" className={Margins.bottom8}>
-                You can import and export your Nexulien settings as a JSON file.
+                You can import and export your Not-Nexulien settings as a JSON file.
                 This allows you to easily transfer your settings to another device,
-                or recover your settings after reinstalling Nexulien or Discord.
+                or recover your settings after reinstalling Not-Nexulien or Discord.
             </Text>
             <Text variant="text-md/normal" className={Margins.bottom8}>
                 Settings Export contains:
