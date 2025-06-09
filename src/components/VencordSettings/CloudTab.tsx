@@ -21,7 +21,7 @@ import { Settings, useSettings } from "@api/Settings";
 import { CheckedTextInput } from "@components/CheckedTextInput";
 import { Grid } from "@components/Grid";
 import { Link } from "@components/Link";
-import { NxCard } from "@components/NxCard";
+import { NxCard, NxCardTitle } from "@components/NxCard";
 import { authorizeCloud, cloudLogger, deauthorizeCloud, getCloudAuth, getCloudUrl } from "@utils/cloud";
 import { Margins } from "@utils/margins";
 import { deleteCloudSettings, getCloudSettings, putCloudSettings } from "@utils/settingsSync";
@@ -70,7 +70,7 @@ function SettingsSyncSection() {
 
     return (
         <NxCard className={Margins.top16}>
-            <Forms.FormText className="nx-card-title" variant="heading-md/bold">Settings Sync</Forms.FormText>
+            <NxCardTitle>Settings Sync</NxCardTitle>
             <Forms.FormText variant="text-md/normal" className={Margins.bottom20}>
                 Synchronize your settings to the cloud. This allows easy synchronization across multiple devices with
                 minimal effort.
@@ -125,7 +125,7 @@ function CloudTab() {
     return (
         <SettingsTab title="Vencord Cloud">
             <NxCard className={Margins.bottom16}>
-                <Forms.FormText className="nx-card-title" variant="heading-md/bold">About Vencord Cloud</Forms.FormText>
+                <NxCardTitle>About Vencord Cloud</NxCardTitle>
                 Vencord comes with a cloud integration that adds goodies like settings sync across devices.
                 It <Link href="https://vencord.dev/cloud/privacy">respects your privacy</Link>, and
                 the <Link href="https://github.com/Vencord/Backend">source code</Link> is AGPL 3.0 licensed so you
@@ -149,7 +149,7 @@ function CloudTab() {
 
             {settings.cloud.authenticated ? <>
                 <NxCard>
-                    <Forms.FormText className="nx-card-title" variant="heading-md/bold">Backend URL</Forms.FormText>
+                    <NxCardTitle>Backend URL</NxCardTitle>
                     <Forms.FormText className={Margins.bottom8}>
                         Which backend to use when using cloud integrations.
                     </Forms.FormText>
