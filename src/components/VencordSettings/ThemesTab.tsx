@@ -24,7 +24,7 @@ import { ErrorCard } from "@components/ErrorCard";
 import { Flex } from "@components/Flex";
 import { DeleteIcon, FolderIcon, PaintbrushIcon, PencilIcon, PlusIcon, RestartIcon } from "@components/Icons";
 import { Link } from "@components/Link";
-import { NxCard } from "@components/NxCard";
+import { NxCard, NxCardTitle } from "@components/NxCard";
 import { openPluginModal } from "@components/PluginSettings/PluginModal";
 import type { UserThemeHeader } from "@main/themes";
 import { useCspErrors } from "@utils/cspViolations";
@@ -35,7 +35,7 @@ import { showItemInFolder } from "@utils/native";
 import { useAwaiter } from "@utils/react";
 import { getStylusWebStoreUrl } from "@utils/web";
 import { findLazy } from "@webpack";
-import { Forms, React, showToast, TabBar, Text, TextArea, useEffect, useRef, useState } from "@webpack/common";
+import { Forms, React, showToast, TabBar, TextArea, useEffect, useRef, useState } from "@webpack/common";
 import type { ComponentType, Ref, SyntheticEvent } from "react";
 
 import Plugins from "~plugins";
@@ -212,7 +212,7 @@ function ThemesTab() {
         return (
             <>
                 <NxCard className={cl("info-card")}>
-                    <Text className={cl("card-title")} variant="heading-md/bold">Find Themes:</Text>
+                    <NxCardTitle>Find themes:</NxCardTitle>
                     <div style={{ marginBottom: ".5em", display: "flex", flexDirection: "column" }}>
                         <ul>
                             <li>
@@ -230,10 +230,10 @@ function ThemesTab() {
                     <span>If using the BetterDiscord site, click on "Download" and place the downloaded .theme.css file into your themes folder.</span>
                 </NxCard>
 
-                <NxCard className="vc-settings-card">
-                    <Forms.FormTitle tag="h5">External Resources</Forms.FormTitle>
-                    <Forms.FormText>For security reasons, loading resources (styles, fonts, images, ...) from most sites is blocked.</Forms.FormText>
-                    <Forms.FormText>Make sure all your assets are hosted on GitHub, GitLab, Codeberg, Imgur, Discord or Google Fonts.</Forms.FormText>
+                <NxCard className={classes("nx-card-help", Margins.bottom16)}>
+                    <NxCardTitle>External Resources</NxCardTitle>
+                    <span>For security reasons, loading resources (styles, fonts, images, ...) from most sites is blocked. </span>
+                    <span>Make sure all your assets are hosted on GitHub, GitLab, Codeberg, Imgur, Discord or Google Fonts.</span>
                 </NxCard>
 
                 <Forms.FormSection title="Local Themes">
@@ -319,7 +319,7 @@ function ThemesTab() {
         return (
             <>
                 <NxCard className={`${cl("info-card")} nx-text-selectable`}>
-                    <Text variant="heading-md/bold" className="nx-card-title">Paste links to css files here</Text>
+                    <NxCardTitle>Paste links to css files here</NxCardTitle>
                     <span>One link per line</span>
                     <span>You can prefix lines with @light or @dark to toggle them based on your Discord theme</span>
                     <span>Make sure to use direct links to files (raw or github.io)!</span>
@@ -377,7 +377,7 @@ export function CspErrorCard() {
     if (!errors.length) return null;
 
     return (
-        <ErrorCard className="vc-settings-card">
+        <ErrorCard className={classes("vc-settings-card", Margins.top16)}>
             <Forms.FormTitle tag="h5">Blocked Resources</Forms.FormTitle>
             <Forms.FormText>Some images, styles, or fonts were blocked because they come from disallowed domains.</Forms.FormText>
             <Forms.FormText>Make sure that your themes and custom css only load resources from whitelisted websites, such as GitHub, Imgur and Google Fonts.</Forms.FormText>
@@ -395,12 +395,12 @@ export function CspErrorCard() {
 function UserscriptThemesTab() {
     return (
         <SettingsTab title="Themes">
-            <NxCard className="vc-settings-card">
-                <Forms.FormTitle tag="h5">Themes are not supported on the Userscript!</Forms.FormTitle>
+            <NxCard>
+                <NxCardTitle>Themes are not supported on the Userscript!</NxCardTitle>
 
-                <Forms.FormText>
+                <span>
                     You can instead install themes with the <Link href={getStylusWebStoreUrl()}>Stylus extension</Link>!
-                </Forms.FormText>
+                </span>
             </NxCard>
         </SettingsTab>
     );
