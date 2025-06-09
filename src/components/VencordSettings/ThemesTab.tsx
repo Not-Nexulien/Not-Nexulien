@@ -212,7 +212,7 @@ function ThemesTab() {
         return (
             <>
                 <NxCard className={cl("info-card")}>
-                    <NxCardTitle>Find themes:</NxCardTitle>
+                    <NxCardTitle>Find Themes:</NxCardTitle>
                     <div style={{ marginBottom: ".5em", display: "flex", flexDirection: "column" }}>
                         <ul>
                             <li>
