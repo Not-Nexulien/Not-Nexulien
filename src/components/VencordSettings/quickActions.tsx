@@ -60,7 +60,7 @@ export function QuickActionContainer({ title, children, columns = "3" }: PropsWi
                                         <p>No one's around to help.</p>
                                     </div>
                                     <NxCard className="nx-card-help">
-                                        If you're looking for actual help, please go ask in our Discord server! We'll always be there to help you out.
+                                        If you're looking for actual help, please go ask in our Discord server (not Vencord's)! We'll always be there to help you out.
                                     </NxCard>
                                 </>
                             ),
