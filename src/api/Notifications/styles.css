@@ -125,3 +125,10 @@
     color: var(--white-500);
     background-color: var(--button-danger-background);
 }
+
+.vc-notification-log-noNotifications {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: var(--text-muted);
+}
