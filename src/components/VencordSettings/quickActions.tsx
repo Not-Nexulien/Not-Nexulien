@@ -27,7 +27,7 @@ export interface QuickActionProps {
 }
 interface QuickActionContainerProps {
     title: string;
-    columns: "2" | "3";
+    columns?: "2" | "3";
 }
 
 export function QuickAction(props: QuickActionProps) {

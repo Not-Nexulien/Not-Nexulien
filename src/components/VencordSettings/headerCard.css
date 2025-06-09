@@ -56,7 +56,7 @@
 }
 
 .nx-mascot {
-    /* scuffed but hey it works, permanently frfr */
+    /* When adjusting make sure image reaches out of card top for ~16px */
     transform: scale(2) translateX(-24px) translateY(-8px);
 }
 
@@ -70,7 +70,11 @@
     display: flex !important;
     flex-direction: row;
     min-width: 100% !important;
-    max-height: 38px;
+    max-height: 30px;
+}
+
+.nx-settings-header-minimal .nx-settings-logo {
+    transform: translateY(-4px);
 }
 
 .nx-settings-buttonRow {

@@ -23,7 +23,7 @@ import { Flex } from "@components/Flex";
 import { openNotificationSettingsModal } from "@components/VencordSettings/NotificationSettings";
 import { closeModal, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalProps, ModalRoot, ModalSize, openModal } from "@utils/modal";
 import { useAwaiter } from "@utils/react";
-import { Alerts, Button, Forms, React, Text, Timestamp, useEffect, useReducer, useState } from "@webpack/common";
+import { Alerts, Button, React, Text, Timestamp, useEffect, useReducer, useState } from "@webpack/common";
 import { nanoid } from "nanoid";
 import type { DispatchWithoutAction } from "react";
 
@@ -43,7 +43,7 @@ const getLog = async () => {
 };
 
 const cl = classNameFactory("vc-notification-log-");
-const signals = new Set<DispatchWithoutAction>();
+export const signals = new Set<DispatchWithoutAction>();
 
 export async function persistNotification(notification: NotificationData) {
     if (notification.noPersist) return;
@@ -144,9 +144,7 @@ export function NotificationLog({ log, pending }: { log: PersistentNotificationD
         return (
             <div className={cl("container")}>
                 <div className={cl("empty")} />
-                <Forms.FormText style={{ textAlign: "center" }}>
-                    No notifications yet
-                </Forms.FormText>
+                <Text variant="text-md/normal" className={cl("noNotifications")}>No notifications yet.</Text>
             </div>
         );
 
