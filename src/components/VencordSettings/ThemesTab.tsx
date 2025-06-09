@@ -230,11 +230,11 @@ function ThemesTab() {
                     <span>If using the BetterDiscord site, click on "Download" and place the downloaded .theme.css file into your themes folder.</span>
                 </NxCard>
 
-                <Card className="vc-settings-card">
+                <NxCard className="vc-settings-card">
                     <Forms.FormTitle tag="h5">External Resources</Forms.FormTitle>
                     <Forms.FormText>For security reasons, loading resources (styles, fonts, images, ...) from most sites is blocked.</Forms.FormText>
                     <Forms.FormText>Make sure all your assets are hosted on GitHub, GitLab, Codeberg, Imgur, Discord or Google Fonts.</Forms.FormText>
-                </Card>
+                </NxCard>
 
                 <Forms.FormSection title="Local Themes">
                     <QuickActionContainer title="Manage Local Themes">
@@ -395,13 +395,13 @@ export function CspErrorCard() {
 function UserscriptThemesTab() {
     return (
         <SettingsTab title="Themes">
-            <Card className="vc-settings-card">
+            <NxCard className="vc-settings-card">
                 <Forms.FormTitle tag="h5">Themes are not supported on the Userscript!</Forms.FormTitle>
 
                 <Forms.FormText>
                     You can instead install themes with the <Link href={getStylusWebStoreUrl()}>Stylus extension</Link>!
                 </Forms.FormText>
-            </Card>
+            </NxCard>
         </SettingsTab>
     );
 }
