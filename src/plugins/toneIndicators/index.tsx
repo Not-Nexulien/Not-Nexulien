@@ -91,7 +91,6 @@ export const toneIndicators = [
     ti(["av"], "a vent"),
     ti(["ao"], "an order"),
     ti(["a"], "alterous"),
-    ti(["!"], "excited"),
     ti(["curi"], "curious"),
     ti(["inf", "info"], "information"),
     ti(["irr", "irre"], "irrelevant"),

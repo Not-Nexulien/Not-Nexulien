@@ -63,9 +63,3 @@ Download and run the [Not-Nexulien CLI installer](https://github.com/not-nexulie
 ### Linux
 
 Download and run the [Not-Nexulien Linux installer](https://github.com/not-nexulien/not-nexinstaller/releases/latest/download/not-nexinstallercli-linux)
-
-### MacOS
-
-### WARNING: I can't test if this even works so you're on your own on this one
-
-Download and run the [Not-Nexulien MacOS installer](https://github.com/not-nexulien/not-nexinstaller/releases/latest/download/not-nexinstaller.macos.zip)

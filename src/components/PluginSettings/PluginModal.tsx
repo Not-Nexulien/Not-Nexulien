@@ -245,10 +245,16 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
 
                 {!pluginMeta.userPlugin && (
                     <div className="nx-settings-modal-links" style={{ paddingRight: 16 }}>
-                        <WebsiteButton
-                            text="View more info"
-                            href={`https://vencord.dev/plugins/${plugin.name}`}
-                        />
+                        {
+                            // TEMPORARY FIX FOR #24
+                            //   https://github.com/Nexulien/Nexulien/issues/24
+                            !plugin.nexulien && !plugin.nexulienBundled ?
+                                <WebsiteButton
+                                    text="View more info"
+                                    href={`https://vencord.dev/plugins/${plugin.name}`}
+                                />
+                                : <></>
+                        }
                         <GithubButton
                             text="View source code"
                             href={`https://github.com/${gitRemote}/tree/main/src/plugins/${pluginMeta.folderName}`}
@@ -272,7 +278,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                 {!!plugin.settingsAboutComponent && (
                     <div className={classes(Margins.bottom8, "vc-text-selectable")}>
                         <Forms.FormSection>
-                            <ErrorBoundary message="An error occurred while rendering this plugin's custom InfoComponent">
+                            <ErrorBoundary message="An error occurred while rendering this plugin's custom Info Component">
                                 <plugin.settingsAboutComponent tempSettings={tempSettings} />
                             </ErrorBoundary>
                         </Forms.FormSection>

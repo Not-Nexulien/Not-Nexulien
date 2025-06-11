@@ -276,9 +276,11 @@ function HeaderCard() {
 
                         <div className={cl("buttonRow", headerCardSize === "minimal" ? "buttonRow-minimal" : "")}>
                             <Button
+                                size={headerCardSize === "minimal" ? Button.Sizes.SMALL : Button.Sizes.MEDIUM}
                                 onClick={() => window.open("https://github.com/Not-Nexulien")}
                             >Contribute</Button>
                             <Button
+                                size={headerCardSize === "minimal" ? Button.Sizes.SMALL : Button.Sizes.MEDIUM}
                                 onClick={async () => {
                                     if (!GuildStore.getGuild("1297010632591278090")) {
                                         const inviteAccepted = await openInviteModal("qHEcneZtgP");
