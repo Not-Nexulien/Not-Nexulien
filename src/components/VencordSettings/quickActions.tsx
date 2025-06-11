@@ -67,15 +67,15 @@ export function QuickActionContainer({ title, children, columns = "3" }: PropsWi
                             cancelText: "(≧∀≦)ゞ",
                             confirmText: "Join our Server",
                             onConfirm: async () => {
-                                if (!GuildStore.getGuild("1297010632591278090")) {
-                                    const inviteAccepted = await openInviteModal("VS2wePpjnt");
+                                if (!GuildStore.getGuild("1382338648971677716")) {
+                                    const inviteAccepted = await openInviteModal("qHEcneZtgP");
                                     if (inviteAccepted) {
                                         closeAllModals();
                                         FluxDispatcher.dispatch({ type: "LAYER_POP_ALL" });
                                     }
                                 } else {
                                     FluxDispatcher.dispatch({ type: "LAYER_POP_ALL" });
-                                    NavigationRouter.transitionToGuild("1297010632591278090");
+                                    NavigationRouter.transitionToGuild("1382338648971677716");
                                 }
                             }
                         });

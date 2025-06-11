@@ -281,14 +281,14 @@ function HeaderCard() {
                             <Button
                                 onClick={async () => {
                                     if (!GuildStore.getGuild("1297010632591278090")) {
-                                        const inviteAccepted = await openInviteModal("VS2wePpjnt");
+                                        const inviteAccepted = await openInviteModal("qHEcneZtgP");
                                         if (inviteAccepted) {
                                             closeAllModals();
                                             FluxDispatcher.dispatch({ type: "LAYER_POP_ALL" });
                                         }
                                     } else {
                                         FluxDispatcher.dispatch({ type: "LAYER_POP_ALL" });
-                                        NavigationRouter.transitionToGuild("1297010632591278090");
+                                        NavigationRouter.transitionToGuild("1382338648971677716");
                                     }
                                 }}
                             >Join our Server</Button>
