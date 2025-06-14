@@ -10,7 +10,6 @@ import { DataStore } from "@api/index";
 import { NotificationLog, signals, useLogs } from "@api/Notifications/notificationLog";
 import { classNameFactory } from "@api/Styles";
 import { Flex } from "@components/Flex";
-import { NxCard, NxCardTitle } from "@components/NxCard";
 import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
 import { Alerts, Button, TabBar, useState } from "@webpack/common";
@@ -68,13 +67,6 @@ function NotificationsTab() {
     }
 
     return <SettingsTab title="Nexulien Notifications">
-        <NxCard className="nx-card-help">
-            <NxCardTitle>This section is still under development!</NxCardTitle>
-            <span>Most of the features, and how this section works, aren't final.
-                Please give us feedback! :3</span><br></br><br></br>
-            <span>&mdash; Love, Jae</span>
-        </NxCard>
-
         <TabBar
             type="top"
             look="brand"

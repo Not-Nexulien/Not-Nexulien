@@ -127,7 +127,6 @@ function CloudTab() {
     return (
         <SettingsTab title="Vencord Cloud">
             <NxCard className={Margins.bottom16}>
-                <NxCardTitle>About Vencord Cloud</NxCardTitle>
                 Vencord comes with a cloud integration that adds goodies like settings sync across devices.
                 It <Link href="https://vencord.dev/cloud/privacy">respects your privacy</Link>, and
                 the <Link href="https://github.com/Vencord/Backend">source code</Link> is AGPL 3.0 licensed so you
