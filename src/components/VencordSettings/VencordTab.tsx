@@ -17,8 +17,7 @@ import { identity, isPluginDev } from "@utils/misc";
 import { closeAllModals } from "@utils/modal";
 import { relaunch, showItemInFolder } from "@utils/native";
 import { useAwaiter } from "@utils/react";
-import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, Select, Switch, UserStore } from "@webpack/common";
-
+import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, Select, Switch, UserStore, GuildMemberStore } from "@webpack/common";
 import { FolderIcon, GithubIcon, PaintbrushIcon, RestartIcon } from "..";
 import { NxMascot } from "./Mascot";
 import { QuickAction, QuickActionContainer } from "./quickActions";
@@ -37,9 +36,6 @@ type KeysOfType<Object, Type> = {
 function VencordSettings() {
     const { showHint, hideContributorCard } = Settings.plugins.Settings;
 
-    const [settingsDir, , settingsDirPending] = useAwaiter(VencordNative.settings.getSettingsDir, {
-        fallbackValue: "Loading..."
-    });
     const settings = useSettings();
 
     const user = UserStore.getCurrentUser();
@@ -118,8 +114,8 @@ function VencordSettings() {
                 {!IS_WEB && (
                     <QuickAction
                         Icon={FolderIcon}
-                        text="Settings Folder"
-                        action={() => showItemInFolder(settingsDir)}
+                        text="Open Settings Folder"
+                        action={() => VencordNative.settings.openFolder()}
                     />
                 )}
                 <QuickAction
