@@ -14,6 +14,8 @@ export const ImageSrc = [...ConnectSrc, "img-src"];
 export const CssSrc = ["style-src", "font-src"];
 export const ImageAndCssSrc = [...ImageSrc, ...CssSrc];
 export const ImageScriptsAndCssSrc = [...ImageAndCssSrc, "script-src", "worker-src"];
+export const MediaSrc = [...ConnectSrc, "media-src"];
+export const MediaAndImageAndCssSrc = [...MediaSrc, ...ImageAndCssSrc];
 
 // Plugins can whitelist their own domains by importing this object in their native.ts
 // script and just adding to it. But generally, you should just edit this file instead
@@ -26,7 +28,7 @@ export const CspPolicies: PolicyMap = {
 
     "*.github.io": ImageAndCssSrc, // GitHub pages, used by most themes
     "github.com": ImageAndCssSrc, // GitHub content (stuff uploaded to markdown forms), used by most themes
-    "raw.githubusercontent.com": ImageAndCssSrc, // GitHub raw, used by some themes
+    "raw.githubusercontent.com": MediaAndImageAndCssSrc, // GitHub raw, used by some themes, as well as moyai
     "*.gitlab.io": ImageAndCssSrc, // GitLab pages, used by some themes
     "gitlab.com": ImageAndCssSrc, // GitLab raw, used by some themes
     "*.codeberg.page": ImageAndCssSrc, // Codeberg pages, used by some themes
@@ -63,6 +65,7 @@ export const CspPolicies: PolicyMap = {
     "dearrow-thumb.ajay.app": ImageSrc, // Dearrow Thumbnail CDN
     "usrbg.is-hardly.online": ImageSrc, // USRBG API
     "icons.duckduckgo.com": ImageSrc, // DuckDuckGo Favicon API (Reverse Image Search)
+    "api.zoid.one": MediaSrc, // Zoid's API, used for DecTalk
 };
 
 const findHeader = (headers: PolicyMap, headerName: Lowercase<string>) => {
