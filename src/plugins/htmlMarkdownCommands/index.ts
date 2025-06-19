@@ -28,7 +28,7 @@ to {right:-200vw;opacity: 1;}
 }
 </style>
 <span class="rainbow"> %TEXT% </span>
-<img class="cat" src="<https://www.nyan.cat/cats/original.gif>" draggable="false">
+<img class="cat" src="<https://raw.githubusercontent.com/Nexulien/Assets/refs/heads/main/images/nyan_cat.gif>" draggable="false">
 </body>`,
     emojiGift: `<body>
 <style>
@@ -48,11 +48,11 @@ span {font-size: 64px; position: absolute;}
 75% {transform: rotate(45deg) translateY(-32px) translateX(-24px);}
 100% {transform: rotate(0deg);}
 }
-</style><img class="spin" src="<https://jaegerwalddev.github.io/assets/static/school/my_first_website-2/images/maxwell_transparent.webp>" draggable="false"></body>`,
-    yaris: `<img src="<https://www.fortunacarmats.com/cache/goods/700x700x61ea817c40dc5.png>" class="yaris" draggable="false"/>
+</style><img class="spin" src="<https://raw.githubusercontent.com/Nexulien/Assets/refs/heads/main/images/maxwell.webp>" draggable="false"></body>`,
+    yaris: `<img src="<https://raw.githubusercontent.com/Nexulien/Assets/refs/heads/main/images/yaris.webp>" class="yaris" draggable="false"/>
 <style>.yaris { animation: bounce 0.22222222222s infinite alternate cubic-bezier(.9,0,.1,1); }
 @keyframes bounce { 0% { transform: translateY(0) scale(1, 1); } 100% { transform: translateY(calc(20%)) scale(1.3, 0.7); } }</style>`,
-    thoughts: `<img src="<https://jaegerwalddev.github.io/assets/images/thoughts.png>" style="position: absolute; display: block;
+    thoughts: `<img src="<https://raw.githubusercontent.com/Nexulien/Assets/refs/heads/main/images/thoughts.png>" style="position: absolute; display: block;
 /* -- EDIT THIS -- */
 bottom: %TEXT%px;
 /* --------------- */
@@ -72,9 +72,9 @@ width: 128px; height: 32px; margin-left: 96px; transform: translateY(-48px) tran
 100% {opacity: 0.5; filter: blur(8px);}
 }
 </style>
-<img class="boing" src="https://jaegerwalddev.github.io/assets/static/school/my_first_website-2/images/gnarpy_cat.png">
+<img class="boing" src="https://raw.githubusercontent.com/Nexulien/Assets/refs/heads/main/images/gnarpy_skateboard.png">
 <span class="boing-shadow"></span></body>`,
-    nyanRevolve: "@@[[[<img src=\"<https://www.nyan.cat/cats/original.gif>\" style=\"display:block;position:fixed;height:64px;bottom:256px;\"/>]]]@@ %TEXT%",
+    nyanRevolve: "@@[[[<img src=\"<https://raw.githubusercontent.com/Nexulien/Assets/refs/heads/main/images/nyan_cat.gif>\" style=\"display:block;position:fixed;height:64px;bottom:256px;\"/>]]]@@ %TEXT%",
     approach: "<body><style>@keyframes scaleAnim{0%{transform:perspective(500px) scale(0);}100%{transform:perspective(500px) scale(1);}}img{width:500px;height:auto;transform-origin:center;animation:scaleAnim 10s cubic-bezier(0.32, 0, 0.67, 0) infinite;}</style><img src=\"<%TEXT%>\"></body>"
 };
 
