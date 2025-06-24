@@ -2,10 +2,10 @@
     "manifest_version": 3,
     "minimum_chrome_version": "111",
 
-    "name": "Vencord Web",
-    "description": "The cutest Discord mod now in your browser",
-    "author": "Vendicated",
-    "homepage_url": "https://github.com/Vendicated/Vencord",
+    "name": "Not-Nexulien Web",
+    "description": "The best (worst) Vencord fork fork now in your browser",
+    "author": "defautluser0",
+    "homepage_url": "https://github.com/Not-Nexulien/Not-Nexulien",
     "icons": {
         "128": "icon.png"
     },
