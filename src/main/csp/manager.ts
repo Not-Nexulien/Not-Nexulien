@@ -40,7 +40,7 @@ function getMessage(url: string, directives: string[], callerName: string) {
 
     let detail =
         `Unless you recognise and fully trust ${domain}, you should cancel this request!\n\n` +
-        `You will have to fully close and restart ${IS_DISCORD_DESKTOP ? "Discord" : "Vesktop"} for the changes to take effect.`;
+        `You will have to fully close and restart ${IS_DISCORD_DESKTOP ? "Discord" : "Not-Nextop"} for the changes to take effect.`;
 
     if (directives.length === 1 && directives[0] === "connect-src") {
         return { message, detail };
@@ -82,7 +82,7 @@ async function addCspRule(_: IpcMainInvokeEvent, url: string, directives: string
     const { checkboxChecked, response } = await dialog.showMessageBox({
         ...getMessage(url, directives, callerName),
         type: callerName ? "info" : "warning",
-        title: "Vencord Host Permissions",
+        title: "Not-Nexulien Host Permissions",
         buttons: ["Cancel", "Allow"],
         defaultId: 0,
         cancelId: 0,
