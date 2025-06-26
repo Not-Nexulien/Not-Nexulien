@@ -1,11 +1,11 @@
 {
     "name": "not-nexulien",
     "private": "true",
-    "version": "1.12.3",
+    "version": "1.12.4",
     "description": "the best (worst) discord client mod, now with custom badges and plugins whenever i feel like it",
     "homepage": "https://github.com/not-nexulien/Not-Nexulien",
     "bugs": {
-        "url": "https://github.com/not-nexulien/Not-Nexulien"
+        "url": "https://github.com/not-nexulien/Not-Nexulien/issues/"
     },
     "repository": {
         "type": "git",
