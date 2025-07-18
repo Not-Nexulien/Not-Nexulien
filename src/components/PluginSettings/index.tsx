@@ -46,7 +46,7 @@ const { startDependenciesRecursive, startPlugin, stopPlugin } = proxyLazy(() => 
 const cl = classNameFactory("nx-plugins-");
 const logger = new Logger("PluginSettings", "#a6d189");
 
-const InputStyles = findByPropsLazy("inputWrapper", "inputDefault", "error");
+const InputStyles = findByPropsLazy("inputWrapper", "inputError", "error");
 const ButtonClasses = findByPropsLazy("button", "disabled", "enabled");
 
 
@@ -70,7 +70,7 @@ function ReloadRequiredCard({ required }: { required: boolean; }) {
                 <span>Plugins with a cog wheel have settings you can modify!</span>
             </NxCard>
             {required ? (
-                <NxCard className={classes("nx-card-warning", Margins.bottom16)}>
+                <NxCard className={classes("nx-warning-card", Margins.bottom16)}>
                     <Text className="nx-card-title" variant="heading-md/bold">Restart required!</Text>
                     <span>Restart now to apply new plugins and their settings</span>
                     <Button onClick={() => location.reload()} className={cl("restart-button")}>
@@ -353,7 +353,7 @@ export default function PluginSettings() {
                         select={onStatusChange}
                         isSelected={v => v === searchValue.status}
                         closeOnSelect={true}
-                        className={InputStyles.inputDefault}
+                        className={InputStyles.input}
                     />
                 </div>
             </div>
