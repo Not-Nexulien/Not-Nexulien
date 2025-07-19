@@ -264,17 +264,17 @@ function ThemesTab() {
     function renderOnlineThemes() {
         return (
             <>
-                <NxCard className={`${cl("info-card")} nx-text-selectable`}>
+                <NxCard className={`${classes("nx-warning-card", Margins.bottom16)}`}>
                     <Forms.FormText>
                         This section is for advanced users. If you are having difficulties using it, use the
                         Local Themes tab instead.
                     </Forms.FormText>
                 </NxCard>
                 <NxCard className="nx-settings-card">
-                    <Forms.FormTitle tag="h5">Paste links to css files here</Forms.FormTitle>
-                    <Forms.FormText>One link per line</Forms.FormText>
-                    <Forms.FormText>You can prefix lines with @light or @dark to toggle them based on your Discord theme</Forms.FormText>
-                    <Forms.FormText>Make sure to use direct links to files (raw or github.io)!</Forms.FormText>
+                    <NxCardTitle tag="h5">Paste links to css files here</NxCardTitle>
+                    <span>One link per line</span><br></br>
+                    <span>You can prefix lines with @light or @dark to toggle them based on your Discord theme</span><br></br>
+                    <span>Make sure to use direct links to files (raw or github.io)!</span>
                 </NxCard>
 
                 <Forms.FormSection title="Online Themes" tag="h5">
