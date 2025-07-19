@@ -32,7 +32,7 @@ import { openInviteModal } from "@utils/discord";
 import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
 import { relaunch } from "@utils/native";
-import { useAwaiter, useForceUpdater } from "@utils/react";
+import { useForceUpdater } from "@utils/react";
 import { getStylusWebStoreUrl } from "@utils/web";
 import { findLazy } from "@webpack";
 import { Alerts, Button, Forms, React, showToast, TabBar, TextArea, useEffect, useRef, useState } from "@webpack/common";
@@ -54,58 +54,6 @@ type FileInput = ComponentType<{
 const FileInput: FileInput = findLazy(m => m.prototype?.activateUploadDialogue && m.prototype.setRef);
 
 const cl = classNameFactory("nx-settings-theme-");
-
-function Validator({ link }: { link: string; }) {
-    const [res, err, pending] = useAwaiter(() => fetch(link).then(res => {
-        if (res.status > 300) throw `${res.status} ${res.statusText}`;
-        const contentType = res.headers.get("Content-Type");
-        if (!contentType?.startsWith("text/css") && !contentType?.startsWith("text/plain"))
-            throw "Not a CSS file. Remember to use the raw link!";
-
-        return "Okay!";
-    }));
-
-    const text = pending
-        ? "Checking..."
-        : err
-            ? `Error: ${err instanceof Error ? err.message : String(err)}`
-            : "Valid!";
-
-    return <Forms.FormText style={{
-        color: pending ? "var(--text-muted)" : err ? "var(--text-danger)" : "var(--status-positive)"
-    }}>{text}</Forms.FormText>;
-}
-
-function Validators({ themeLinks }: { themeLinks: string[]; }) {
-    if (!themeLinks.length) return null;
-
-    return (
-        <>
-            <Forms.FormTitle className={Margins.top20} tag="h5">Validator</Forms.FormTitle>
-            <Forms.FormText>This section will tell you whether your themes can successfully be loaded</Forms.FormText>
-            <div>
-                {themeLinks.map(rawLink => {
-                    const { label, link } = (() => {
-                        const match = /^@(light|dark) (.*)/.exec(rawLink);
-                        if (!match) return { label: rawLink, link: rawLink };
-
-                        const [, mode, link] = match;
-                        return { label: `[${mode} mode only] ${link}`, link };
-                    })();
-
-                    return <NxCard key={link} className={cl("validator-card")}>
-                        <Forms.FormTitle tag="h5" style={{
-                            overflowWrap: "break-word"
-                        }}>
-                            {label}
-                        </Forms.FormTitle>
-                        <Validator link={link} />
-                    </NxCard>;
-                })}
-            </div>
-        </>
-    );
-}
 
 interface ThemeCardProps {
     theme: UserThemeHeader;
@@ -316,10 +264,16 @@ function ThemesTab() {
     function renderOnlineThemes() {
         return (
             <>
-                <NxCard className={`${cl("info-card")} nx-text-selectable`}>
-                    <NxCardTitle>Paste links to css files here</NxCardTitle>
-                    <span>One link per line</span>
-                    <span>You can prefix lines with @light or @dark to toggle them based on your Discord theme</span>
+                <NxCard className={`${classes("nx-warning-card", Margins.bottom16)}`}>
+                    <Forms.FormText>
+                        This section is for advanced users. If you are having difficulties using it, use the
+                        Local Themes tab instead.
+                    </Forms.FormText>
+                </NxCard>
+                <NxCard className="nx-settings-card">
+                    <NxCardTitle tag="h5">Paste links to css files here</NxCardTitle>
+                    <span>One link per line</span><br></br>
+                    <span>You can prefix lines with @light or @dark to toggle them based on your Discord theme</span><br></br>
                     <span>Make sure to use direct links to files (raw or github.io)!</span>
                 </NxCard>
 
@@ -327,13 +281,12 @@ function ThemesTab() {
                     <TextArea
                         value={themeText}
                         onChange={setThemeText}
-                        className={"vc-settings-theme-links"}
-                        placeholder="Theme Links"
+                        className={"nx-settings-theme-links"}
+                        placeholder="Enter Theme Links..."
                         spellCheck={false}
                         onBlur={onBlur}
                         rows={10}
                     />
-                    <Validators themeLinks={settings.themeLinks} />
                 </Forms.FormSection>
             </>
         );
@@ -344,18 +297,18 @@ function ThemesTab() {
             <TabBar
                 type="top"
                 look="brand"
-                className="vc-settings-tab-bar"
+                className="nx-settings-tab-bar"
                 selectedItem={currentTab}
                 onItemSelect={setCurrentTab}
             >
                 <TabBar.Item
-                    className="vc-settings-tab-bar-item"
+                    className="nx-settings-tab-bar-item"
                     id={ThemeTab.LOCAL}
                 >
                     Local Themes
                 </TabBar.Item>
                 <TabBar.Item
-                    className="vc-settings-tab-bar-item"
+                    className="nx-settings-tab-bar-item"
                     id={ThemeTab.ONLINE}
                 >
                     Online Themes
@@ -405,15 +358,15 @@ export function CspErrorCard() {
     const hasImgurHtmlDomain = errors.some(isImgurHtmlDomain);
 
     return (
-        <ErrorCard className={classes("vc-settings-card", Margins.top16)}>
-            <Forms.FormTitle tag="h5">Blocked Resources</Forms.FormTitle>
-            <Forms.FormText>Some images, styles, or fonts were blocked because they come from disallowed domains.</Forms.FormText>
-            <Forms.FormText>It is highly recommended to move them to GitHub or Imgur. But you may also allow domains if you fully trust them.</Forms.FormText>
-            <Forms.FormText>
+        <ErrorCard className={classes("nx-settings-card", Margins.top16)}>
+            <NxCardTitle tag="h5">Blocked Resources</NxCardTitle>
+            <span>Some images, styles, or fonts were blocked because they come from disallowed domains.</span><br></br>
+            <span>It is highly recommended to move them to GitHub or Imgur. But you may also allow domains if you fully trust them.</span><br></br>
+            <span>
                 After allowing a domain, you have to fully close (from tray / task manager) and restart {IS_DISCORD_DESKTOP ? "Discord" : "Vesktop"} to apply the change.
-            </Forms.FormText>
+            </span><br></br>
 
-            <Forms.FormTitle tag="h5" className={classes(Margins.top16, Margins.bottom8)}>Blocked URLs</Forms.FormTitle>
+            <NxCardTitle tag="h5" className={classes(Margins.top16, Margins.bottom8)}>Blocked URLs</NxCardTitle>
             <div className="vc-settings-csp-list">
                 {errors.map((url, i) => (
                     <div key={url}>

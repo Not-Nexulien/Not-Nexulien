@@ -13,12 +13,10 @@
 }
 
 .nx-special-card-special {
-    padding: 1em;
+    padding: 1em 1.5em;
     margin-bottom: 1em;
-    background-size: cover !important;
-    background-position: center !important;
-    border-radius: 12px !important;
-    border: none !important;
+    background-size: cover;
+    background-position: center;
 }
 
 .nx-special-card-flex {
