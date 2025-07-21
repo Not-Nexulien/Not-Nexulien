@@ -17,17 +17,13 @@
 */
 
 import { useSettings } from "@api/Settings";
-import { Link } from "@components/Link";
 import { handleSettingsTabError, SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
-import { Margins } from "@utils/margins";
 import { ModalCloseButton, ModalContent, ModalProps, ModalRoot, ModalSize, openModal } from "@utils/modal";
 import { useAwaiter } from "@utils/react";
 import { getRepo, isNewer, UpdateLogger } from "@utils/updater";
 import { Forms, React, Switch } from "@webpack/common";
 
-import gitHash from "~git-hash";
-
-import { CommonProps, HashLink, Newer, Updatable } from "./Components";
+import { CommonProps, Newer, Repository, Updatable } from "./Components";
 
 function Updater() {
     const settings = useSettings(["autoUpdate", "autoUpdateNotification"]);
@@ -39,11 +35,12 @@ function Updater() {
 
     const commonProps: CommonProps = {
         repo,
-        repoPending
+        repoPending,
+        err
     };
 
     return (
-        <SettingsTab title="Vencord Updater">
+        <SettingsTab title="Nexulien Updater">
             <Forms.FormTitle tag="h5">Updater Settings</Forms.FormTitle>
 
             <Switch
@@ -62,31 +59,14 @@ function Updater() {
                 Get notified when an automatic update completes
             </Switch>
 
-            <Forms.FormTitle tag="h5">Repo</Forms.FormTitle>
-
-            <Forms.FormText>
-                {repoPending
-                    ? repo
-                    : err
-                        ? "Failed to retrieve - check console"
-                        : (
-                            <Link href={repo}>
-                                {repo.split("/").slice(-2).join("/")}
-                            </Link>
-                        )
-                }
-                {" "}
-                (<HashLink hash={gitHash} repo={repo} disabled={repoPending} />)
-            </Forms.FormText>
-
-            <Forms.FormDivider className={Margins.top8 + " " + Margins.bottom8} />
-
             <Forms.FormTitle tag="h5">Updates</Forms.FormTitle>
 
             {isNewer
                 ? <Newer {...commonProps} />
                 : <Updatable {...commonProps} />
             }
+
+            <Repository {...commonProps}/>
         </SettingsTab>
     );
 }
