@@ -105,7 +105,7 @@ export function Updatable(props: CommonProps) {
                                 await new Promise<void>(r => {
                                     Alerts.show({
                                         title: "Update Success!",
-                                        body: "Successfully updated. Reestart now to apply the changes?",
+                                        body: "Successfully updated. Restart now to apply the changes?",
                                         confirmText: "Restart",
                                         cancelText: "Not now!",
                                         onConfirm() {
