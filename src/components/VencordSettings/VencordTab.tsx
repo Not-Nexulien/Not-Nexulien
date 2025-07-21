@@ -15,9 +15,9 @@ import { openInviteModal } from "@utils/discord";
 import { Margins } from "@utils/margins";
 import { identity, isPluginDev } from "@utils/misc";
 import { closeAllModals } from "@utils/modal";
-import { relaunch, showItemInFolder } from "@utils/native";
-import { useAwaiter } from "@utils/react";
-import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, Select, Switch, UserStore, GuildMemberStore } from "@webpack/common";
+import { relaunch } from "@utils/native";
+import { Button, FluxDispatcher, Forms,GuildStore, NavigationRouter, React, Select, Switch, UserStore } from "@webpack/common";
+
 import { FolderIcon, GithubIcon, PaintbrushIcon, RestartIcon } from "..";
 import { NxMascot } from "./Mascot";
 import { QuickAction, QuickActionContainer } from "./quickActions";

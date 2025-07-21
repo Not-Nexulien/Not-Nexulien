@@ -9,8 +9,8 @@ import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { findByPropsLazy } from "@webpack";
 import { DraftType, UploadManager } from "@webpack/common";
+import floydSteinberg from "floyd-steinberg";
 import { Jimp } from "jimp";
-import floydSteinberg from 'floyd-steinberg';
 
 import { brailleMap } from "./braille_map";
 const UploadStore = findByPropsLazy("getUpload");
@@ -132,7 +132,7 @@ export default definePlugin({
                 const ditherParam = opts.find(o => o.name === "dither");
                 const invertParam = opts.find(o => o.name === "invert");
 
-                let image = imageData.greyscale()
+                let image = imageData.greyscale();
                 let s = "```\n";
 
                 if (opts.find(o => o.name === "width")) {
@@ -145,14 +145,14 @@ export default definePlugin({
 
 
                 if (ditherParam && ditherParam!.value) {
-                    const bmp = floydSteinberg(image.bitmap)
-                    image = Jimp.fromBitmap(bmp)
+                    const bmp = floydSteinberg(image.bitmap);
+                    image = Jimp.fromBitmap(bmp);
                 } else {
                     image.contrast(1).threshold({ max: 128 });
                 }
 
                 if (invertParam && invertParam!.value) {
-                    image.invert()
+                    image.invert();
                 }
 
                 // write characters
