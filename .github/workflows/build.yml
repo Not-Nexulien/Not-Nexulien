@@ -55,7 +55,7 @@ jobs:
                   gh release upload devbuild --clobber dist/*
                   gh release edit devbuild --title "DevBuild $RELEASE_TAG"
               env:
-                  GITHUB_TOKEN: ${{ ${{ secrets.ACCESS_TOKEN }} }}
+                  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
                   RELEASE_TAG: ${{ env.release_tag }}
 
             - name: Upload DevBuild to builds repo
@@ -75,6 +75,6 @@ jobs:
                   git commit -m "Builds for https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
                   git push --force https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git
               env:
-                  API_TOKEN: ${{ ${{ secrets.ACCESS_TOKEN }} }}
+                  API_TOKEN: ${{ secrets.ACCESS_TOKEN }}
                   GH_REPO: Not-Nexulien/builds
                   USERNAME: GitHub-Actions
