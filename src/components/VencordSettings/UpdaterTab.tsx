@@ -234,7 +234,7 @@ function Updater() {
             <NxCard>
                 <NxCardTitle>Repository</NxCardTitle>
 
-                <Forms.FormText className="vc-text-selectable">
+                <Forms.FormText className="nx-text-selectable">
                     {repoPending
                         ? repo
                         : err
