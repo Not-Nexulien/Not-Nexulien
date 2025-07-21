@@ -105,7 +105,7 @@ function Switches() {
 }
 
 function VencordSettings() {
-    const { showHint, hideContributorCard } = Settings.plugins.Settings;
+    const { showHint } = Settings.plugins.Settings;
 
     const needsVibrancySettings = IS_DISCORD_DESKTOP && IS_MAC;
 
