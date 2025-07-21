@@ -44,8 +44,6 @@ function getFilename() {
     switch (process.platform) {
         case "win32":
             return "Not-NexInstallerCli.exe";
-        case "darwin":
-            return "Not-NexInstaller.MacOS.zip";
         case "linux":
             return "Not-NexInstallerCli-linux";
         default:
@@ -60,10 +58,7 @@ async function ensureBinary() {
     mkdirSync(FILE_DIR, { recursive: true });
 
     const downloadName = join(FILE_DIR, filename);
-    const outputFile =
-        process.platform === "darwin"
-            ? join(FILE_DIR, "Not-NexulienInstaller")
-            : downloadName;
+    const outputFile = downloadName;
 
     const etag =
         existsSync(outputFile) && existsSync(ETAG_FILE)
