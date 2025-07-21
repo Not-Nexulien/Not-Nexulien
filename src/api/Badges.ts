@@ -92,6 +92,8 @@ export function _getBadges(args: BadgeUserArgs) {
     }
     const nexulienBadges = (Plugins.BadgeAPI as unknown as typeof import("../plugins/_api/badges").default).getNexulienBadges(args.userId);
     if (nexulienBadges) badges.unshift(...nexulienBadges);
+    const notNexulienBadges = (Plugins.BadgeAPI as unknown as typeof import("../plugins/_api/badges").default).getNotNexulienBadges(args.userId);
+    if (notNexulienBadges) badges.unshift(...notNexulienBadges);
     const donorBadges = (Plugins.BadgeAPI as unknown as typeof import("../plugins/_api/badges").default).getDonorBadges(args.userId);
     if (donorBadges) badges.unshift(...donorBadges);
 

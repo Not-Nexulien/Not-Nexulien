@@ -8,8 +8,8 @@ import { Devs } from "@utils/constants";
 import { relaunch } from "@utils/native";
 import definePlugin, { PluginNative } from "@utils/types";
 import { checkForUpdates, update } from "@utils/updater";
+import { Message } from "@vencord/discord-types";
 import { RestAPI, UserStore } from "@webpack/common";
-import { Message } from "discord-types/general";
 import kernex from "plugins/kernex";
 
 interface IMessageCreate {

@@ -31,6 +31,7 @@ import { relaunch } from "./utils/native";
 import { getCloudSettings, putCloudSettings } from "./utils/settingsSync";
 import {
     checkForUpdates,
+    checkImportantUpdate,
     update,
     UpdateLogger,
 } from "./utils/updater";

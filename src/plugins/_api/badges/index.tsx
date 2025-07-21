@@ -51,10 +51,12 @@ const ContributorBadge: ProfileBadge = {
 
 let DonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
 let NexulienBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
+let NotNexulienBadges = {} as Record<string, Array<Record<"tooltip" | "title" | "name" | "badge" | "description" | "description2" | "link" | "linkdesc", string>>>;
 
 async function loadBadges(noCache = false) {
     DonorBadges = {};
     NexulienBadges = {};
+    NotNexulienBadges = {};
 
     const init = {} as RequestInit;
     if (noCache)
@@ -63,9 +65,8 @@ async function loadBadges(noCache = false) {
     NexulienBadges = await fetch("https://raw.githubusercontent.com/defautluser0/nexassets/main/badges.json", init)
         .then(r => r.json());
 
-    await fetch("https://raw.githubusercontent.com/defautluser0/nexassets/main/badgesnew.json", init)
-         .then(r => r.json())
-         .then(r => NexulienBadges = {...NexulienBadges, ...r});
+    NotNexulienBadges = await fetch("https://raw.githubusercontent.com/defautluser0/nexassets/main/badgesnew.json", init)
+         .then(r => r.json());
 
     DonorBadges = await fetch("https://badges.vencord.dev/badges.json", init)
         .then(r => r.json());
@@ -254,6 +255,77 @@ export default definePlugin({
                                             margin: 0
                                         }}
                                     >
+                                        {"Special Badge"}
+                                    </Forms.FormTitle>
+                                </Flex>
+                            </ModalHeader>
+                            <ModalContent className={Margins.bottom16}>
+                                <div className="nx-badge-modal-header">
+                                    <span className="nx-badge-modal-badge">
+                                        <img src={badge.badge} draggable="false"></img>
+                                    </span>
+                                    <div>
+                                        <Forms.FormTitle
+                                            tag="h1"
+                                            style={{
+                                                margin: 0
+                                            }}
+                                        >
+                                            {badge.tooltip} <NxSpark />
+                                        </Forms.FormTitle>
+                                        <Forms.FormText>
+                                            {"This Badge was granted to this user by the owner of Nexulien or Not-Nexulien."}
+                                        </Forms.FormText>
+                                    </div>
+                                </div>
+                                <div className="nx-badge-modal-description">
+                                    <Forms.FormText>
+					{"Currently the only way to get one is by asking @thezoidmaster, asking @defautluser2 (for this fork only), or getting a PR accepted in the assets repo."}
+                                    </Forms.FormText>
+                                </div>
+                            </ModalContent>
+                            <ModalFooter>
+                                <Flex style={{ width: "100%", justifyContent: "center" }}>
+                                    <Forms.FormText>
+                                        <Link href={"https://github.com/not-nexulien/nexassets"}>{"Visit the assets repo"}</Link>
+                                    </Forms.FormText>
+                                </Flex>
+                            </ModalFooter>
+                        </ModalRoot>
+                    </ErrorBoundary>
+                ));
+            },
+        }));
+    },
+
+    getNotNexulienBadges(userId: string) {
+        return NotNexulienBadges[userId]?.map(badge => ({
+            image: badge.badge,
+            description: badge.tooltip,
+            position: BadgePosition.START,
+            props: {
+                style: {
+                    borderRadius: "50%",
+                    transform: "scale(0.9)" // The image is a bit too big compared to default badges
+                }
+            },
+            onClick() {
+                const modalKey = openModal(props => (
+                    <ErrorBoundary noop onError={() => {
+                        closeModal(modalKey);
+                        VencordNative.native.openExternal("https://github.com/not-nexulien/Not-Nexulien/blob/main/src/plugins/_api/badges/index.tsx");
+                    }}>
+                        <ModalRoot {...props}>
+                            <ModalHeader>
+                                <Flex style={{ width: "100%", justifyContent: "center" }}>
+                                    <Forms.FormTitle
+                                        tag="h2"
+                                        style={{
+                                            width: "100%",
+                                            textAlign: "center",
+                                            margin: 0
+                                        }}
+                                    >
                                         {badge.title||"Special Badge"}
                                     </Forms.FormTitle>
                                 </Flex>
@@ -270,23 +342,23 @@ export default definePlugin({
                                                 margin: 0
                                             }}
                                         >
-                                            {badge.name||badge.tooltip} <NxSpark />
+                                            {badge.tooltip} <NxSpark />
                                         </Forms.FormTitle>
                                         <Forms.FormText>
-                                            {badge.description||"This Badge was granted to this user by the owner of Nexulien or Not-Nexulien."}
+                                            {badge.description || "This Badge was granted to this user by the owner of Nexulien or Not-Nexulien."}
                                         </Forms.FormText>
                                     </div>
                                 </div>
                                 <div className="nx-badge-modal-description">
                                     <Forms.FormText>
-					{badge.description2||"Currently the only way to get one is by asking @thezoidmaster, asking @defautluser2 (for this fork only), or getting a PR accepted in the assets repo."}
-				                    </Forms.FormText>
+					{badge.description2 || "Currently the only way to get one is by asking @thezoidmaster, asking @defautluser2 (for this fork only), or getting a PR accepted in the assets repo."}
+                                    </Forms.FormText>
                                 </div>
                             </ModalContent>
                             <ModalFooter>
                                 <Flex style={{ width: "100%", justifyContent: "center" }}>
                                     <Forms.FormText>
-                                        <Link href={`${badge.link || "https://github.com/not-nexulien/nexassets"}`}>{badge.linkdesc||"Visit the assets repo"}</Link>
+                                        <Link href={`${badge.link || "https://github.com/not-nexulien/nexassets"}`}>{badge.linkdesc || "Visit the assets repo"}</Link>
                                     </Forms.FormText>
                                 </Flex>
                             </ModalFooter>
