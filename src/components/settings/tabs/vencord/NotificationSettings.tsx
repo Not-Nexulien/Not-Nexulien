@@ -43,7 +43,7 @@ export function openNotificationSettingsModal() {
     ));
 }
 
-function NotificationSettings() {
+export function NotificationSettings() {
     const settings = useSettings().notifications;
 
     return (

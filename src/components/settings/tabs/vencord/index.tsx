@@ -37,7 +37,6 @@ import { relaunch } from "@utils/native";
 import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, Switch, UserStore } from "@webpack/common";
 
 import { VibrancySettings } from "./MacVibrancySettings";
-import { NotificationSection } from "./NotificationSettings";
 
 const cl = classNameFactory("nx-settings-");
 
@@ -171,8 +170,6 @@ function VencordSettings() {
 
 
             {needsVibrancySettings && <VibrancySettings />}
-
-            <NotificationSection />
         </SettingsTab>
     );
 }

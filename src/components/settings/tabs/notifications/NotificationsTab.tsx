@@ -12,7 +12,7 @@ import { classNameFactory } from "@api/Styles";
 import { Flex } from "@components/Flex";
 import { NxCard, NxCardTitle } from "@components/NxCard";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
-import NotificationSettings from "@components/settings/tabs/vencord/";
+import { NotificationSettings } from "@components/settings/tabs/vencord/NotificationSettings";
 import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
 import { Alerts, Button, TabBar, useState } from "@webpack/common";
@@ -44,7 +44,7 @@ function NotificationsTab() {
                                     signals.forEach(x => x());
                                 },
                                 confirmText: "Do it!",
-                                confirmColor: "vc-notification-log-danger-btn",
+                                confirmColor: "nx-notification-log-danger-btn",
                                 cancelText: "Nevermind"
                             });
                         }}
@@ -77,18 +77,18 @@ function NotificationsTab() {
         <TabBar
             type="top"
             look="brand"
-            className={classes("vc-settings-tab-bar", Margins.top16)}
+            className={classes("nx-settings-tab-bar", Margins.top16)}
             selectedItem={currentTab}
             onItemSelect={setCurrentTab}
         >
             <TabBar.Item
-                className="vc-settings-tab-bar-item"
+                className="nx-settings-tab-bar-item"
                 id={NotificationTab.LOG}
             >
                 Notification Log
             </TabBar.Item>
             <TabBar.Item
-                className="vc-settings-tab-bar-item"
+                className="nx-settings-tab-bar-item"
                 id={NotificationTab.SETTINGS}
             >
                 Settings
