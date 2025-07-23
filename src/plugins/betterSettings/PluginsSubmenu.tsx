@@ -42,7 +42,7 @@ export default function PluginsSubmenu() {
     return (
         <>
             <Menu.MenuControlItem
-                id="vc-plugins-search"
+                id="nx-plugins-search"
                 control={(props, ref) => (
                     <Menu.MenuSearchControl
                         {...props}

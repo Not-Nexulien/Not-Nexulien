@@ -11,7 +11,7 @@ import { DefinedSettings, PluginOptionBase } from "@utils/types";
 import { Text } from "@webpack/common";
 import { PropsWithChildren } from "react";
 
-export const cl = classNameFactory("vc-plugins-setting-");
+export const cl = classNameFactory("nx-plugins-setting-");
 
 interface SettingBaseProps<T> {
     option: T;

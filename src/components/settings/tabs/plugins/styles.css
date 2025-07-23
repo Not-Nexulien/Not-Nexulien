@@ -81,7 +81,7 @@
     color: var(--text-muted);
 }
 
-.vc-plugins-settings {
+.nx-plugins-settings {
     display: flex;
     flex-direction: column;
     gap: 1.25em;
