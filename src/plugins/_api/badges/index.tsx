@@ -20,12 +20,12 @@ import "./fixDiscordBadgePadding.css";
 import "./badgeModal.css";
 
 import { _getBadges, BadgePosition, BadgeUserArgs, ProfileBadge } from "@api/Badges";
-import DonateButton from "@components/DonateButton";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
 import { Heart } from "@components/Heart";
 import { Link } from "@components/Link";
-import { openContributorModal } from "@components/PluginSettings/ContributorModal";
+import DonateButton from "@components/settings/DonateButton";
+import { openContributorModal } from "@components/settings/tabs";
 import { Devs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
 import { Margins } from "@utils/margins";
@@ -38,7 +38,7 @@ import { Forms, Toasts, UserStore } from "@webpack/common";
 import { NxSpark } from "./NxSpark";
 
 
-const CONTRIBUTOR_BADGE = "https://github.com/Nexulien/assets/blob/main/badges/contributor.png?raw=true";
+const CONTRIBUTOR_BADGE = "https://raw.githubusercontent.com/Nexulien/assets/main/badges/contributor.png";
 
 const ContributorBadge: ProfileBadge = {
     description: "(Not) Nexulien Contributor",
