@@ -17,9 +17,8 @@
 */
 
 import ErrorBoundary from "@components/ErrorBoundary";
+import BadgeAPIPlugin from "plugins/_api/badges";
 import { ComponentType, HTMLProps } from "react";
-
-import Plugins from "~plugins";
 
 export const enum BadgePosition {
     START,
@@ -90,9 +89,9 @@ export function _getBadges(args: BadgeUserArgs) {
                 : badges.push(...b);
         }
     }
-    const nexulienBadges = (Plugins.BadgeAPI as unknown as typeof import("../plugins/_api/badges").default).getNexulienBadges(args.userId);
+    const nexulienBadges = BadgeAPIPlugin.getNexulienBadges(args.userId);
     if (nexulienBadges) badges.unshift(...nexulienBadges);
-    const donorBadges = (Plugins.BadgeAPI as unknown as typeof import("../plugins/_api/badges").default).getDonorBadges(args.userId);
+    const donorBadges = BadgeAPIPlugin.getDonorBadges(args.userId);
     if (donorBadges) badges.unshift(...donorBadges);
 
     return badges;

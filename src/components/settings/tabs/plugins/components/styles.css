@@ -1,0 +1,35 @@
+.nx-plugins-setting-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.nx-plugins-setting-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.nx-plugins-setting-inline {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nx-plugins-setting-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+}
+
+.nx-plugins-setting-title {
+    color: var(--header-primary);
+}
+
+.nx-plugins-setting-description {
+    color: var(--header-secondary);
+}
+
+.nx-plugins-setting-error {
+    color: var(--text-danger);
+}

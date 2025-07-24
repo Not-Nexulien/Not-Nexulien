@@ -46,6 +46,7 @@ export interface Command {
     type?: ApplicationCommandType;
     inputType?: ApplicationCommandInputType;
     plugin?: string;
+    devOnly?: boolean;
 
     name: string;
     untranslatedName?: string;
