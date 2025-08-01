@@ -17,6 +17,7 @@
 */
 
 import { definePluginSettings } from "@api/Settings";
+import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 
 const settings = definePluginSettings({
@@ -31,12 +32,7 @@ export default definePlugin({
     name: "MoreReact",
     description: "This plugin allows you to modify the max number of reactions for the frencency reaction experiment",
     tags: ["Frencency", "Reactions"],
-    authors: [
-        {
-            name: "i am me",
-            id: 984392761929256980n
-        }
-    ],
+    authors: [Devs.iamme],
     patches: [
         {
             find: "location:\"message_utilities\"",
