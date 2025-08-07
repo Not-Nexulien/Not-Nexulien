@@ -123,6 +123,7 @@ export default definePlugin({
 
         return (
             <BlobMask
+                isFolder
                 style={{ cursor: "unset" }}
                 selected={false}
                 lowerBadge={
@@ -153,7 +154,7 @@ export default definePlugin({
                     className={SessionIconClasses.sessionIcon}
                     style={{ backgroundColor: GetOsColor(session.client_info.os) }}
                 >
-                    <DeviceIcon width={28} height={28} color="currentColor" />
+                    <DeviceIcon size="md" color="currentColor" />
                 </div>
             </BlobMask>
         );
