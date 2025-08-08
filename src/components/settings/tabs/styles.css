@@ -15,13 +15,6 @@
     margin-bottom: 1em;
 }
 
-.nx-warning-card {
-    padding: 1em !important;
-    background: var(--info-warning-background) !important;
-    border: 1px solid var(--info-warning-foreground) !important;
-    color: var(--info-warning-foreground) !important;
-}
-
 .nx-backup-restore-card {
     background-color: var(--info-warning-background);
     border-color: var(--info-warning-foreground);

@@ -154,7 +154,6 @@ function VencordSettings() {
                 <Forms.FormSection className={Margins.top16} title="Settings" tag="h5">
                     {showHint ?
                         <NxCard className={`nx-card-help ${Margins.bottom16}`}>
-                            <Forms.FormText className="nx-card-title" variant="heading-md/bold">Settings Configuration</Forms.FormText>
                             If you'd like to change the position of the Nexulien section, change the header card size, or just hide this hint, you can do so in the
                             {" "}<button
                                 style={{ all: undefined, color: "var(--text-link)", display: "inline-block", backgroundColor: "transparent", padding: 0, fontSize: 16 }}
@@ -199,7 +198,18 @@ function nexulien() {
 }
 
 function HeaderCard() {
-    const { headerCardSize } = Settings.plugins.Settings;
+    const [headerCardSize, setHeaderCardSize] = React.useState(Settings.plugins.Settings.headerCardSize);
+
+    // I know it's ugly but I'm REALLY stupid.
+    // TODO: Don't bruteforce checking for updates.
+    React.useEffect(() => {
+        const interval = setInterval(() => {
+            const newSize = Settings.plugins.Settings.headerCardSize;
+            setHeaderCardSize(prev => (prev !== newSize ? newSize : prev));
+        }, 100);
+
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <>
