@@ -23,7 +23,7 @@ import { showNotice } from "@api/Notices";
 import { Settings, useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
 import { CogWheel, InfoIcon } from "@components/Icons";
-import { NxCard } from "@components/NxCard";
+import { NxCard, NxCardTitle } from "@components/NxCard";
 import { openPluginModal } from "@components/PluginSettings/PluginModal";
 import { AddonCard } from "@components/VencordSettings/AddonCard";
 import { SettingsTab } from "@components/VencordSettings/shared";
@@ -65,13 +65,13 @@ function ReloadRequiredCard({ required }: { required: boolean; }) {
     return (
         <>
             <NxCard className={cl("info-card")}>
-                <Text className="nx-card-title" variant="heading-md/bold">Plugin Management</Text>
+                <NxCardTitle>Plugin Management</NxCardTitle>
                 <span>Press the cog wheel or info icon to get more info on a plugin</span>
                 <span>Plugins with a cog wheel have settings you can modify!</span>
             </NxCard>
             {required ? (
                 <NxCard className={classes("nx-card-warning", Margins.bottom16)}>
-                    <Text className="nx-card-title" variant="heading-md/bold">Restart required!</Text>
+                    <NxCardTitle>Restart required!</NxCardTitle>
                     <span>Restart now to apply new plugins and their settings</span>
                     <Button onClick={() => location.reload()} className={cl("restart-button")}>
                         Restart

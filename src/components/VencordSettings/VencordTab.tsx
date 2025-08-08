@@ -8,7 +8,7 @@ import "./headerCard.css";
 
 import { Settings, useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
-import { NxCard } from "@components/NxCard";
+import { NxCard, NxCardTitle } from "@components/NxCard";
 import { openPluginModal } from "@components/PluginSettings/PluginModal";
 import { gitRemote } from "@shared/vencordUserAgent";
 import { openInviteModal } from "@utils/discord";
@@ -20,6 +20,7 @@ import { useAwaiter } from "@utils/react";
 import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, Select, Switch, UserStore } from "@webpack/common";
 
 import { FolderIcon, GithubIcon, PaintbrushIcon, RestartIcon } from "..";
+import BackupAndRestoreTab from "./BackupAndRestoreTab";
 import { NxMascot } from "./Mascot";
 import { QuickAction, QuickActionContainer } from "./quickActions";
 import { SettingsTab, wrapTab } from "./shared";
@@ -91,134 +92,137 @@ function VencordSettings() {
         ];
 
     return (
-        <SettingsTab title="Nexulien Settings">
-            <HeaderCard />
-            {isPluginDev(user?.id) && !hideContributorCard && (
-                <SpecialCard
-                    title="Thank you for contributing!"
-                    description="Since you've contributed to Nexulien, you now have a cool new badge!"
-                    cardImage={CONTRIB_IMAGE}
-                    backgroundImage={CONTRIB_BACKGROUND_IMAGE}
-                    backgroundGradient="linear-gradient(to left, var(--nx-green), var(--nx-purple))"
-                />
-            )}
-            <QuickActionContainer title="Quick Actions" columns="2">
-                <QuickAction
-                    Icon={PaintbrushIcon}
-                    text="Edit QuickCSS"
-                    action={() => VencordNative.quickCss.openEditor()}
-                />
-                {!IS_WEB && (
-                    <QuickAction
-                        Icon={RestartIcon}
-                        text="Relaunch Discord"
-                        action={relaunch}
+        <>
+            <SettingsTab title="Nexulien Settings">
+                <HeaderCard />
+                {isPluginDev(user?.id) && !hideContributorCard && (
+                    <SpecialCard
+                        title="Thank you for contributing!"
+                        description="Since you've contributed to Nexulien, you now have a cool new badge!"
+                        cardImage={CONTRIB_IMAGE}
+                        backgroundImage={CONTRIB_BACKGROUND_IMAGE}
+                        backgroundGradient="linear-gradient(to left, var(--nx-green), var(--nx-purple))"
                     />
                 )}
-                {!IS_WEB && (
+                <QuickActionContainer title="Quick Actions" columns="2">
                     <QuickAction
-                        Icon={FolderIcon}
-                        text="Settings Folder"
-                        action={() => showItemInFolder(settingsDir)}
+                        Icon={PaintbrushIcon}
+                        text="Edit QuickCSS"
+                        action={() => VencordNative.quickCss.openEditor()}
                     />
-                )}
-                <QuickAction
-                    Icon={GithubIcon}
-                    text="View Source Code"
-                    action={() => VencordNative.native.openExternal("https://github.com/" + gitRemote)}
-                />
-            </QuickActionContainer>
+                    {!IS_WEB && (
+                        <QuickAction
+                            Icon={RestartIcon}
+                            text="Relaunch Discord"
+                            action={relaunch}
+                        />
+                    )}
+                    {!IS_WEB && (
+                        <QuickAction
+                            Icon={FolderIcon}
+                            text="Settings Folder"
+                            action={() => showItemInFolder(settingsDir)}
+                        />
+                    )}
+                    <QuickAction
+                        Icon={GithubIcon}
+                        text="View Source Code"
+                        action={() => VencordNative.native.openExternal("https://github.com/" + gitRemote)}
+                    />
+                </QuickActionContainer>
 
-            <Forms.FormSection className={Margins.top16} title="Settings" tag="h5">
-                {showHint ?
-                    <NxCard className={`nx-card-help ${Margins.bottom16}`}>
-                        <Forms.FormText className="nx-card-title" variant="heading-md/bold">Settings Configuration</Forms.FormText>
-                        If you'd like to change the position of the Nexulien section, change the header card size, or just hide this hint, you can do so in the
-                        {" "}<button
-                            style={{ all: undefined, color: "var(--text-link)", display: "inline-block", backgroundColor: "transparent", padding: 0, fontSize: 16 }}
-                            onClick={() => openPluginModal(Vencord.Plugins.plugins.Settings)}
+                <Forms.FormSection className={Margins.top16} title="Settings" tag="h5">
+                    {showHint ?
+                        <NxCard className={`nx-card-help ${Margins.bottom16}`}>
+                            <NxCardTitle>Settings Configuration</NxCardTitle>
+                            If you'd like to change the position of the Nexulien section, change the header card size, or just hide this hint, you can do so in the
+                            {" "}<button
+                                style={{ all: undefined, color: "var(--text-link)", display: "inline-block", backgroundColor: "transparent", padding: 0, fontSize: 16 }}
+                                onClick={() => openPluginModal(Vencord.Plugins.plugins.Settings)}
+                            >
+                                settings of the Settings plugin
+                            </button>!
+                        </NxCard> : <></>}
+
+                    {Switches.map(s => s && (
+                        <Switch
+                            key={s.key}
+                            value={settings[s.key]}
+                            onChange={v => settings[s.key] = v}
+                            note={s.note}
                         >
-                            settings of the Settings plugin
-                        </button>!
-                    </NxCard> : <></>}
-
-                {Switches.map(s => s && (
-                    <Switch
-                        key={s.key}
-                        value={settings[s.key]}
-                        onChange={v => settings[s.key] = v}
-                        note={s.note}
-                    >
-                        {s.title}
-                    </Switch>
-                ))}
-            </Forms.FormSection>
+                            {s.title}
+                        </Switch>
+                    ))}
+                </Forms.FormSection>
 
 
-            {needsVibrancySettings && <>
-                <Forms.FormTitle tag="h5">Window vibrancy style (requires restart)</Forms.FormTitle>
-                <Select
-                    className={Margins.bottom20}
-                    placeholder="Window vibrancy style"
-                    options={[
-                        // Sorted from most opaque to most transparent
-                        {
-                            label: "No vibrancy", value: undefined
-                        },
-                        {
-                            label: "Under Page (window tinting)",
-                            value: "under-page"
-                        },
-                        {
-                            label: "Content",
-                            value: "content"
-                        },
-                        {
-                            label: "Window",
-                            value: "window"
-                        },
-                        {
-                            label: "Selection",
-                            value: "selection"
-                        },
-                        {
-                            label: "Titlebar",
-                            value: "titlebar"
-                        },
-                        {
-                            label: "Header",
-                            value: "header"
-                        },
-                        {
-                            label: "Sidebar",
-                            value: "sidebar"
-                        },
-                        {
-                            label: "Tooltip",
-                            value: "tooltip"
-                        },
-                        {
-                            label: "Menu",
-                            value: "menu"
-                        },
-                        {
-                            label: "Popover",
-                            value: "popover"
-                        },
-                        {
-                            label: "Fullscreen UI (transparent but slightly muted)",
-                            value: "fullscreen-ui"
-                        },
-                        {
-                            label: "HUD (Most transparent)",
-                            value: "hud"
-                        },
-                    ]}
-                    select={v => settings.macosVibrancyStyle = v}
-                    isSelected={v => settings.macosVibrancyStyle === v}
-                    serialize={identity} />
-            </>}
-        </SettingsTab>
+                {needsVibrancySettings && <>
+                    <Forms.FormTitle tag="h5">Window vibrancy style (requires restart)</Forms.FormTitle>
+                    <Select
+                        className={Margins.bottom20}
+                        placeholder="Window vibrancy style"
+                        options={[
+                            // Sorted from most opaque to most transparent
+                            {
+                                label: "No vibrancy", value: undefined
+                            },
+                            {
+                                label: "Under Page (window tinting)",
+                                value: "under-page"
+                            },
+                            {
+                                label: "Content",
+                                value: "content"
+                            },
+                            {
+                                label: "Window",
+                                value: "window"
+                            },
+                            {
+                                label: "Selection",
+                                value: "selection"
+                            },
+                            {
+                                label: "Titlebar",
+                                value: "titlebar"
+                            },
+                            {
+                                label: "Header",
+                                value: "header"
+                            },
+                            {
+                                label: "Sidebar",
+                                value: "sidebar"
+                            },
+                            {
+                                label: "Tooltip",
+                                value: "tooltip"
+                            },
+                            {
+                                label: "Menu",
+                                value: "menu"
+                            },
+                            {
+                                label: "Popover",
+                                value: "popover"
+                            },
+                            {
+                                label: "Fullscreen UI (transparent but slightly muted)",
+                                value: "fullscreen-ui"
+                            },
+                            {
+                                label: "HUD (Most transparent)",
+                                value: "hud"
+                            },
+                        ]}
+                        select={v => settings.macosVibrancyStyle = v}
+                        isSelected={v => settings.macosVibrancyStyle === v}
+                        serialize={identity} />
+                </>}
+            </SettingsTab>
+            <BackupAndRestoreTab></BackupAndRestoreTab>
+        </>
     );
 }
 

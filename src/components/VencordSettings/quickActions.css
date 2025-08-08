@@ -7,7 +7,7 @@
 }
 
 .nx-settings-quickActions-title {
-    color: var(--text-normal);
+    color: var(--text-primary);
     display: flex;
     flex-direction: row;
     justify-content: space-between;

@@ -26,7 +26,7 @@ import { Button, Text } from "@webpack/common";
 
 import { SettingsTab, wrapTab } from "./shared";
 
-function BackupRestoreTab() {
+export function BackupRestoreTab() {
     return (
         <SettingsTab title="Backup & Restore">
             <NxCard className={`nx-card-warning ${Margins.bottom16}`}>

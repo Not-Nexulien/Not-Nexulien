@@ -3,30 +3,30 @@
     background-color: var(--background-surface-high);
     padding: 24px;
     border-radius: var(--radius-md);
-    color: var(--text-muted);
+    color: var(--text-secondary);
 }
 
 .nx-card-warning {
-    background-color: var(--info-warning-background) !important;
+    background-color: var(--background-feedback-warning) !important;
 }
 
 .nx-card-help {
-    background-color: var(--info-help-background) !important;
+    background-color: var(--background-feedback-info) !important;
 }
 
 .nx-card-positive {
-    background-color: var(--info-positive-background) !important;
+    background-color: var(--background-feedback-positive) !important;
 }
 
 .nx-card-danger {
-    background-color: var(--info-danger-background) !important;
+    background-color: var(--background-feedback-critical) !important;
 }
 
 .nx-card-title {
     font-family: var(--font-display);
     font-size: 16px;
     font-weight: 700;
-    color: var(--text-normal);
+    color: var(--text-primary);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
