@@ -17,6 +17,7 @@
 */
 
 import "@components/settings/headerCard.css";
+import "@components/settings/styles.css";
 
 import { Settings, useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
