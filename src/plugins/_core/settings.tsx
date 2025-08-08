@@ -17,13 +17,7 @@
 */
 
 import { Settings } from "@api/Settings";
-import CloudTab from "@components/VencordSettings/CloudTab";
-import NotificationsTab from "@components/VencordSettings/NotificationsTab";
-import PatchHelperTab from "@components/VencordSettings/PatchHelperTab";
-import PluginsTab from "@components/VencordSettings/PluginsTab";
-import ThemesTab from "@components/VencordSettings/ThemesTab";
-import UpdaterTab from "@components/VencordSettings/UpdaterTab";
-import VencordTab from "@components/VencordSettings/VencordTab";
+import { BackupAndRestoreTab, CloudTab, NotificationsTab, PatchHelperTab, PluginsTab, ThemesTab, UpdaterTab, VencordTab } from "@components/settings/tabs";
 import { Devs } from "@utils/constants";
 import { getIntlMessage } from "@utils/discord";
 import definePlugin, { OptionType } from "@utils/types";
@@ -65,8 +59,7 @@ export default definePlugin({
                     replace: (_, sectionTypes, commaOrSemi, elements, element) => `${commaOrSemi} $self.addSettings(${elements}, ${element}, ${sectionTypes}) ${commaOrSemi}`
                 },
                 {
-                    // FIXME(Bundler change related): Remove old compatiblity once enough time has passed
-                    match: /({(?=.+?function (\i).{0,160}(\i)=\i\.useMemo.{0,140}return \i\.useMemo\(\(\)=>\i\(\3).+?(?:function\(\){return |\(\)=>))\2/,
+                    match: /({(?=.+?function (\i).{0,160}(\i)=\i\.useMemo.{0,140}return \i\.useMemo\(\(\)=>\i\(\3).+?\(\)=>)\2/,
                     replace: (_, rest, settingsHook) => `${rest}$self.wrapSettingsHook(${settingsHook})`
                 }
             ]
@@ -90,7 +83,7 @@ export default definePlugin({
                 className: "nx-settings-header"
             },
             {
-                section: "NexulienSettings",
+                section: "settings/tabs",
                 label: "Settings",
                 element: VencordTab,
                 className: "nx-settings"
@@ -124,6 +117,12 @@ export default definePlugin({
                 label: "Cloud",
                 element: CloudTab,
                 className: "vc-cloud"
+            },
+            {
+                section: "settings/tabsSync",
+                label: "Backup & Restore",
+                element: BackupAndRestoreTab,
+                className: "vc-backup-restore"
             },
             IS_DEV && {
                 section: "VencordPatchHelper",
@@ -232,7 +231,7 @@ export default definePlugin({
     get chromiumVersion() {
         try {
             return VencordNative.native.getVersions().chrome
-                // @ts-ignore Typescript will add userAgentData IMMEDIATELY
+                // @ts-expect-error Typescript will add userAgentData IMMEDIATELY
                 || navigator.userAgentData?.brands?.find(b => b.brand === "Chromium" || b.brand === "Google Chrome")?.version
                 || null;
         } catch { // inb4 some stupid browser throws unsupported error for navigator.userAgentData, it's only in chromium

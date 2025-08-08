@@ -27,6 +27,11 @@ export const REGULAR_ROLE_ID = "1026504932959977532";
 export const SUPPORT_CATEGORY_ID = "1108135649699180705";
 export const KNOWN_ISSUES_CHANNEL_ID = "1222936386626129920";
 
+const platform = navigator.platform.toLowerCase();
+export const IS_WINDOWS = platform.startsWith("win");
+export const IS_MAC = platform.startsWith("mac");
+export const IS_LINUX = platform.startsWith("linux");
+
 export interface Dev {
     name: string;
     id: bigint;
@@ -92,6 +97,10 @@ export const Devs = /* #__PURE__*/ Object.freeze({
     echo: {
         name: "ECHO",
         id: 712639419785412668n,
+    },
+    amy: {
+        name: "Amy",
+        id: 603229858612510720n,
     },
     katlyn: {
         name: "katlyn",
