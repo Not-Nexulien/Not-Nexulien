@@ -28,7 +28,7 @@ import { QuickAction, QuickActionContainer } from "@components/settings/QuickAct
 import { SpecialCard } from "@components/settings/SpecialCard";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
 import { openPluginModal } from "@components/settings/tabs/plugins/PluginModal";
-import { BackupAndRestoreTab } from "@components\settings\tabs\sync\BackupAndRestoreTab";
+import { BackupAndRestoreTab } from "@components/settings/tabs/sync/BackupAndRestoreTab";
 import { gitRemote } from "@shared/vencordUserAgent";
 import { IS_MAC, IS_WINDOWS } from "@utils/constants";
 import { openInviteModal } from "@utils/discord";
