@@ -119,7 +119,7 @@ function VencordSettings() {
                 <SpecialCard
                     title="Contributions"
                     subtitle="Thank you for contributing!"
-                    description="Since you've contributed to Vencord you now have a cool new badge!"
+                    description="Since you've contributed to Nexulien you now have a cool new badge!"
                     cardImage={CONTRIB_IMAGE}
                     backgroundImage={CONTRIB_BACKGROUND_IMAGE}
                     backgroundGradient="linear-gradient(to left, var(--nx-green), var(--nx-purple))"
