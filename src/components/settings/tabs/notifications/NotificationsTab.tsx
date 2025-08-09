@@ -4,8 +4,6 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import "./notificationsStyles.css";
-
 import { DataStore } from "@api/index";
 import { NotificationLog, signals, useLogs } from "@api/Notifications/notificationLog";
 import { classNameFactory } from "@api/Styles";

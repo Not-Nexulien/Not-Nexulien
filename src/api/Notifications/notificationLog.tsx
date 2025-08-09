@@ -23,7 +23,7 @@ import { Flex } from "@components/Flex";
 import { openNotificationSettingsModal } from "@components/settings/tabs/vencord/NotificationSettings";
 import { closeModal, ModalCloseButton, ModalFooter, ModalHeader, ModalProps, ModalRoot, ModalSize, openModal } from "@utils/modal";
 import { useAwaiter } from "@utils/react";
-import { Alerts, Button, React, Text, Timestamp, useEffect, useReducer, useState, Forms, ListScrollerThin } from "@webpack/common";
+import { Alerts, Button, ListScrollerThin, React, Text, Timestamp, useEffect, useReducer, useState } from "@webpack/common";
 import { nanoid } from "nanoid";
 import type { DispatchWithoutAction } from "react";
 

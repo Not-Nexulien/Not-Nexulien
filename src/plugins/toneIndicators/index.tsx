@@ -131,7 +131,26 @@ type ParseReturn = ReactProps | { type: "text", content: string; };
 
 export const cl = classNameFactory("nx-tone-");
 
+function ToneTag({ text = "", long = "" }) {
+    const { expandToneTags } = settings.use(["expandToneTags"]);
+    return (<>
+        {expandToneTags ? <span className="inChatText">({long})</span> : <Tooltip text={long} tooltipClassName="toneIndicator">
+            {props => <span
+                {...props}
+                className="inChatText"
+            >
+                {text}
+            </span>}
+        </Tooltip>}
+    </>);
+}
+
 export const settings = definePluginSettings({
+    expandToneTags: {
+        type: OptionType.BOOLEAN,
+        description: "Expand tone tags into the unabreviated version.",
+        default: false
+    },
     showToneList: {
         type: OptionType.BOOLEAN,
         description: "When disabled, hides the tone list in the chat box.",
@@ -193,14 +212,7 @@ export default definePlugin({
             },
 
             react: ({ text, tag }: ReactProps) => {
-                return (<Tooltip text={tag.long} tooltipClassName="toneIndicator">
-                    {props => <span
-                        {...props}
-                        className="inChatText"
-                    >
-                        {text}
-                    </span>}
-                </Tooltip>);
+                return <ToneTag text={text} long={tag.long}></ToneTag>;
             }
         };
     },
