@@ -105,9 +105,9 @@ export function LocalThemesTab() {
             </NxCard>
 
             <NxCard className={classes("nx-card-help", Margins.bottom16)}>
-                <Forms.FormTitle tag="h5">External Resources</Forms.FormTitle>
-                <Forms.FormText>For security reasons, loading resources (styles, fonts, images, ...) from most sites is blocked.</Forms.FormText>
-                <Forms.FormText>Make sure all your assets are hosted on GitHub, GitLab, Codeberg, Imgur, Discord or Google Fonts.</Forms.FormText>
+                <NxCardTitle>External Resources</NxCardTitle>
+                <span>For security reasons, loading resources (styles, fonts, images, ...) from most sites is blocked.</span>
+                <span> Make sure all your assets are hosted on GitHub, GitLab, Codeberg, Imgur, Discord or Google Fonts.</span>
             </NxCard>
 
             <Forms.FormSection title="Local Themes">

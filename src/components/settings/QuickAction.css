@@ -7,7 +7,7 @@
 }
 
 .nx-settings-quickActions-title {
-    color: var(--text-normal);
+    color: var(--text-primary);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -39,8 +39,8 @@
 }
 
 .nx-settings-quickActions-img {
-    width: 24px;
-    height: 24px;
+    width: 24px !important;
+    height: 24px !important;
 }
 
 .nx-settings-quickActions-info-button {
@@ -51,7 +51,7 @@
     margin: 0;
     color: var(--interactive-normal);
     align-self: flex-start;
-    margin-top: -8px !important;
+    margin-top: -2px !important;
 }
 
 .nx-settings-quickActions-info-button:hover {

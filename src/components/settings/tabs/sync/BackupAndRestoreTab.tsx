@@ -19,17 +19,16 @@
 import "@components/settings/tabs/styles.css";
 
 import { Flex } from "@components/Flex";
-import { NxCard, NxCardTitle } from "@components/NxCard";
+import { NxCard } from "@components/NxCard";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
 import { Margins } from "@utils/margins";
 import { downloadSettingsBackup, uploadSettingsBackup } from "@utils/settingsSync";
 import { Button, Text } from "@webpack/common";
 
-function BackupAndRestoreTab() {
+export function BackupAndRestoreTab() {
     return (
         <SettingsTab title="Backup & Restore">
             <NxCard className={`nx-card-warning ${Margins.bottom16}`}>
-                <NxCardTitle>Warning</NxCardTitle>
                 <span>Importing a settings file will overwrite your current settings.</span>
             </NxCard>
             <Text variant="text-md/normal" className={Margins.bottom8}>
