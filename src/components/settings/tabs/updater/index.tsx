@@ -16,6 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import "./styles.css";
+
 import { useSettings } from "@api/Settings";
 import { handleSettingsTabError, SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
 import { ModalCloseButton, ModalContent, ModalProps, ModalRoot, ModalSize, openModal } from "@utils/modal";
@@ -66,7 +68,7 @@ function Updater() {
                 : <Updatable {...commonProps} />
             }
 
-            <Repository {...commonProps}/>
+            <Repository {...commonProps} />
         </SettingsTab>
     );
 }
@@ -83,8 +85,8 @@ export const openUpdaterModal = IS_UPDATER_DISABLED
         try {
             openModal(wrapTab((modalProps: ModalProps) => (
                 <ModalRoot {...modalProps} size={ModalSize.MEDIUM}>
-                    <ModalContent className="vc-updater-modal">
-                        <ModalCloseButton onClick={modalProps.onClose} className="vc-updater-modal-close-button" />
+                    <ModalContent className="nx-updater-modal">
+                        <ModalCloseButton onClick={modalProps.onClose} className="nx-updater-modal-close-button" />
                         <UpdaterTab />
                     </ModalContent>
                 </ModalRoot>

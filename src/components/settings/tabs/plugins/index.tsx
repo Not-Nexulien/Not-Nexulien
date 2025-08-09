@@ -47,7 +47,7 @@ function ReloadRequiredCard({ required }: { required: boolean; }) {
             <NxCard className={cl("info-card")}>
                 <NxCardTitle>Plugin Management</NxCardTitle>
                 <span>Press the cog wheel or info icon to get more info on a plugin</span>
-                <span>Plugins with a cog wheel have settings you can modify!</span>
+                <span> &mdash; Plugins with a cog wheel have settings you can modify!</span>
             </NxCard>
             {required ? (
                 <NxCard className={classes("nx-card-warning", Margins.bottom16)}>

@@ -116,9 +116,11 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
         });
 
         return (
-            <div className="nx-plugins-settings">
-                {options}
-            </div>
+            <NxCard className={Margins.top16}>
+                <div className="nx-plugins-settings">
+                    {options}
+                </div>
+            </NxCard>
         );
     }
 
@@ -147,7 +149,30 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
     return (
         <ModalRoot transitionState={transitionState} size={ModalSize.MEDIUM}>
             <ModalHeader separator={false} className={Margins.bottom8}>
-                <Text variant="heading-xl/bold" style={{ flexGrow: 1 }}>{plugin.name}</Text>
+                <Text variant="heading-xl/bold" style={{ flexGrow: 1 }} className={cl("title")}>
+                    {plugin.name}
+                    <UserSummaryItem
+                        users={authors}
+                        guildId={undefined}
+                        renderIcon={false}
+                        max={6}
+                        showDefaultAvatarsForNullUsers
+                        renderMoreUsers={renderMoreUsers}
+                        renderUser={(user: User) => (
+                            <Clickable
+                                className={AvatarStyles.clickableAvatar}
+                                onClick={() => openContributorModal(user)}
+                            >
+                                <img
+                                    className={AvatarStyles.avatar}
+                                    src={user.getAvatarURL(void 0, 80, true)}
+                                    alt={user.username}
+                                    title={user.username}
+                                />
+                            </Clickable>
+                        )}
+                    />
+                </Text>
                 <ModalCloseButton onClick={onClose} />
             </ModalHeader>
 
@@ -156,30 +181,6 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                     <Flex className={cl("info")}>
                         <Forms.FormText className={cl("description")}>{plugin.description}</Forms.FormText>
                     </Flex>
-                    <Text variant="heading-lg/semibold" className={classes(Margins.top8, Margins.bottom8)}>Authors</Text>
-                    <div style={{ width: "fit-content" }}>
-                        <UserSummaryItem
-                            users={authors}
-                            guildId={undefined}
-                            renderIcon={false}
-                            max={6}
-                            showDefaultAvatarsForNullUsers
-                            renderMoreUsers={renderMoreUsers}
-                            renderUser={(user: User) => (
-                                <Clickable
-                                    className={AvatarStyles.clickableAvatar}
-                                    onClick={() => openContributorModal(user)}
-                                >
-                                    <img
-                                        className={AvatarStyles.avatar}
-                                        src={user.getAvatarURL(void 0, 80, true)}
-                                        alt={user.username}
-                                        title={user.username}
-                                    />
-                                </Clickable>
-                            )}
-                        />
-                    </div>
                 </Forms.FormSection>
 
                 {!!plugin.settingsAboutComponent && (
@@ -193,7 +194,6 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                 )}
 
                 <Forms.FormSection>
-                    <Text variant="heading-lg/semibold" className={classes(Margins.top16, Margins.bottom8)}>Settings</Text>
                     {renderSettings()}
                 </Forms.FormSection>
             </ModalContent>
