@@ -70,9 +70,8 @@ function ThemesTab() {
 function UserscriptThemesTab() {
     return (
         <SettingsTab title="Themes">
-            <NxCard className="vc-settings-card">
-                <NxCardTitle tag="h5">Themes are not supported on the Userscript!</NxCardTitle>
-
+            <NxCard>
+                <NxCardTitle>Themes are not supported on the Userscript!</NxCardTitle>
                 <span>
                     You can instead install themes with the <Link href={getStylusWebStoreUrl()}>Stylus extension</Link>!
                 </span>

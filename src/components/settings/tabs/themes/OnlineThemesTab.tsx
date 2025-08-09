@@ -28,11 +28,11 @@ export function OnlineThemesTab() {
 
     return (
         <>
-            <NxCard className={`${classes("nx-warning-card", Margins.bottom16)}`}>
-                <Forms.FormText>
+            <NxCard className={`${classes("nx-card-warning", Margins.bottom16)}`}>
+                <span>
                     This section is for advanced users. If you are having difficulties using it, use the
                     Local Themes tab instead.
-                </Forms.FormText>
+                </span>
             </NxCard>
             <NxCard className="nx-settings-card">
                 <NxCardTitle tag="h5">Paste links to css files here</NxCardTitle>

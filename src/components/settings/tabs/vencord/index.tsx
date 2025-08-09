@@ -28,6 +28,7 @@ import { QuickAction, QuickActionContainer } from "@components/settings/QuickAct
 import { SpecialCard } from "@components/settings/SpecialCard";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
 import { openPluginModal } from "@components/settings/tabs/plugins/PluginModal";
+import { BackupAndRestoreTab } from "@components/settings/tabs/sync/BackupAndRestoreTab";
 import { gitRemote } from "@shared/vencordUserAgent";
 import { IS_MAC, IS_WINDOWS } from "@utils/constants";
 import { openInviteModal } from "@utils/discord";
@@ -105,35 +106,32 @@ function Switches() {
 }
 
 function VencordSettings() {
-    const { showHint } = Settings.plugins.Settings;
+    const { showHint, hideContributorCard } = Settings.plugins.Settings;
 
     const needsVibrancySettings = IS_DISCORD_DESKTOP && IS_MAC;
 
     const user = UserStore.getCurrentUser();
 
     return (
-        <SettingsTab title="Not-Nexulien Settings">
-            <HeaderCard />
-
-            {isPluginDev(user?.id) && (
-                <SpecialCard
-                    title="Contributions"
-                    subtitle="Thank you for contributing!"
-                    description="Since you've contributed to Nexulien you now have a cool new badge!"
-                    cardImage={CONTRIB_IMAGE}
-                    backgroundImage={CONTRIB_BACKGROUND_IMAGE}
-                    backgroundGradient="linear-gradient(to left, var(--nx-green), var(--nx-purple))"
-                />
-            )}
-
-            <QuickActionContainer title="Quick Actions" columns="2">
-                <QuickAction
-                    Icon={PaintbrushIcon}
-                    text="Edit QuickCSS"
-                    action={() => VencordNative.quickCss.openEditor()}
-                />
-                {!IS_WEB && (
-                    <>
+        <>
+            <SettingsTab title="Not-Nexulien Settings">
+                <HeaderCard />
+                {isPluginDev(user?.id) && !hideContributorCard && (
+                    <SpecialCard
+                        title="Thank you for contributing!"
+                        description="Since you've contributed to Not-Nexulien, you now have a cool new badge!"
+                        cardImage={CONTRIB_IMAGE}
+                        backgroundImage={CONTRIB_BACKGROUND_IMAGE}
+                        backgroundGradient="linear-gradient(to left, var(--nx-green), var(--nx-purple))"
+                    />
+                )}
+                <QuickActionContainer title="Quick Actions" columns="2">
+                    <QuickAction
+                        Icon={PaintbrushIcon}
+                        text="Edit QuickCSS"
+                        action={() => VencordNative.quickCss.openEditor()}
+                    />
+                    {!IS_WEB && (<>
                         <QuickAction
                             Icon={RestartIcon}
                             text="Relaunch Discord"
@@ -145,33 +143,34 @@ function VencordSettings() {
                             action={() => VencordNative.settings.openFolder()}
                         />
                     </>
-                )}
-                <QuickAction
-                    Icon={GithubIcon}
-                    text="View Source Code"
-                    action={() => VencordNative.native.openExternal("https://github.com/" + gitRemote)}
-                />
-            </QuickActionContainer>
+                    )}
+                    <QuickAction
+                        Icon={GithubIcon}
+                        text="View Source Code"
+                        action={() => VencordNative.native.openExternal("https://github.com/" + gitRemote)}
+                    />
+                </QuickActionContainer>
 
-                        <Forms.FormSection className={Margins.top16} title="Settings" tag="h5">
-                {showHint ?
-                    <NxCard className={`nx-card-help ${Margins.bottom16}`}>
-                        <Forms.FormText className="nx-card-title" variant="heading-md/bold">Settings Configuration</Forms.FormText>
-                        If you'd like to change the position of the Not-Nexulien section, change the header card size, or just hide this hint, you can do so in the
-                        {" "}<button
-                            style={{ all: undefined, color: "var(--text-link)", display: "inline-block", backgroundColor: "transparent", padding: 0, fontSize: 16 }}
-                            onClick={() => openPluginModal(Vencord.Plugins.plugins.Settings)}
-                        >
-                            settings of the Settings plugin
-                        </button>!
-                    </NxCard> : <></>}
+                <Forms.FormSection className={Margins.top16} title="Settings" tag="h5">
+                    {showHint ?
+                        <NxCard className={`nx-card-help ${Margins.bottom16}`}>
+                            If you'd like to change the position of the Not-Nexulien section, change the header card size, or just hide this hint, you can do so in the
+                            {" "}<button
+                                style={{ all: undefined, color: "var(--text-link)", display: "inline-block", backgroundColor: "transparent", padding: 0, fontSize: 16 }}
+                                onClick={() => openPluginModal(Vencord.Plugins.plugins.Settings)}
+                            >
+                                settings of the Settings plugin
+                            </button>!
+                        </NxCard> : <></>}
 
-                <Switches />
-            </Forms.FormSection>
+                    <Switches />
+                </Forms.FormSection>
 
 
-            {needsVibrancySettings && <VibrancySettings />}
-        </SettingsTab>
+                {needsVibrancySettings && <VibrancySettings />}
+            </SettingsTab>
+            {BackupAndRestoreTab()}
+        </>
     );
 }
 
@@ -199,7 +198,18 @@ function nexulien() {
 }
 
 function HeaderCard() {
-    const { headerCardSize } = Settings.plugins.Settings;
+    const [headerCardSize, setHeaderCardSize] = React.useState(Settings.plugins.Settings.headerCardSize);
+
+    // I know it's ugly but I'm REALLY stupid.
+    // TODO: Don't bruteforce checking for updates.
+    React.useEffect(() => {
+        const interval = setInterval(() => {
+            const newSize = Settings.plugins.Settings.headerCardSize;
+            setHeaderCardSize(prev => (prev !== newSize ? newSize : prev));
+        }, 100);
+
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <>

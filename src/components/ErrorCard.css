@@ -1,9 +1,9 @@
 .nx-error-card {
     border: 1px solid var(--border-subtle);
-    background-color: var(--info-danger-background);
+    background-color: var(--background-feedback-critical);
     padding: 24px;
     border-radius: var(--radius-md);
-    color: var(--text-muted);
+    color: var(--text-secondary);
 
     & a:hover {
         text-decoration: underline;
