@@ -4,7 +4,8 @@
     border-radius: 8px;
     display: block;
     height: 100%;
-    padding: 12px;
+    padding: 16px;
+    padding-top: 8px;
     width: 100%;
     transition: 0.1s ease-out;
     transition-property: box-shadow, transform, background, opacity;
