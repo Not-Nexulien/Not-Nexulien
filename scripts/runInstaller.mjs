@@ -44,6 +44,8 @@ function getFilename() {
     switch (process.platform) {
         case "win32":
             return "Not-NexInstallerCli.exe";
+        case "darwin":
+            return "Not-NexInstaller.MacOS.zip";
         case "linux":
             return "Not-NexInstallerCli-linux";
         default:
