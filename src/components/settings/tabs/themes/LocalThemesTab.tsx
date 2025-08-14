@@ -134,13 +134,13 @@ export function LocalThemesTab() {
                                 />
                             ) : (
                                 <QuickAction
-                                    text="Open Themes Folder"
+                                    text="Themes Folder"
                                     action={() => VencordNative.themes.openFolder()}
                                     Icon={FolderIcon}
                                 />
                             )}
                         <QuickAction
-                            text="Load missing Themes"
+                            text="Reload Themes"
                             action={refreshLocalThemes}
                             Icon={RestartIcon}
                         />

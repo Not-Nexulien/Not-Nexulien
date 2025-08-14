@@ -17,8 +17,8 @@
     margin-bottom: 16px;
     background-size: cover !important;
     background-position: center;
-    border-radius: 13px;
-    border: none;
+    border-radius: 12px;
+    background-origin: border-box !important;
 }
 
 .nx-special-card-flex {
