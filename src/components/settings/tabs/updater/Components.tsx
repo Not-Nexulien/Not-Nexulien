@@ -34,7 +34,7 @@ export function HashLink({ repo, hash, disabled = false }: { repo: string, hash:
 
 export function Changes({ updates, repo, repoPending }: CommonProps & { updates: typeof changes; }) {
     return (
-        <NxCard style={{ padding: "0 0.5em" }}>
+        <NxCard style={{ padding: "0 0.5em" }} className="nx-updater-changes">
             {updates.map(({ hash, author, message }) => (
                 <div
                     key={hash}
@@ -91,7 +91,7 @@ export function Updatable(props: CommonProps) {
                     </>
                 ) : (
                     <Forms.FormText className={Margins.bottom8}>
-                        {isOutdated ? (updates.length === 1 ? "There is 1 Update" : `There are ${updates.length} Updates`) : "Up to Date!"}
+                        {isOutdated ? (updates.length === 1 ? "There's one update" : `There are ${updates.length} updates`) : "Up to date!"}
                     </Forms.FormText>
                 )}
 
@@ -143,6 +143,8 @@ export function Updatable(props: CommonProps) {
                         Check for Updates
                     </Button>
                 </Flex>
+
+                {isOutdated && <Changes updates={updates} {...props} />}
             </NxCard>
         </>
     );
@@ -165,7 +167,7 @@ export function Repository({ repo, repoPending, err }: CommonProps) {
                                 </Link>
                             )
                     }
-                    {" "}(<HashLink hash={gitHash} repo={repo} disabled={repoPending} />)
+                    {" "}(<code><HashLink hash={gitHash} repo={repo} disabled={repoPending} /></code>)
                 </Forms.FormText>
             </NxCard>
         </>

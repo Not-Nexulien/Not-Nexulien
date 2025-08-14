@@ -5,3 +5,11 @@
     padding: .5em;
     border-radius: 4px;
 }
+
+.nx-updater-modal {
+    padding: 1.5em !important;
+}
+
+.nx-updater-modal-close-button {
+    float: right;
+}

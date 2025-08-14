@@ -1,3 +1,15 @@
+.nx-plugin-modal-title {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+}
+
+.nx-plugin-modal-title div {
+    display: inline-block;
+    transform: translateY(1px);
+}
+
 .nx-plugin-modal-info {
     align-items: center;
 }
