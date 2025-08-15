@@ -22,6 +22,12 @@
     background-color: var(--background-feedback-critical) !important;
 }
 
+.nx-card-special {
+    background: linear-gradient(-22.5deg, var(--nx-green-background), var(--nx-purple-background)) !important;
+    background-origin: border-box !important;
+    background-color: unset !important;
+}
+
 .nx-card-title {
     font-family: var(--font-display);
     font-size: 16px;

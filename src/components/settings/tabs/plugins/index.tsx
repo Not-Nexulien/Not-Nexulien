@@ -21,6 +21,7 @@ import "./styles.css";
 import * as DataStore from "@api/DataStore";
 import { useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
+import { Flex } from "@components/Flex";
 import { NxCard, NxCardTitle } from "@components/NxCard";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
 import { ChangeList } from "@utils/ChangeList";
@@ -51,11 +52,15 @@ function ReloadRequiredCard({ required }: { required: boolean; }) {
             </NxCard>
             {required ? (
                 <NxCard className={classes("nx-card-warning", Margins.bottom16)}>
-                    <NxCardTitle>Restart required!</NxCardTitle>
-                    <span>Restart now to apply new plugins and their settings</span>
-                    <Button onClick={() => location.reload()} className={cl("restart-button")}>
-                        Restart
-                    </Button>
+                    <Flex flexDirection="row" style={{ justifyContent: "space-between" }}>
+                        <div>
+                            <NxCardTitle>Restart required!</NxCardTitle>
+                            <span>Restart now to apply new plugins and their settings</span>
+                        </div>
+                        <Button onClick={() => location.reload()} className={cl("restart-button")}>
+                            Restart
+                        </Button>
+                    </Flex>
                 </NxCard>
             ) : (<></>)}
         </>

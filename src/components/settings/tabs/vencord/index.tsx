@@ -139,7 +139,7 @@ function VencordSettings() {
                         />
                         <QuickAction
                             Icon={FolderIcon}
-                            text="Open Settings Folder"
+                            text="Settings Folder"
                             action={() => VencordNative.settings.openFolder()}
                         />
                     </>

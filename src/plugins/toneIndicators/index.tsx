@@ -48,7 +48,7 @@ export const toneIndicators = [
     ti(["nm"], "not mad"),
     ti(["nmay"], "not mad at you"),
     ti(["lu"], "a little upset"),
-    ti(["nbh"], "vagueposting/venting directed at nobody here"),
+    ti(["nbh"], "nobody here"),
     ti(["sbtw"], "subtweeting"),
     ti(["nsb"], "not subtweeting"),
     ti(["sx", "x"], "sexual intent"), // brother ew

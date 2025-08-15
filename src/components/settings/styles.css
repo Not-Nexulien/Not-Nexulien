@@ -1,6 +1,8 @@
 :root {
     --nx-green: #0f9;
     --nx-purple: #70e;
+    --nx-green-background: #00ff9914;
+    --nx-purple-background: #7700ee14;
 }
 
 .nx-removeSwitchDivider div[class*="divider"] {
