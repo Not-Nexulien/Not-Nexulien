@@ -1,0 +1,134 @@
+div[class^="focusLock__"] div[class^="root__"] {
+    min-width: unset;
+    transform: none !important;
+}
+
+:where([class^="outer_"]).user-profile-modal-v2 {
+    min-width: 0 !important;
+}
+
+.user-profile-modal-v2 {
+    width: 600px;
+
+    > [class^="inner_"] {
+        padding: 0 !important;
+        width: 600px;
+    }
+
+    [class^="backgroundImage__"] {
+        display: none !important;
+    }
+
+    [class^="profile__"] {
+        width: 100%;
+
+        [class^="profileHeader__"] {
+            height: 0;
+            min-height: 214px;
+            position: relative;
+
+            > svg {
+                > mask > circle {
+                    cx: 55px;
+                    cy: 145px;
+                    r: 46px;
+                }
+
+                > foreignObject > div {
+                    border-radius: unset !important;
+                }
+            }
+
+            > [class^="avatar__"] {
+                top: 157px;
+                left: 23px;
+            }
+
+            > div[role="tooltip"] {
+                left: 160px;
+                top: 209px;
+            }
+        }
+
+        [class^="profileBody__"] {
+            padding-left: 15px;
+            overflow: hidden !important;
+
+            > [class^="profileButtons__"] {
+                position: absolute;
+                right: 12px;
+                top: 12px;
+                z-index: 999;
+            }
+
+            > [class^="container_"] {
+                margin-top: 70px;
+                z-index: 999;
+            }
+
+            > :not([class^="markup__"]) + section {
+                margin-top: 40px;
+                position: relative;
+                z-index: 10;
+            }
+
+            > section[class^="markup__"] {
+                margin-top: 40px;
+            }
+
+            > section:has([class^="profileNote_"]),
+            > section:has(*[class*="profileAppConnections"]),
+            > section:has([class^="root_"]) {
+                margin-top: 0 !important;
+            }
+        }
+    }
+
+    [class^="inner_"] > [class^="container__"] {
+        position: absolute;
+        top: 330px;
+        left: 15px;
+        max-width: 580px;
+        height: calc(100% - 350px);
+
+        > [class^="scroller__"] {
+            max-width: 570px;
+            z-index: 21;
+        }
+
+        [class^="empty_"] {
+            padding: 115px 0 0;
+        }
+    }
+}
+
+[class^="clickTrapContainer_"] {
+    z-index: 9999;
+}
+
+.morebutton {
+    position: absolute;
+    right: 16px;
+    top: 12px;
+    transition: opacity .6s ease;
+    z-index: var(--custom-user-profile-top-layer-z-index);
+    background: var(--redesign-button-overlay-alpha-background) !important;
+    color: var(--white);
+    border-radius: var(--radius-round);
+
+    > button {
+        background-color: unset !important;
+        border-color: transparent !important;
+    }
+
+    &:hover,
+    &:active {
+        background-color: var(--redesign-button-overlay-alpha-pressed-background) !important;
+    }
+}
+
+.scrollable {
+    overflow: hidden scroll;
+    margin-top: 20px;
+    padding-top: 10px;
+}
