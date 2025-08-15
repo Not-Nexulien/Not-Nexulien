@@ -6,13 +6,24 @@
 
 import "./style.css";
 
+import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
-import definePlugin from "@utils/types";
+import definePlugin, { OptionType } from "@utils/types";
+
+const settings = definePluginSettings({
+    moveDots: {
+        type: OptionType.BOOLEAN,
+        description: "Move the more info button to the top right corner of the profile",
+        default: true,
+        restartNeeded: true,
+    }
+});
 
 export default definePlugin({
     name: "OldProfiles",
     description: "Restores Discord's old profiles",
     authors: [Devs.Niko],
+    settings,
 
     start() {
         const observer = new MutationObserver(mutations => {
@@ -39,7 +50,9 @@ export default definePlugin({
 
         this.addAboutMeTab(tabRow, profileBody);
         this.fixPinnedElements(profileBody);
-        this.wrapScrollableContent(profileBody);
+
+
+        this.observeProfile(profileBody);
     },
 
     addAboutMeTab(tabRow: HTMLElement, profileBody: HTMLElement) {
@@ -109,22 +122,60 @@ export default definePlugin({
         });
 
         // Move "More" button outside scroll flow
-        const moreButton = buttons.querySelector<HTMLElement>("div:nth-child(3)");
-        if (moreButton) {
-            moreButton.className = "morebutton";
-            profileBody.parentElement?.appendChild(moreButton);
+        if (settings.store.moveDots) {
+            const moreButton = buttons.querySelector<HTMLElement>("div:nth-child(3)");
+            if (moreButton) {
+                moreButton.className = "morebutton";
+                profileBody.parentElement?.appendChild(moreButton);
+            }
         }
     },
 
     wrapScrollableContent(profileBody: HTMLElement) {
-        const scrollable = document.createElement("div");
-        scrollable.className = "scrollable scrollerBase_d125d2 thin_d125d2";
+        let scrollable = profileBody.querySelector<HTMLElement>(".oldProfiles-scrollable");
+        if (!scrollable) {
+            scrollable = document.createElement("div");
+            scrollable.className = "oldProfiles-scrollable scrollerBase_d125d2 thin_d125d2";
+            profileBody.appendChild(scrollable);
+        }
 
-        const sections = Array.from(profileBody.querySelectorAll<HTMLElement>("section")).slice(2, 6);
-        sections.forEach(section => scrollable.appendChild(section));
+        const allSections = Array.from(profileBody.querySelectorAll<HTMLElement>("section"));
 
-        profileBody.appendChild(scrollable);
+        let bio = allSections[0] as HTMLElement | undefined;
+        if (!bio?.className.includes("markup__")) {
+            bio = undefined;
+        }
+        let joinedDate: HTMLElement;
+
+        if (!bio) {
+            joinedDate = allSections[0];
+        } else {
+            joinedDate = allSections[1];
+        }
+
+        const roles = allSections.find(s => s.querySelector('[class^="root_"]'));
+        const linkedConnections = allSections.find(s => s.querySelector('[class*="profileAppConnections__"]'));
+        const notes = allSections.find(s => s.querySelector('[class^="profileNote__"]'));
+
+        const ordered = [bio, joinedDate, roles, linkedConnections, notes];
+
+        for (const section of ordered) {
+            if (!section) continue;
+
+            // Skip if already cloned
+            if (section.dataset.oldProfilesCloned) continue;
+
+            // Mark as cloned
+            section.dataset.oldProfilesCloned = "true";
+
+            const clone = section.cloneNode(true) as HTMLElement;
+            scrollable.appendChild(clone);
+
+            // Hide original
+            section.style.display = "none";
+        }
     },
+
 
     handleClickTrap(node: HTMLElement) {
         const clickTrap = node.matches?.('[class^="clickTrapContainer_"] > div[class*="disabledPointerEvents_"]')
@@ -149,6 +200,36 @@ export default definePlugin({
 
         const profileBody = moreButton.closest<HTMLElement>('[class^="profileBody__"]');
         profileBody?.addEventListener("scroll", positionClickTrap);
+    },
+
+    observeProfile(profileBody: HTMLElement) {
+        if ((profileBody as any)._oldProfilesObserver) return;
+
+        const wrapSections = () => {
+            this.wrapScrollableContent(profileBody);
+        };
+
+        // Debounce to avoid freezing
+        let timeout: number | undefined;
+        const observer = new MutationObserver(mutations => {
+            for (const mutation of mutations) {
+                for (const node of Array.from(mutation.addedNodes)) {
+                    if (!(node instanceof HTMLElement)) continue;
+                    if (node.tagName === "SECTION" || node.querySelector("section")) {
+                        if (timeout) clearTimeout(timeout);
+                        timeout = window.setTimeout(() => {
+                            wrapSections();
+                        }, 50); // 50ms debounce
+                    }
+                }
+            }
+        });
+
+        observer.observe(profileBody, { childList: true, subtree: true });
+        (profileBody as any)._oldProfilesObserver = observer;
+
+        // Initial wrap
+        wrapSections();
     },
 
     stop() {
