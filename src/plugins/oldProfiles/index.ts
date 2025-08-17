@@ -19,6 +19,8 @@ const settings = definePluginSettings({
     }
 });
 
+let scrollable: HTMLElement | null = null;
+
 export default definePlugin({
     name: "OldProfiles",
     description: "Restores Discord's old profiles",
@@ -80,9 +82,12 @@ export default definePlugin({
             aboutTab.className = "tabBarItem__37bfc item_b3f026 selected_b3f026";
             aboutTab.tabIndex = 0;
 
-            profileBody.querySelectorAll("section").forEach(section => {
-                section.setAttribute("style", "visibility: visible; position: relative; z-index: 10;");
-            });
+            if (scrollable) {
+                if (scrollable.style) {
+                    scrollable.style.visibility = "visible";
+                    scrollable.style.zIndex = "10";
+                }
+            }
 
             const tabPanel = profileBody.closest('[class^="inner_"]')?.querySelector<HTMLElement>('[class^="tabBarPanel__"]');
             if (tabPanel) tabPanel.style.display = "none";
@@ -92,7 +97,12 @@ export default definePlugin({
             aboutTab.ariaSelected = "false";
             aboutTab.className = "tabBarItem__37bfc item_b3f026";
 
-            profileBody.querySelectorAll("section").forEach(section => section.style.visibility = "hidden");
+            if (scrollable) {
+                if (scrollable.style) {
+                    scrollable.style.visibility = "hidden";
+                    scrollable.style.zIndex = "0";
+                }
+            }
 
             const tabPanel = profileBody.closest('[class^="inner_"]')?.querySelector<HTMLElement>('[class^="tabBarPanel__"]');
             if (tabPanel) tabPanel.style.display = "flex";
@@ -132,7 +142,7 @@ export default definePlugin({
     },
 
     wrapScrollableContent(profileBody: HTMLElement) {
-        let scrollable = profileBody.querySelector<HTMLElement>(".oldProfiles-scrollable");
+        scrollable = profileBody.querySelector<HTMLElement>(".oldProfiles-scrollable");
         if (!scrollable) {
             scrollable = document.createElement("div");
             scrollable.className = "oldProfiles-scrollable scrollerBase_d125d2 thin_d125d2";

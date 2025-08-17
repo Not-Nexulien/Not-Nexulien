@@ -9,6 +9,7 @@ div[class^="focusLock__"] div[class^="root__"] {
 
 .user-profile-modal-v2 {
     width: 600px;
+    height: 780px;
 
     > [class^="inner_"] {
         padding: 0 !important;
@@ -141,4 +142,5 @@ div[class^="focusLock__"] div[class^="root__"] {
     overflow: hidden scroll;
     margin-top: 20px;
     padding-top: 10px;
+    z-index: 10;
 }
