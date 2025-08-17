@@ -167,7 +167,7 @@ export default definePlugin({
         const linkedConnections = allSections.find(s => s.querySelector('[class*="profileAppConnections__"]'));
         const notes = allSections.find(s => s.querySelector('[class^="profileNote__"]'));
 
-        const ordered = [bio, joinedDate, roles, linkedConnections, notes];
+        const ordered = [bio, roles, joinedDate, linkedConnections, notes];
 
         for (const section of ordered) {
             if (!section) continue;
