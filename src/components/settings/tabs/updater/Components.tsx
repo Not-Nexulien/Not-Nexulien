@@ -62,12 +62,12 @@ export function Changes({ updates, repo, repoPending }: CommonProps & { updates:
 export function Newer(props: CommonProps) {
     return (
         <>
-            <NxCard className={classes("nx-card-help", Margins.bottom8)}>
+            <NxCard className={classes("nx-card-help", Margins.bottom16)}>
                 <Forms.FormText className={Margins.bottom8}>
                     Your local copy has more recent commits. Please stash or reset them.
                 </Forms.FormText>
+                <Changes {...props} updates={changes} />
             </NxCard>
-            <Changes {...props} updates={changes} />
         </>
     );
 }
@@ -167,7 +167,7 @@ export function Repository({ repo, repoPending, err }: CommonProps) {
                                 </Link>
                             )
                     }
-                    {" "}(<code><HashLink hash={gitHash} repo={repo} disabled={repoPending} /></code>)
+                    {" "}(<code className="nx-updater-repo-hash"><HashLink hash={gitHash} repo={repo} disabled={repoPending} /></code>)
                 </Forms.FormText>
             </NxCard>
         </>

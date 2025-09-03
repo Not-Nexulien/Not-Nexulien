@@ -13,3 +13,14 @@
 .nx-updater-modal-close-button {
     float: right;
 }
+
+.nx-updater-repo-hash {
+    border-radius: 4px;
+    font-size: 85%;
+    height: auto;
+    margin: -.2em 0;
+    padding: 0 .2em;
+    text-indent: 0;
+    white-space: pre-wrap;
+    background: var(--background-base-lowest);
+}
