@@ -34,7 +34,13 @@ export default definePlugin({
 
             if (settings.store.serverBlockList.includes(guildId)) return;
             const res = await fetch(`https://api.zoid.one/nexulien/servercss/${guildId}`);
-            if (!res.ok) return;
+            if (!res.ok) {
+                const styleEl = document.getElementById("server-styling");
+                if (styleEl) {
+                    styleEl.remove();
+                }
+                return;
+            }
             const css = await res.text();
             let styleEl = document.getElementById("server-styling");
             if (!styleEl) {
