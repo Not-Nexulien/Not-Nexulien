@@ -17,7 +17,7 @@
 -   More Plugins
     -   Utility (ex.: ToneIndicators)
     -   Fun (ex.: DecTalk, MoreMarkdown)
-    -   In-built core functions (ex.: Server Themes)
+    -   Customization (ex.: Server Themes)
 -   Alien Cats
 
 ---
