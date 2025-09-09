@@ -47,7 +47,7 @@ function getFilename() {
         // case "darwin":
         //     return "VencordInstaller.MacOS.zip";
         case "linux":
-            return "nexulieninstaller";
+            return "NexulienInstallerLinuxCLI";
         default:
             throw new Error("Unsupported platform: " + process.platform);
     }
