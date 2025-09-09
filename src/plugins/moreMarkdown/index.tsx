@@ -128,8 +128,10 @@ const HTMLReact = (data, _1, _2, _3) => {
             console.error(data.content);
         }
     }
-    // eslint-disable-next-line react/no-children-prop
-    return <ShadowDomComponent className="HTMLMessageContent" children={{ __html: trueContent }} />;
+    return (
+        // eslint-disable-next-line react/no-children-prop
+        <ShadowDomComponent className="HTMLMessageContentWrapper" children={{ __html: `<span class="HTMLMessageContent">${trueContent}</span>` }} />
+    );
 };
 
 function escapeRegex(str: string): string {
