@@ -5,8 +5,10 @@
 <img alt="Nexulien" src="./images/nexulien.svg"><br>
 ...the best (worst) discord client mod.
 <br>
-<br>
-<br>
+
+[![Installer](https://img.shields.io/badge/Installer_CLI-7700ee)](https://github.com/Nexulien/Installer/releases/tag/primary)
+[![Stars](https://img.shields.io/github/stars/Nexulien/Nexulien)](https://github.com/Nexulien/Nexulien/stargazers)
+
 </p>
 
 ## Features
