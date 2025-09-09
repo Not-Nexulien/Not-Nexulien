@@ -19,11 +19,8 @@
 -   More Plugins
     -   Utility (ex.: ToneIndicators)
     -   Fun (ex.: DecTalk, MoreMarkdown)
-    -   In-built core functions (ex.: Server Themes)
+    -   Customization (ex.: Server Themes)
 -   Alien Cats
-
-> [!NOTE]
-> Server themes are currently disabled, as they'll be rewritten soon.
 
 ---
 
