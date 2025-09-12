@@ -144,3 +144,11 @@ div[class^="focusLock__"] div[class^="root__"] {
     padding-top: 10px;
     z-index: 10;
 }
+
+[class^="tabListScroller__"] {
+    padding: 4px;
+}
+
+[class^="tabBarPanel__"] {
+    padding-left: unset;
+}
