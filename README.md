@@ -5,7 +5,7 @@
 <br>
 <br>
 <img alt="Nexulien" src="./images/nexulien.svg"><br>
-...the best (worst) discord client mod.
+...the best (worst) discord client mod, now with custom badges and plugins whenever i feel like it
 <br>
 
 [![Installer](https://img.shields.io/badge/Installer-7700ee)](https://git.defautluser0.xyz/Not-Nexulien/Not-Nexinstaller/releases/latest)
