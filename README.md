@@ -7,8 +7,9 @@
 <img alt="Nexulien" src="./images/nexulien.svg"><br>
 ...the best (worst) discord client mod.
 <br>
-<br>
-<br>
+
+[![Installer](https://img.shields.io/badge/Installer-7700ee)](https://git.defautluser0.xyz/Not-Nexulien/Not-Nexinstaller/releases/latest)
+
 </p>
 
 ## Features
@@ -45,19 +46,3 @@
 > Additionally, make sure not to post screenshots with Not-Nexulien in a server where you might get banned for it.
 >
 > </details>
-
-## Installing
-
-### Windows
-
-#### GUI
-
-Download and run the [Not-Nexulien GUI installer](https://github.com/not-nexulien/not-nexinstaller/releases/latest/download/not-nexinstaller.exe)
-
-#### CLI
-
-Download and run the [Not-Nexulien CLI installer](https://github.com/not-nexulien/Not-NexInstaller/releases/latest/download/Not-NexInstallerCLI.exe)
-
-### Linux
-
-Download and run the [Not-Nexulien Linux installer](https://github.com/not-nexulien/not-nexinstaller/releases/latest/download/not-nexinstallercli-linux)

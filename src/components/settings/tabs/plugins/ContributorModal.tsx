@@ -60,7 +60,7 @@ function ContributorModal({ user }: { user: User; }) {
             .sort((a, b) => Number(a.required ?? false) - Number(b.required ?? false));
     }, [user.id, user.username]);
 
-    const ContributedHyperLink = <Link href="https://github.com/Nexulien">contributed</Link>;
+    const ContributedHyperLink = <Link href="https://git.defautluser0.xyz/Not-Nexulien">contributed</Link>;
 
     return (
         <>
@@ -94,7 +94,7 @@ function ContributorModal({ user }: { user: User; }) {
                 </Forms.FormText>
             ) : (
                 <Forms.FormText>
-                    This person has not made any plugins. They likely {ContributedHyperLink} to Vencord in other ways!
+                    This person has not made any plugins. They likely {ContributedHyperLink} to Nexulien in other ways!
                 </Forms.FormText>
             )}
 
