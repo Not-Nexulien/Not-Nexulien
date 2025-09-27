@@ -129,6 +129,13 @@ export default definePlugin({
                     replace: "...$self.getBadgeMouseEventHandlers($1),$&"
                 }
             ]
+        },
+        {
+            find: "profileCardUsernameRow,children:",
+            replacement: {
+                match: /badges:(\i)(?<=displayProfile:(\i).+?)/,
+                replace: "badges:[...$self.getBadges($2),...$1]"
+            }
         }
     ],
 
@@ -321,7 +328,7 @@ export default definePlugin({
                                 </div>
                                 <div className="nx-badge-modal-description">
                                     <Forms.FormText>
-					{"Currently the only way to get one is by asking @thezoidmaster, asking @defautluser2 (for this fork only), or getting a PR accepted in the assets repo."}
+                                    {"Currently the only way to get one is by asking @zoid.one, asking @defautluser2 (for this fork only), or getting a PR accepted in the assets repo."}
                                     </Forms.FormText>
                                 </div>
                             </ModalContent>
