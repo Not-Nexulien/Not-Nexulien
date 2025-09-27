@@ -323,7 +323,7 @@ export default definePlugin({
                                 </div>
                                 <div className="nx-badge-modal-description">
                                     <Forms.FormText>
-                                        Currently the only way to get one is by asking @thezoidmaster, or getting a PR accepted in the assets repo.
+                                        Currently the only way to get one is by asking @zoid.one, or getting a PR accepted in the assets repo.
                                     </Forms.FormText>
                                 </div>
                             </ModalContent>
