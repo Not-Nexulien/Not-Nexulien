@@ -18,7 +18,7 @@
 
 export function AddonBadge({ text, color }) {
     return (
-        <div className="nx-addon-badge" style={{
+        <div className="vc-addon-badge" style={{
             backgroundColor: color,
             justifySelf: "flex-end",
             marginLeft: "auto"

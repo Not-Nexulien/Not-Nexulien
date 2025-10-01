@@ -1,4 +1,4 @@
-.nx-error-card {
+.vc-error-card {
     border: 1px solid var(--border-subtle);
     background-color: var(--background-feedback-critical);
     padding: 24px;

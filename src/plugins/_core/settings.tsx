@@ -81,37 +81,37 @@ export default definePlugin({
             {
                 section: SectionTypes.HEADER,
                 label: "Nexulien",
-                className: "nx-settings-header"
+                className: "vc-settings-header"
             },
             {
                 section: "settings/tabs",
                 label: "Settings",
                 element: VencordTab,
-                className: "nx-settings"
+                className: "vc-settings"
             },
             {
                 section: "NexulienPlugins",
                 label: "Plugins",
                 element: PluginsTab,
-                className: "nx-plugins"
+                className: "vc-plugins"
             },
             {
                 section: "NexulienThemes",
                 label: "Themes",
                 element: ThemesTab,
-                className: "nx-themes"
+                className: "vc-themes"
             },
             !IS_UPDATER_DISABLED && {
                 section: "NexulienUpdater",
                 label: "Updater",
                 element: UpdaterTab,
-                className: "nx-updater"
+                className: "vc-updater"
             },
             {
                 section: "NexulienNotifications",
                 label: "Notifications",
                 element: NotificationsTab,
-                className: "nx-settings"
+                className: "nx-notifications"
             },
             {
                 section: "VencordCloud",

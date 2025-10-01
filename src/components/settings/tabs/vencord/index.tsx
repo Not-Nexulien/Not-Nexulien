@@ -40,7 +40,7 @@ import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, Swi
 
 import { VibrancySettings } from "./MacVibrancySettings";
 
-const cl = classNameFactory("nx-settings-");
+const cl = classNameFactory("vc-settings-");
 
 const CONTRIB_IMAGE = "https://cdn.discordapp.com/emojis/1337858798664024156.png";
 const CONTRIB_BACKGROUND_IMAGE = "https://media.discordapp.net/stickers/1337878381517078649.png?size=2048";
@@ -176,7 +176,7 @@ function VencordSettings() {
 
 function nexulien() {
     const audioElement = document.createElement("audio");
-    const logo = document.getElementById("nx-settings-logo");
+    const logo = document.getElementById("vc-settings-logo");
 
     const audioArray = [
         "https://raw.githubusercontent.com/Nexulien/Assets/main/tts/bonzi.wav", // 🟣🐒
@@ -190,7 +190,7 @@ function nexulien() {
     audioElement.volume = 0.5;
     audioElement.play();
     window.setTimeout(function () {
-        logo!.style = "animation: nx-settings-logo-boioioing 0.4s cubic-bezier(0.215, 0.610, 0.355, 1);";
+        logo!.style = "animation: vc-settings-logo-boioioing 0.4s cubic-bezier(0.215, 0.610, 0.355, 1);";
     }, 200);
     window.setTimeout(function () {
         logo!.removeAttribute("style");

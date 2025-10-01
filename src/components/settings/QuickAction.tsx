@@ -16,7 +16,7 @@ import { findByPropsLazy } from "@webpack";
 import { Alerts, Button, FluxDispatcher, GuildStore, NavigationRouter } from "@webpack/common";
 import type { ComponentType, PropsWithChildren, ReactNode } from "react";
 
-const cl = classNameFactory("nx-settings-quickActions-");
+const cl = classNameFactory("vc-settings-quickActions-");
 const ButtonClasses = findByPropsLazy("button", "disabled", "enabled");
 
 export interface QuickActionProps {

@@ -40,7 +40,7 @@ import { PluginMeta } from "~plugins";
 import { OptionComponentMap } from "./components";
 import { openContributorModal } from "./ContributorModal";
 
-const cl = classNameFactory("nx-plugin-modal-");
+const cl = classNameFactory("vc-plugin-modal-");
 
 const AvatarStyles = findByPropsLazy("moreUsers", "emptyUser", "avatarContainer", "clickableAvatar");
 const UserRecord: Constructor<Partial<User>> = proxyLazy(() => UserStore.getCurrentUser().constructor) as any;
@@ -117,7 +117,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
 
         return (
             <NxCard className={Margins.top16}>
-                <div className="nx-plugins-settings">
+                <div className="vc-plugins-settings">
                     {options}
                 </div>
             </NxCard>
