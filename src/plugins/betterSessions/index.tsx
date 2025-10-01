@@ -92,7 +92,7 @@ export default definePlugin({
                 <span>{title}</span>
                 {(savedSession == null || savedSession.isNew) && (
                     <div
-                        className="nx-plugins-badge"
+                        className="vc-plugins-badge"
                         style={{
                             backgroundColor: "#ED4245",
                             marginLeft: "2px"

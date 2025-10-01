@@ -22,7 +22,7 @@ import { classNameFactory } from "@api/Styles";
 import { Card, Forms, React } from "@webpack/common";
 import type { PropsWithChildren } from "react";
 
-const cl = classNameFactory("nx-special-");
+const cl = classNameFactory("vc-special-");
 
 interface StyledCardProps {
     title: string;

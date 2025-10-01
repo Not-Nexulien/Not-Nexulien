@@ -37,7 +37,7 @@ import Plugins, { ExcludedPlugins } from "~plugins";
 
 import { PluginCard } from "./PluginCard";
 
-export const cl = classNameFactory("nx-plugins-");
+export const cl = classNameFactory("vc-plugins-");
 export const logger = new Logger("PluginSettings", "#a6d189");
 
 const InputStyles = findByPropsLazy("inputWrapper", "inputError", "error");

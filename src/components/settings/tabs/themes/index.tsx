@@ -41,18 +41,18 @@ function ThemesTab() {
             <TabBar
                 type="top"
                 look="brand"
-                className="nx-settings-tab-bar"
+                className="vc-settings-tab-bar"
                 selectedItem={currentTab}
                 onItemSelect={setCurrentTab}
             >
                 <TabBar.Item
-                    className="nx-settings-tab-bar-item"
+                    className="vc-settings-tab-bar-item"
                     id={ThemeTab.LOCAL}
                 >
                     Local Themes
                 </TabBar.Item>
                 <TabBar.Item
-                    className="nx-settings-tab-bar-item"
+                    className="vc-settings-tab-bar-item"
                     id={ThemeTab.ONLINE}
                 >
                     Online Themes

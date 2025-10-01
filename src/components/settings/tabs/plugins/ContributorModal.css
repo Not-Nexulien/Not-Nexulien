@@ -1,14 +1,14 @@
-.nx-author-modal-root {
+.vc-author-modal-root {
     padding: 1em;
 }
 
-.nx-author-modal-header {
+.vc-author-modal-header {
     display: flex;
     align-items: center;
     margin-bottom: 1em;
 }
 
-.nx-author-modal-name {
+.vc-author-modal-name {
     text-transform: none;
     flex-grow: 0;
     background: var(--background-base-lowest);
@@ -20,7 +20,7 @@
     text-wrap: nowrap;
 }
 
-.nx-author-modal-name::before {
+.vc-author-modal-name::before {
     content: "";
     display: block;
     position: absolute;
@@ -34,19 +34,19 @@
     border-bottom-left-radius: 9999px;
 }
 
-.nx-author-modal-avatar {
+.vc-author-modal-avatar {
     height: 32px;
     width: 32px;
     border-radius: 50%;
 }
 
-.nx-author-modal-links {
+.vc-author-modal-links {
     margin-left: auto;
     gap: 4px;
     display: flex;
 }
 
-.nx-author-modal-plugins {
+.vc-author-modal-plugins {
     display: grid;
     gap: 0.5em;
     margin-top: 0.75em;

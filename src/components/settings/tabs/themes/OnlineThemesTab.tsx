@@ -34,7 +34,7 @@ export function OnlineThemesTab() {
                     Local Themes tab instead.
                 </span>
             </NxCard>
-            <NxCard className="nx-settings-card">
+            <NxCard className="vc-settings-card">
                 <NxCardTitle tag="h5">Paste links to css files here</NxCardTitle>
                 <span>One link per line</span><br></br>
                 <span>You can prefix lines with @light or @dark to toggle them based on your Discord theme</span><br></br>
@@ -45,7 +45,7 @@ export function OnlineThemesTab() {
                 <TextArea
                     value={themeText}
                     onChange={setThemeText}
-                    className={"nx-settings-theme-links"}
+                    className={"vc-settings-theme-links"}
                     placeholder="Enter Theme Links..."
                     spellCheck={false}
                     onBlur={onBlur}

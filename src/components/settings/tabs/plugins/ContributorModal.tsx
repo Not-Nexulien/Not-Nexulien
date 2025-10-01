@@ -22,7 +22,7 @@ import Plugins from "~plugins";
 import { GithubButton, WebsiteButton } from "./LinkIconButton";
 import { PluginCard } from "./PluginCard";
 
-const cl = classNameFactory("nx-author-modal-");
+const cl = classNameFactory("vc-author-modal-");
 
 export function openContributorModal(user: User) {
     openModal(modalProps =>

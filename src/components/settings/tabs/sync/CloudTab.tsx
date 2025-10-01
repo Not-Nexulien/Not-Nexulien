@@ -85,7 +85,7 @@ function SettingsSyncSection() {
             >
                 Settings Sync
             </Switch>
-            <div className="nx-cloud-settings-sync-grid">
+            <div className="vc-cloud-settings-sync-grid">
                 <Button
                     size={Button.Sizes.SMALL}
                     disabled={!sectionEnabled}
@@ -185,7 +185,7 @@ function CloudTab() {
                                 body: "Once your data is erased, we cannot recover it. There's no going back!",
                                 onConfirm: eraseAllData,
                                 confirmText: "Erase it!",
-                                confirmColor: "nx-cloud-erase-data-danger-btn",
+                                confirmColor: "vc-cloud-erase-data-danger-btn",
                                 cancelText: "Nevermind"
                             })}
                         >
