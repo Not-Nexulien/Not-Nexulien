@@ -21,7 +21,7 @@ import { Settings, useSettings } from "@api/Settings";
 import { CheckedTextInput } from "@components/CheckedTextInput";
 import { Grid } from "@components/Grid";
 import { Link } from "@components/Link";
-import { NxCard, NxCardTitle } from "@components/NxCard";
+import { NxCard, NxText, NxTitle } from "@components/NxComponents";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
 import { authorizeCloud, checkCloudUrlCsp, cloudLogger, deauthorizeCloud, getCloudAuth, getCloudUrl } from "@utils/cloud";
 import { Margins } from "@utils/margins";
@@ -71,7 +71,7 @@ function SettingsSyncSection() {
 
     return (
         <NxCard className={Margins.top16}>
-            <NxCardTitle>Settings Sync</NxCardTitle>
+            <NxTitle>Settings Sync</NxTitle>
             <Forms.FormText variant="text-md/normal" className={Margins.bottom20}>
                 Synchronize your settings to the cloud. This allows easy synchronization across multiple devices with
                 minimal effort.
@@ -126,10 +126,12 @@ function CloudTab() {
     return (
         <SettingsTab title="Vencord Cloud">
             <NxCard className={Margins.bottom16}>
-                Vencord comes with a cloud integration that adds goodies like settings sync across devices.
-                It <Link href="https://vencord.dev/cloud/privacy">respects your privacy</Link>, and
-                the <Link href="https://github.com/Vencord/Backend">source code</Link> is AGPL 3.0 licensed so you
-                can host it yourself. It may or may not work with Nexulien; use with caution.
+                <NxText>
+                    Vencord comes with a cloud integration that adds goodies like settings sync across devices.
+                    It <Link href="https://vencord.dev/cloud/privacy">respects your privacy</Link>, and
+                    the <Link href="https://github.com/Vencord/Backend">source code</Link> is AGPL 3.0 licensed so you
+                    can host it yourself. It may or may not work with Nexulien; use with caution.
+                </NxText>
             </NxCard>
 
             <Switch
@@ -149,7 +151,7 @@ function CloudTab() {
 
             {settings.cloud.authenticated ? <>
                 <NxCard>
-                    <NxCardTitle>Backend URL</NxCardTitle>
+                    <NxTitle>Backend URL</NxTitle>
                     <Forms.FormText className={Margins.bottom8}>
                         Which backend to use when using cloud integrations.
                     </Forms.FormText>

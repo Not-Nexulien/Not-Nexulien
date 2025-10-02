@@ -7,7 +7,7 @@
 import { ErrorCard } from "@components/ErrorCard";
 import { Flex } from "@components/Flex";
 import { Link } from "@components/Link";
-import { NxCard, NxCardTitle } from "@components/NxCard";
+import { NxCard, NxTitle } from "@components/NxComponents";
 import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
 import { relaunch } from "@utils/native";
@@ -154,7 +154,7 @@ export function Repository({ repo, repoPending, err }: CommonProps) {
     return (
         <>
             <NxCard>
-                <NxCardTitle>Repository</NxCardTitle>
+                <NxTitle>Repository</NxTitle>
 
                 <Forms.FormText className="vc-text-selectable">
                     {repoPending
@@ -167,7 +167,7 @@ export function Repository({ repo, repoPending, err }: CommonProps) {
                                 </Link>
                             )
                     }
-                    {" "}(<code className="vc-updater-repo-hash"><HashLink hash={gitHash} repo={repo} disabled={repoPending} /></code>)
+                    {" "}(<code className="nx-code"><HashLink hash={gitHash} repo={repo} disabled={repoPending} /></code>)
                 </Forms.FormText>
             </NxCard>
         </>
