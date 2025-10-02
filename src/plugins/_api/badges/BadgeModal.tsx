@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import "./BadgeModal.css";
+import "./badgeModal.css";
 
 import { classNameFactory } from "@api/Styles";
 import { Flex } from "@components/Flex";
