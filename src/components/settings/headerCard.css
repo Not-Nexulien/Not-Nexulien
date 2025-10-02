@@ -56,7 +56,7 @@
 
 .nx-mascot {
     /* When adjusting make sure image reaches out of card top for ~16px */
-    transform: scale(2) translateX(-24px) translateY(-8px);
+    transform: scale(2) translateX(-24px) translateY(-4px);
 }
 
 .vc-settings-header > div {

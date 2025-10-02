@@ -19,7 +19,7 @@
 import "./styles.css";
 
 import { Link } from "@components/Link";
-import { NxCard, NxCardTitle } from "@components/NxCard";
+import { NxCard, NxTitle } from "@components/NxComponents";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
 import { getStylusWebStoreUrl } from "@utils/web";
 import { React, TabBar, useState } from "@webpack/common";
@@ -71,7 +71,7 @@ function UserscriptThemesTab() {
     return (
         <SettingsTab title="Themes">
             <NxCard>
-                <NxCardTitle>Themes are not supported on the Userscript!</NxCardTitle>
+                <NxTitle>Themes are not supported on the Userscript!</NxTitle>
                 <span>
                     You can instead install themes with the <Link href={getStylusWebStoreUrl()}>Stylus extension</Link>!
                 </span>

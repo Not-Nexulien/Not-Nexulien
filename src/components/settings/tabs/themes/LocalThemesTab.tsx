@@ -8,7 +8,7 @@ import { Settings, useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
 import { FolderIcon, PaintbrushIcon, PencilIcon, PlusIcon, RestartIcon } from "@components/Icons";
 import { Link } from "@components/Link";
-import { NxCard, NxCardTitle } from "@components/NxCard";
+import { NxCard, NxText, NxTitle } from "@components/NxComponents";
 import { QuickAction, QuickActionContainer } from "@components/settings/QuickAction";
 import { openPluginModal } from "@components/settings/tabs/plugins/PluginModal";
 import { UserThemeHeader } from "@main/themes";
@@ -86,7 +86,7 @@ export function LocalThemesTab() {
     return (
         <>
             <NxCard className={cl("info-card")}>
-                <NxCardTitle>Find Themes:</NxCardTitle>
+                <NxTitle>Find Themes:</NxTitle>
                 <div style={{ marginBottom: ".5em", display: "flex", flexDirection: "column" }}>
                     <ul>
                         <li>
@@ -101,13 +101,15 @@ export function LocalThemesTab() {
                         </li>
                     </ul>
                 </div>
-                <span>If using the BD site, click on "Download" and place the downloaded .theme.css file into your themes folder.</span>
+                <NxText>If using the BD site, click on "Download" and place the downloaded <code className="nx-code-new">.theme.css</code> file into your themes folder.</NxText>
             </NxCard>
 
             <NxCard className={classes("nx-card-help", Margins.bottom16)}>
-                <NxCardTitle>External Resources</NxCardTitle>
-                <span>For security reasons, loading resources (styles, fonts, images, ...) from most sites is blocked.</span>
-                <span> Make sure all your assets are hosted on GitHub, GitLab, Codeberg, Imgur, Discord or Google Fonts.</span>
+                <NxTitle>External Resources</NxTitle>
+                <NxText>
+                    For security reasons, loading resources (styles, fonts, images, ...) from most sites is blocked.
+                    Make sure all your assets are hosted on GitHub, GitLab, Codeberg, Imgur, Discord or Google Fonts.
+                </NxText>
             </NxCard>
 
             <Forms.FormSection title="Local Themes">
