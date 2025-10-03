@@ -145,7 +145,7 @@ function CloudTab() {
                     else
                         settings.cloud.authenticated = v;
                 }}
-                className={!settings.cloud.authenticated ? "nx-removeSwitchDivider" : ""}
+                hideBorder={!settings.cloud.authenticated}
             />
 
             {settings.cloud.authenticated ? <>
