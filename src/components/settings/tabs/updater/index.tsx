@@ -19,11 +19,16 @@
 import "./styles.css";
 
 import { useSettings } from "@api/Settings";
+<<<<<<< HEAD
+=======
+import { FormSwitch } from "@components/FormSwitch";
+import { Link } from "@components/Link";
+>>>>>>> root/main
 import { handleSettingsTabError, SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
 import { ModalCloseButton, ModalContent, ModalProps, ModalRoot, ModalSize, openModal } from "@utils/modal";
 import { useAwaiter } from "@utils/react";
 import { getRepo, isNewer, UpdateLogger } from "@utils/updater";
-import { Forms, React, Switch } from "@webpack/common";
+import { Forms, React } from "@webpack/common";
 
 import { CommonProps, Newer, Repository, Updatable } from "./Components";
 
@@ -45,21 +50,19 @@ function Updater() {
         <SettingsTab title="Nexulien Updater">
             <Forms.FormTitle tag="h5">Updater Settings</Forms.FormTitle>
 
-            <Switch
+            <FormSwitch
+                title="Automatically update"
+                description="Automatically update Vencord without confirmation prompt"
                 value={settings.autoUpdate}
                 onChange={(v: boolean) => settings.autoUpdate = v}
-                note="Automatically update Vencord without confirmation prompt"
-            >
-                Automatically update
-            </Switch>
-            <Switch
+            />
+            <FormSwitch
+                title="Get notified when an automatic update completes"
+                description="Show a notification when Vencord automatically updates"
                 value={settings.autoUpdateNotification}
                 onChange={(v: boolean) => settings.autoUpdateNotification = v}
-                note="Show a notification when Vencord automatically updates"
                 disabled={!settings.autoUpdate}
-            >
-                Get notified when an automatic update completes
-            </Switch>
+            />
 
             <Forms.FormTitle tag="h5">Updates</Forms.FormTitle>
 
