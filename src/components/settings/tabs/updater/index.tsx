@@ -19,11 +19,7 @@
 import "./styles.css";
 
 import { useSettings } from "@api/Settings";
-<<<<<<< HEAD
-=======
 import { FormSwitch } from "@components/FormSwitch";
-import { Link } from "@components/Link";
->>>>>>> root/main
 import { handleSettingsTabError, SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
 import { ModalCloseButton, ModalContent, ModalProps, ModalRoot, ModalSize, openModal } from "@utils/modal";
 import { useAwaiter } from "@utils/react";
