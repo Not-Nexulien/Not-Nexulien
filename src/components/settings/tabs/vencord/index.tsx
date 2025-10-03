@@ -21,6 +21,7 @@ import "@components/settings/styles.css";
 
 import { Settings, useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
+import { FormSwitch } from "@components/FormSwitch";
 import { FolderIcon, GithubIcon, PaintbrushIcon, RestartIcon } from "@components/index";
 import { NxCard, NxText } from "@components/NxComponents";
 import { NxMascot } from "@components/settings/Mascot";
@@ -36,7 +37,7 @@ import { Margins } from "@utils/margins";
 import { classes, isPluginDev } from "@utils/misc";
 import { closeAllModals } from "@utils/modal";
 import { relaunch } from "@utils/native";
-import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, Switch, UserStore } from "@webpack/common";
+import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, UserStore } from "@webpack/common";
 
 import { VibrancySettings } from "./MacVibrancySettings";
 
@@ -94,14 +95,13 @@ function Switches() {
     }>;
 
     return Switches.map(s => s && (
-        <Switch
+        <FormSwitch
             key={s.key}
+            title={s.title}
+            description={s.note}
             value={settings[s.key]}
             onChange={v => settings[s.key] = v}
-            note={s.note}
-        >
-            {s.title}
-        </Switch>
+        />
     ));
 }
 

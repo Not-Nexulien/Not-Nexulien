@@ -7,10 +7,6 @@
     --nx-vc-pink-background: #d3869b14;
 }
 
-.nx-removeSwitchDivider div[class*="divider"] {
-    display: none;
-}
-
 .nx-code {
     border-radius: 4px;
     font-size: 85%;
