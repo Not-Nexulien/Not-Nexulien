@@ -13,7 +13,6 @@ import { QuickAction, QuickActionContainer } from "@components/settings/QuickAct
 import { openPluginModal } from "@components/settings/tabs/plugins/PluginModal";
 import { UserThemeHeader } from "@main/themes";
 import { Margins } from "@utils/margins";
-import { classes } from "@utils/misc";
 import { findLazy } from "@webpack";
 import { Forms, useEffect, useRef, useState } from "@webpack/common";
 import ClientThemePlugin from "plugins/clientTheme";
@@ -104,7 +103,7 @@ export function LocalThemesTab() {
                 <NxText>If using the BD site, click on "Download" and place the downloaded <code className="nx-code-new">.theme.css</code> file into your themes folder.</NxText>
             </NxCard>
 
-            <NxCard className={classes("nx-card-help", Margins.bottom16)}>
+            <NxCard variant="help" className={Margins.bottom16}>
                 <NxTitle>External Resources</NxTitle>
                 <NxText>
                     For security reasons, loading resources (styles, fonts, images, ...) from most sites is blocked.

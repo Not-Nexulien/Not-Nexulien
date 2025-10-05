@@ -81,7 +81,7 @@ export function Updatable(props: CommonProps) {
 
     return (
         <>
-            <NxCard className={classes(isOutdated ? "nx-card-warning" : (!updates && updateError ? "nx-card-danger" : "nx-card-positive"), Margins.bottom16)}>
+            <NxCard variant={isOutdated ? "warning" : (!updates && updateError ? "danger" : "positive")} className={Margins.bottom16}>
                 {!updates && updateError ? (
                     <>
                         <Forms.FormText>Failed to check for updates. Check the console for more info</Forms.FormText>
