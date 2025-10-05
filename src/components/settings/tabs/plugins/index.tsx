@@ -53,7 +53,7 @@ function ReloadRequiredCard({ required }: { required: boolean; }) {
                 </NxText>
             </NxCard>
             {required ? (
-                <NxCard className={classes("nx-card-warning", Margins.bottom16)}>
+                <NxCard variant="warning" className={Margins.bottom16}>
                     <Flex flexDirection="row" style={{ justifyContent: "space-between" }}>
                         <div>
                             <NxTitle>Restart required!</NxTitle>

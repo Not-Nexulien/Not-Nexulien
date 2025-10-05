@@ -16,34 +16,46 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-/*
- * Before you go complaining that this component is unecessary,
- * This code was made *before* Vencord updated their UI, and it's
- * been used in so many places that deprecating it is not worth
- * the hastle - also cry about it.
-*/
-
 import "@components/NxComponents.css";
 
 import { classes } from "@utils/misc";
 import { Text } from "@webpack/common";
+import { HTMLProps, PropsWithChildren } from "react";
 
-export function NxCard({ children, className = "", ...props }) {
+
+
+interface NxCardProps extends PropsWithChildren<Omit<HTMLProps<HTMLDivElement>, "size">> {
+    variant?: "default" | "grand" | "warning" | "help" | "positive" | "danger" | "special";
+    size?: "small" | "medium";
+}
+
+export function NxCard(props: NxCardProps) {
+    props.variant ??= "default";
+    props.size ??= "medium";
     return (
-        <div className={`${"nx-card"} ${className}`} {...props}>
-            {children}
+        <div {...props} className={classes(props.className, "nx-card", props.size !== "medium" && "nx-card-small", props.variant !== "default" && `nx-card-${props.variant}`)}>
+            {props.children}
         </div>
     );
 }
 
-export function NxTitle({ children, className = "", ...props }) {
+
+
+export function NxTitle(props: PropsWithChildren<HTMLProps<HTMLElement>>) {
     return (
-        <Text variant="heading-md/bold" className={classes("nx-title", className)} {...props}>{children}</Text>
+        <Text variant="heading-md/bold" {...props} className={classes(props.className, "nx-title")}>{props.children}</Text>
     );
 }
 
-export function NxText({ children, className = "", ...props }) {
+
+
+interface NxTextProps extends PropsWithChildren<Omit<HTMLProps<HTMLElement>, "size">> {
+    size?: "small" | "medium";
+}
+
+export function NxText(props: NxTextProps) {
+    props.size ??= "medium";
     return (
-        <Text variant="text-md/normal" className={classes("nx-text", className)} {...props}>{children}</Text>
+        <Text {...props} variant={props.size === "medium" ? "text-md/normal" : "text-sm/normal"} className={classes(props.className, "nx-text", props.size === "small" && "nx-text-small")}>{props.children}</Text>
     );
 }

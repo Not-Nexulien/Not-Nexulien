@@ -7,7 +7,6 @@
 import { useSettings } from "@api/Settings";
 import { NxCard, NxText, NxTitle } from "@components/NxComponents";
 import { Margins } from "@utils/margins";
-import { classes } from "@utils/misc";
 import { Forms, TextArea, useState } from "@webpack/common";
 
 export function OnlineThemesTab() {
@@ -28,14 +27,14 @@ export function OnlineThemesTab() {
 
     return (
         <>
-            <NxCard className={`${classes("nx-card-warning", Margins.bottom16)}`}>
+            <NxCard variant="warning" className={Margins.bottom16}>
                 <NxText>
                     This section is for advanced users. If you are having difficulties using it, use the
                     Local Themes tab instead.
                 </NxText>
             </NxCard>
             <NxCard className="vc-settings-card">
-                <NxTitle tag="h5">Paste links to css files here</NxTitle>
+                <NxTitle>Paste links to css files here</NxTitle>
                 <NxText>
                     <span>&mdash;&nbsp;One link per line</span><br></br>
                     <span>&mdash;&nbsp;You can prefix lines with <code className="nx-code-new">@light</code> or <code className="nx-code-new">@dark</code> to toggle them based on your Discord theme</span><br></br>
