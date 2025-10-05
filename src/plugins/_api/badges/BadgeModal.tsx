@@ -20,11 +20,7 @@ import { NxSpark } from "./NxSpark";
 
 const cl = classNameFactory("nx-badge-modal-");
 
-<<<<<<< HEAD
-export function BadgeModal(badge: Record<"tooltip" | "title" | "name" | "badge" | "description" | "description2" | "link" | "linkdesc", string>, props: ModalProps, nxBadge: boolean, nnxBadge: boolean) {
-=======
-export function BadgeModal({ badge, props, nxBadge }: { badge: Record<"tooltip" | "badge", string>, props: ModalProps, nxBadge: boolean; }) {
->>>>>>> 3258c7ff9ca64ba4e293a76120f11fa2c6b2bb58
+export function BadgeModal({ badge, props, nxBadge, nnxBadge }: { badge: Record<"tooltip" | "title" | "name" | "badge" | "description" | "description2" | "link" | "linkdesc", string>, props: ModalProps, nxBadge: boolean, nnxBadge: boolean; }) {
     return (
         <ModalRoot {...props} className={classes(cl("root"), !nxBadge ? cl("root-vc") : "")}>
             <ModalHeader>

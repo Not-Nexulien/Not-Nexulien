@@ -153,15 +153,9 @@ function VencordSettings() {
 
                 <Forms.FormSection className={Margins.top16} title="Settings" tag="h5">
                     {showHint ?
-<<<<<<< HEAD
-                        <NxCard className={`nx-card-help ${Margins.bottom16}`}>
-                            <NxText>
-                                If you'd like to change the position of the Not-Nexulien section, change the header card size, or just hide this hint, you can do so in the
-=======
                         <NxCard variant="help" size="small" className={Margins.bottom16}>
                             <NxText size="small">
-                                If you'd like to change the position of the Nexulien section, change the header card size, or just hide this hint, you can do so in the
->>>>>>> 3258c7ff9ca64ba4e293a76120f11fa2c6b2bb58
+                                If you'd like to change the position of the Not-Nexulien section, change the header card size, or just hide this hint, you can do so in the
                                 {" "}<button
                                     style={{ all: undefined, color: "var(--text-link)", display: "inline-block", backgroundColor: "transparent", padding: 0, fontSize: 14 }}
                                     onClick={() => openPluginModal(Vencord.Plugins.plugins.Settings)}

@@ -211,15 +211,7 @@ export default definePlugin({
                         closeModal(modalKey);
                         VencordNative.native.openExternal("https://github.com/sponsors/Vendicated");
                     }}>
-<<<<<<< HEAD
-                        {
-                            //                       ↓ nxBadge?
-                            //                             ↓ !nxBadge?
-                            BadgeModal(badge, props, false, false)
-                        }
-=======
-                        <BadgeModal badge={badge} props={props} nxBadge={false}></BadgeModal>
->>>>>>> 3258c7ff9ca64ba4e293a76120f11fa2c6b2bb58
+                        <BadgeModal badge={badge} props={props} nxBadge={false} nnxBadge={false}></BadgeModal>
                     </ErrorBoundary>
                 ));
             },
@@ -246,15 +238,7 @@ export default definePlugin({
                         closeModal(modalKey);
                         VencordNative.native.openExternal("https://github.com/not-nexulien/Not-Nexulien/blob/main/src/plugins/_api/badges/index.tsx");
                     }}>
-<<<<<<< HEAD
-                        {
-                            //                       ↓ nxBadge?
-                            //                             ↓ !nxBadge?
-                            BadgeModal(badge, props, true, false)
-                        }
-=======
-                        <BadgeModal badge={badge} props={props} nxBadge={true}></BadgeModal>
->>>>>>> 3258c7ff9ca64ba4e293a76120f11fa2c6b2bb58
+                        <BadgeModal badge={badge} props={props} nxBadge={true} nnxBadge={false}></BadgeModal>
                     </ErrorBoundary>
                 ));
             },
@@ -281,9 +265,7 @@ export default definePlugin({
                         VencordNative.native.openExternal("https://github.com/not-nexulien/Not-Nexulien/blob/main/src/plugins/_api/badges/index.tsx");
                     }}>
                         {
-                            //                       ↓ nxBadge?
-                            //                             ↓ !nxBadge?
-                            BadgeModal(badge, props, true, true)
+                            <BadgeModal badge={badge} props={props} nxBadge={true} nnxBadge={true}></BadgeModal>
                         }
                     </ErrorBoundary>
                 ));
