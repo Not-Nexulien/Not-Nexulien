@@ -1,18 +1,18 @@
-.nx-donate-button {
+.vc-donate-button {
     overflow: visible !important;
 }
 
-.nx-donate-button .vc-heart-icon {
+.vc-donate-button .vc-heart-icon {
     transition: transform 0.3s;
 }
 
-.nx-donate-button:hover .vc-heart-icon {
+.vc-donate-button:hover .vc-heart-icon {
     transform: scale(1.1);
     z-index: 10;
     position: relative;
 }
 
-.nx-special-card-special {
+.vc-special-card-special {
     padding: 16px;
     margin-bottom: 16px;
     background-size: cover !important;
@@ -21,12 +21,12 @@
     background-origin: border-box !important;
 }
 
-.nx-special-card-flex {
+.vc-special-card-flex {
     display: flex;
     flex-direction: row;
 }
 
-.nx-special-card-flex-main {
+.vc-special-card-flex-main {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -35,25 +35,25 @@
     text-shadow: 2px 2px 2px #70e4;
 }
 
-.nx-special-title {
+.vc-special-title {
     color: white;
     font-size: 1.2em;
     font-weight: bold;
 }
 
-.nx-special-text {
+.vc-special-text {
     color: white;
     font-size: 1em;
     white-space: pre-line;
 }
 
-.nx-special-seperator {
+.vc-special-seperator {
     margin-top: 0.75em;
     border-top: 1px solid white;
     opacity: 0.4;
 }
 
-.nx-special-hyperlink > .nx-special-hyperlink-text {
+.vc-special-hyperlink > .vc-special-hyperlink-text {
     color: white;
     font-size: 1em;
     font-weight: bold;
@@ -62,7 +62,7 @@
     cursor: pointer;
 }
 
-.nx-special-hyperlink {
+.vc-special-hyperlink {
     margin-top: 1em;
     cursor: pointer;
 
@@ -71,7 +71,7 @@
     }
 }
 
-.nx-special-image-container {
+.vc-special-image-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,6 +80,6 @@
     height: 70px;
 }
 
-.nx-special-image {
+.vc-special-image {
     width: 80%;
 }

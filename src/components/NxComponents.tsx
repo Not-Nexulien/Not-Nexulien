@@ -23,7 +23,7 @@
  * the hastle - also cry about it.
 */
 
-import "@components/NxCard.css";
+import "@components/NxComponents.css";
 
 import { classes } from "@utils/misc";
 import { Text } from "@webpack/common";
@@ -36,8 +36,14 @@ export function NxCard({ children, className = "", ...props }) {
     );
 }
 
-export function NxCardTitle({ children, className = "", ...props }) {
+export function NxTitle({ children, className = "", ...props }) {
     return (
-        <Text variant="heading-md/bold" className={classes("nx-card-title", className)} {...props}>{children}</Text>
+        <Text variant="heading-md/bold" className={classes("nx-title", className)} {...props}>{children}</Text>
+    );
+}
+
+export function NxText({ children, className = "", ...props }) {
+    return (
+        <Text variant="text-md/normal" className={classes("nx-text", className)} {...props}>{children}</Text>
     );
 }

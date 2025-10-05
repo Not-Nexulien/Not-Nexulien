@@ -7,7 +7,7 @@
 import { ErrorCard } from "@components/ErrorCard";
 import { Flex } from "@components/Flex";
 import { Link } from "@components/Link";
-import { NxCard, NxCardTitle } from "@components/NxCard";
+import { NxCard, NxTitle } from "@components/NxComponents";
 import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
 import { relaunch } from "@utils/native";
@@ -34,7 +34,7 @@ export function HashLink({ repo, hash, disabled = false }: { repo: string, hash:
 
 export function Changes({ updates, repo, repoPending }: CommonProps & { updates: typeof changes; }) {
     return (
-        <NxCard style={{ padding: "0 0.5em" }} className="nx-updater-changes">
+        <NxCard style={{ padding: "0 0.5em" }} className="vc-updater-changes">
             {updates.map(({ hash, author, message }) => (
                 <div
                     key={hash}
@@ -154,9 +154,9 @@ export function Repository({ repo, repoPending, err }: CommonProps) {
     return (
         <>
             <NxCard>
-                <NxCardTitle>Repository</NxCardTitle>
+                <NxTitle>Repository</NxTitle>
 
-                <Forms.FormText className="nx-text-selectable">
+                <Forms.FormText className="vc-text-selectable">
                     {repoPending
                         ? repo
                         : err
@@ -167,7 +167,7 @@ export function Repository({ repo, repoPending, err }: CommonProps) {
                                 </Link>
                             )
                     }
-                    {" "}(<code className="nx-updater-repo-hash"><HashLink hash={gitHash} repo={repo} disabled={repoPending} /></code>)
+                    {" "}(<code className="nx-code"><HashLink hash={gitHash} repo={repo} disabled={repoPending} /></code>)
                 </Forms.FormText>
             </NxCard>
         </>

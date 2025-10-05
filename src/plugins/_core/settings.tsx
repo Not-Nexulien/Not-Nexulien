@@ -67,8 +67,9 @@ export default definePlugin({
         {
             find: "#{intl::USER_SETTINGS_ACTIONS_MENU_LABEL}",
             replacement: {
-                match: /(?<=function\((\i),\i\)\{)(?=let \i=Object.values\(\i.\i\).*?(\i\.\i)\.open\()/,
-                replace: "$2.open($1);return;"
+                // Skip the check Discord performs to make sure the section being selected in the user settings context menu is valid
+                match: /(?<=function\((\i),(\i),\i\)\{)(?=let \i=Object.values\(\i\.\i\).+?(\(0,\i\.openUserSettings\))\()/,
+                replace: (_, settingsPanel, section, openUserSettings) => `${openUserSettings}(${settingsPanel},{section:${section}});return;`
             }
         }
     ],
@@ -80,37 +81,37 @@ export default definePlugin({
             {
                 section: SectionTypes.HEADER,
                 label: "Not-Nexulien",
-                className: "nx-settings-header"
+                className: "vc-settings-header"
             },
             {
                 section: "settings/tabs",
                 label: "Settings",
                 element: VencordTab,
-                className: "nx-settings"
+                className: "vc-settings"
             },
             {
                 section: "NexulienPlugins",
                 label: "Plugins",
                 element: PluginsTab,
-                className: "nx-plugins"
+                className: "vc-plugins"
             },
             {
                 section: "NexulienThemes",
                 label: "Themes",
                 element: ThemesTab,
-                className: "nx-themes"
+                className: "vc-themes"
             },
             !IS_UPDATER_DISABLED && {
                 section: "NexulienUpdater",
                 label: "Updater",
                 element: UpdaterTab,
-                className: "nx-updater"
+                className: "vc-updater"
             },
             {
                 section: "NexulienNotifications",
                 label: "Notifications",
                 element: NotificationsTab,
-                className: "nx-settings"
+                className: "nx-notifications"
             },
             {
                 section: "VencordCloud",

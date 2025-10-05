@@ -22,14 +22,14 @@ export const Margins: Record<`${"top" | "bottom" | "left" | "right" | "all"}${8 
 
 for (const dir of ["top", "bottom", "left", "right"] as const) {
     for (const size of [8, 16, 20] as const) {
-        const cl = `nx-m-${dir}-${size}`;
+        const cl = `vc-m-${dir}-${size}`;
         Margins[`${dir}${size}`] = cl;
         styleStr += `.${cl}{margin-${dir}:${size}px;}`;
     }
 }
 
 for (const size of [8, 16, 20] as const) {
-    const cl = `nx-m-all-${size}`;
+    const cl = `vc-m-all-${size}`;
     Margins[`all${size}`] = cl;
     styleStr += `.${cl}{margin:${size}px;}`;
 }

@@ -19,7 +19,7 @@
 import "@components/settings/tabs/styles.css";
 
 import { Flex } from "@components/Flex";
-import { NxCard } from "@components/NxCard";
+import { NxCard, NxText } from "@components/NxComponents";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
 import { Margins } from "@utils/margins";
 import { downloadSettingsBackup, uploadSettingsBackup } from "@utils/settingsSync";
@@ -29,7 +29,7 @@ export function BackupAndRestoreTab() {
     return (
         <SettingsTab title="Backup & Restore">
             <NxCard className={`nx-card-warning ${Margins.bottom16}`}>
-                <span>Importing a settings file will overwrite your current settings.</span>
+                <NxText>Importing a settings file will overwrite your current settings.</NxText>
             </NxCard>
             <Text variant="text-md/normal" className={Margins.bottom8}>
                 You can import and export your Not-Nexulien settings as a JSON file.

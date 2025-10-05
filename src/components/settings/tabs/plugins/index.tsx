@@ -22,7 +22,7 @@ import * as DataStore from "@api/DataStore";
 import { useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
 import { Flex } from "@components/Flex";
-import { NxCard, NxCardTitle } from "@components/NxCard";
+import { NxCard, NxText, NxTitle } from "@components/NxComponents";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
 import { ChangeList } from "@utils/ChangeList";
 import { Logger } from "@utils/Logger";
@@ -37,7 +37,7 @@ import Plugins, { ExcludedPlugins } from "~plugins";
 
 import { PluginCard } from "./PluginCard";
 
-export const cl = classNameFactory("nx-plugins-");
+export const cl = classNameFactory("vc-plugins-");
 export const logger = new Logger("PluginSettings", "#a6d189");
 
 const InputStyles = findByPropsLazy("inputWrapper", "inputError", "error");
@@ -46,16 +46,18 @@ function ReloadRequiredCard({ required }: { required: boolean; }) {
     return (
         <>
             <NxCard className={cl("info-card")}>
-                <NxCardTitle>Plugin Management</NxCardTitle>
-                <span>Press the cog wheel or info icon to get more info on a plugin</span>
-                <span> &mdash; Plugins with a cog wheel have settings you can modify!</span>
+                <NxTitle>Plugin Management</NxTitle>
+                <NxText>
+                    Press the cog wheel or info icon to get more info on a plugin &mdash;
+                    Plugins with a cog wheel have settings you can modify!
+                </NxText>
             </NxCard>
             {required ? (
                 <NxCard className={classes("nx-card-warning", Margins.bottom16)}>
                     <Flex flexDirection="row" style={{ justifyContent: "space-between" }}>
                         <div>
-                            <NxCardTitle>Restart required!</NxCardTitle>
-                            <span>Restart now to apply new plugins and their settings</span>
+                            <NxTitle>Restart required!</NxTitle>
+                            <NxText>Restart now to apply new plugins and their settings</NxText>
                         </div>
                         <Button onClick={() => location.reload()} className={cl("restart-button")}>
                             Restart

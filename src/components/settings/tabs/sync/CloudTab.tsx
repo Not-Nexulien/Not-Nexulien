@@ -19,14 +19,15 @@
 import { showNotification } from "@api/Notifications";
 import { Settings, useSettings } from "@api/Settings";
 import { CheckedTextInput } from "@components/CheckedTextInput";
+import { FormSwitch } from "@components/FormSwitch";
 import { Grid } from "@components/Grid";
 import { Link } from "@components/Link";
-import { NxCard, NxCardTitle } from "@components/NxCard";
+import { NxCard, NxText, NxTitle } from "@components/NxComponents";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
 import { authorizeCloud, checkCloudUrlCsp, cloudLogger, deauthorizeCloud, getCloudAuth, getCloudUrl } from "@utils/cloud";
 import { Margins } from "@utils/margins";
 import { deleteCloudSettings, getCloudSettings, putCloudSettings } from "@utils/settingsSync";
-import { Alerts, Button, Forms, Switch, Tooltip } from "@webpack/common";
+import { Alerts, Button, Forms, Tooltip } from "@webpack/common";
 
 function validateUrl(url: string) {
     try {
@@ -71,21 +72,20 @@ function SettingsSyncSection() {
 
     return (
         <NxCard className={Margins.top16}>
-            <NxCardTitle>Settings Sync</NxCardTitle>
+            <NxTitle>Settings Sync</NxTitle>
             <Forms.FormText variant="text-md/normal" className={Margins.bottom20}>
                 Synchronize your settings to the cloud. This allows easy synchronization across multiple devices with
                 minimal effort.
             </Forms.FormText>
-            <Switch
+            <FormSwitch
                 key="cloud-sync"
-                disabled={!cloud.authenticated}
+                title="Settings Sync"
                 value={cloud.settingsSync}
                 onChange={v => { cloud.settingsSync = v; }}
                 className="nx-removeSwitchDivider"
-            >
-                Settings Sync
-            </Switch>
-            <div className="nx-cloud-settings-sync-grid">
+                disabled={!cloud.authenticated}
+            />
+            <div className="vc-cloud-settings-sync-grid">
                 <Button
                     size={Button.Sizes.SMALL}
                     disabled={!sectionEnabled}
@@ -126,14 +126,18 @@ function CloudTab() {
     return (
         <SettingsTab title="Vencord Cloud">
             <NxCard className={Margins.bottom16}>
-                Vencord comes with a cloud integration that adds goodies like settings sync across devices.
-                It <Link href="https://vencord.dev/cloud/privacy">respects your privacy</Link>, and
-                the <Link href="https://github.com/Vencord/Backend">source code</Link> is AGPL 3.0 licensed so you
-                can host it yourself. It may or may not work with Nexulien; use with caution.
+                <NxText>
+                    Vencord comes with a cloud integration that adds goodies like settings sync across devices.
+                    It <Link href="https://vencord.dev/cloud/privacy">respects your privacy</Link>, and
+                    the <Link href="https://github.com/Vencord/Backend">source code</Link> is AGPL 3.0 licensed so you
+                    can host it yourself. It may or may not work with Nexulien; use with caution.
+                </NxText>
             </NxCard>
 
-            <Switch
+            <FormSwitch
                 key="backend"
+                title="Enable Cloud Integrations"
+                description="This will request authorization if you have not yet set up cloud integrations."
                 value={settings.cloud.authenticated}
                 onChange={v => {
                     if (v)
@@ -141,15 +145,12 @@ function CloudTab() {
                     else
                         settings.cloud.authenticated = v;
                 }}
-                note="This will request authorization if you have not yet set up cloud integrations."
-                className={!settings.cloud.authenticated ? "nx-removeSwitchDivider" : ""}
-            >
-                Enable Cloud Integrations
-            </Switch>
+                hideBorder={!settings.cloud.authenticated}
+            />
 
             {settings.cloud.authenticated ? <>
                 <NxCard>
-                    <NxCardTitle>Backend URL</NxCardTitle>
+                    <NxTitle>Backend URL</NxTitle>
                     <Forms.FormText className={Margins.bottom8}>
                         Which backend to use when using cloud integrations.
                     </Forms.FormText>
@@ -185,7 +186,7 @@ function CloudTab() {
                                 body: "Once your data is erased, we cannot recover it. There's no going back!",
                                 onConfirm: eraseAllData,
                                 confirmText: "Erase it!",
-                                confirmColor: "nx-cloud-erase-data-danger-btn",
+                                confirmColor: "vc-cloud-erase-data-danger-btn",
                                 cancelText: "Nevermind"
                             })}
                         >

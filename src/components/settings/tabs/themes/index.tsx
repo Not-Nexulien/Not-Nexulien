@@ -19,7 +19,7 @@
 import "./styles.css";
 
 import { Link } from "@components/Link";
-import { NxCard, NxCardTitle } from "@components/NxCard";
+import { NxCard, NxTitle } from "@components/NxComponents";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
 import { getStylusWebStoreUrl } from "@utils/web";
 import { React, TabBar, useState } from "@webpack/common";
@@ -41,18 +41,18 @@ function ThemesTab() {
             <TabBar
                 type="top"
                 look="brand"
-                className="nx-settings-tab-bar"
+                className="vc-settings-tab-bar"
                 selectedItem={currentTab}
                 onItemSelect={setCurrentTab}
             >
                 <TabBar.Item
-                    className="nx-settings-tab-bar-item"
+                    className="vc-settings-tab-bar-item"
                     id={ThemeTab.LOCAL}
                 >
                     Local Themes
                 </TabBar.Item>
                 <TabBar.Item
-                    className="nx-settings-tab-bar-item"
+                    className="vc-settings-tab-bar-item"
                     id={ThemeTab.ONLINE}
                 >
                     Online Themes
@@ -71,7 +71,7 @@ function UserscriptThemesTab() {
     return (
         <SettingsTab title="Themes">
             <NxCard>
-                <NxCardTitle>Themes are not supported on the Userscript!</NxCardTitle>
+                <NxTitle>Themes are not supported on the Userscript!</NxTitle>
                 <span>
                     You can instead install themes with the <Link href={getStylusWebStoreUrl()}>Stylus extension</Link>!
                 </span>

@@ -23,7 +23,7 @@ import { useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
-import { NxCard } from "@components/NxCard";
+import { NxCard, NxText } from "@components/NxComponents";
 import { debounce } from "@shared/debounce";
 import { proxyLazy } from "@utils/lazy";
 import { Margins } from "@utils/margins";
@@ -40,7 +40,7 @@ import { PluginMeta } from "~plugins";
 import { OptionComponentMap } from "./components";
 import { openContributorModal } from "./ContributorModal";
 
-const cl = classNameFactory("nx-plugin-modal-");
+const cl = classNameFactory("vc-plugin-modal-");
 
 const AvatarStyles = findByPropsLazy("moreUsers", "emptyUser", "avatarContainer", "clickableAvatar");
 const UserRecord: Constructor<Partial<User>> = proxyLazy(() => UserStore.getCurrentUser().constructor) as any;
@@ -88,7 +88,9 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
 
     function renderSettings() {
         if (!hasSettings || !plugin.options)
-            return <NxCard className={classes("nx-card-help", Margins.top16)}>There are no settings for this plugin.</NxCard>;
+            return <NxCard className={classes("nx-card-help", Margins.top16)}>
+                <NxText>There are no settings for this plugin.</NxText>
+            </NxCard>;
 
         const options = Object.entries(plugin.options).map(([key, setting]) => {
             if (setting.type === OptionType.CUSTOM || setting.hidden) return null;
@@ -116,8 +118,8 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
         });
 
         return (
-            <NxCard className={Margins.top16}>
-                <div className="nx-plugins-settings">
+            <NxCard className={classes(Margins.top16, Margins.bottom8, "nx-card-grand")}>
+                <div className="vc-plugins-settings">
                     {options}
                 </div>
             </NxCard>

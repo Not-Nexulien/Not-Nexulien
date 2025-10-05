@@ -21,8 +21,9 @@ import "@components/settings/styles.css";
 
 import { Settings, useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
+import { FormSwitch } from "@components/FormSwitch";
 import { FolderIcon, GithubIcon, PaintbrushIcon, RestartIcon } from "@components/index";
-import { NxCard } from "@components/NxCard";
+import { NxCard, NxText } from "@components/NxComponents";
 import { NxMascot } from "@components/settings/Mascot";
 import { QuickAction, QuickActionContainer } from "@components/settings/QuickAction";
 import { SpecialCard } from "@components/settings/SpecialCard";
@@ -33,14 +34,14 @@ import { gitRemote } from "@shared/vencordUserAgent";
 import { IS_MAC, IS_WINDOWS } from "@utils/constants";
 import { openInviteModal } from "@utils/discord";
 import { Margins } from "@utils/margins";
-import { isPluginDev } from "@utils/misc";
+import { classes, isPluginDev } from "@utils/misc";
 import { closeAllModals } from "@utils/modal";
 import { relaunch } from "@utils/native";
-import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, Switch, UserStore } from "@webpack/common";
+import { Button, FluxDispatcher, Forms, GuildStore, NavigationRouter, React, UserStore } from "@webpack/common";
 
 import { VibrancySettings } from "./MacVibrancySettings";
 
-const cl = classNameFactory("nx-settings-");
+const cl = classNameFactory("vc-settings-");
 
 const CONTRIB_IMAGE = "https://cdn.discordapp.com/emojis/1337858798664024156.png";
 const CONTRIB_BACKGROUND_IMAGE = "https://media.discordapp.net/stickers/1337878381517078649.png?size=2048";
@@ -94,14 +95,13 @@ function Switches() {
     }>;
 
     return Switches.map(s => s && (
-        <Switch
+        <FormSwitch
             key={s.key}
+            title={s.title}
+            description={s.note}
             value={settings[s.key]}
             onChange={v => settings[s.key] = v}
-            note={s.note}
-        >
-            {s.title}
-        </Switch>
+        />
     ));
 }
 
@@ -154,13 +154,15 @@ function VencordSettings() {
                 <Forms.FormSection className={Margins.top16} title="Settings" tag="h5">
                     {showHint ?
                         <NxCard className={`nx-card-help ${Margins.bottom16}`}>
-                            If you'd like to change the position of the Not-Nexulien section, change the header card size, or just hide this hint, you can do so in the
-                            {" "}<button
-                                style={{ all: undefined, color: "var(--text-link)", display: "inline-block", backgroundColor: "transparent", padding: 0, fontSize: 16 }}
-                                onClick={() => openPluginModal(Vencord.Plugins.plugins.Settings)}
-                            >
-                                settings of the Settings plugin
-                            </button>!
+                            <NxText>
+                                If you'd like to change the position of the Not-Nexulien section, change the header card size, or just hide this hint, you can do so in the
+                                {" "}<button
+                                    style={{ all: undefined, color: "var(--text-link)", display: "inline-block", backgroundColor: "transparent", padding: 0, fontSize: 16 }}
+                                    onClick={() => openPluginModal(Vencord.Plugins.plugins.Settings)}
+                                >
+                                    settings of the Settings plugin
+                                </button>!
+                            </NxText>
                         </NxCard> : <></>}
 
                     <Switches />
@@ -176,7 +178,7 @@ function VencordSettings() {
 
 function nexulien() {
     const audioElement = document.createElement("audio");
-    const logo = document.getElementById("nx-settings-logo");
+    const logo = document.getElementById("vc-settings-logo");
 
     const audioArray = [
         "https://raw.githubusercontent.com/Nexulien/Assets/main/tts/bonzi.wav", // 🟣🐒
@@ -190,7 +192,7 @@ function nexulien() {
     audioElement.volume = 0.5;
     audioElement.play();
     window.setTimeout(function () {
-        logo!.style = "animation: nx-settings-logo-boioioing 0.4s cubic-bezier(0.215, 0.610, 0.355, 1);";
+        logo!.style = "animation: vc-settings-logo-boioioing 0.4s cubic-bezier(0.215, 0.610, 0.355, 1);";
     }, 200);
     window.setTimeout(function () {
         logo!.removeAttribute("style");
@@ -214,7 +216,7 @@ function HeaderCard() {
     return (
         <>
             {headerCardSize !== "none" ?
-                <NxCard className={cl("card", "header", headerCardSize === "minimal" ? "header-minimal" : "")}>
+                <NxCard className={classes(cl("card", "header", headerCardSize === "minimal" ? "header-minimal" : ""), "nx-card-grand")}>
                     <div>
                         <span className={cl("logo-container")} onClick={() => nexulien()}>
                             <span className={cl("not-text")}>Not-</span>
@@ -230,12 +232,12 @@ function HeaderCard() {
                             </svg>
                         </span>
 
-                        {headerCardSize === "default" ? <>
+                        {headerCardSize === "default" ? <NxText>
                             {/*                  ↓ Factual Information               */}
-                            <span>...the best (worst) discord client mod.</span>
+                            <span>...the best (worst) discord client mod.</span><br></br><br></br>
                             <span>Nexulien doesn't need donations! Please go support <a href="https://github.com/sponsors/Vendicated" target="_blank" rel="noreferrer">Vendicated</a> instead!</span>
                             <span>Go support the <a href="https://github.com/nexulien/nexulien">original project</a>, this is not affiliated</span>
-                        </> : <></>}
+                        </NxText> : <></>}
 
                         <div className={cl("buttonRow", headerCardSize === "minimal" ? "buttonRow-minimal" : "")}>
                             <Button

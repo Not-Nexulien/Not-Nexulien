@@ -1,4 +1,4 @@
-.nx-settings-modal-link-icon {
+.vc-settings-modal-link-icon {
     height: 32px;
     width: 32px;
     border-radius: 50%;
@@ -6,7 +6,7 @@
     box-sizing: border-box
 }
 
-.nx-settings-modal-links {
+.vc-settings-modal-links {
     display: flex;
     gap: 0.2em;
 }
