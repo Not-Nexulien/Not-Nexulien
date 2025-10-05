@@ -8,7 +8,7 @@ import "./QuickAction.css";
 
 import { classNameFactory } from "@api/Styles";
 import { InfoIcon } from "@components/Icons";
-import { NxCard, NxTitle } from "@components/NxComponents";
+import { NxCard, NxText, NxTitle } from "@components/NxComponents";
 import { openInviteModal } from "@utils/discord";
 import { classes } from "@utils/misc";
 import { closeAllModals } from "@utils/modal";
@@ -59,8 +59,8 @@ export function QuickActionContainer({ title, children, columns = "3" }: PropsWi
                                         <img height="64px" width="64px" src="https://cdn.discordapp.com/emojis/1348781960453161011.gif" draggable="false"></img>
                                         <p>No one's around to help.</p>
                                     </div>
-                                    <NxCard className="nx-card-help">
-                                        If you're looking for actual help, please go ask in our Discord server (not Vencord's)! We'll always be there to help you out.
+                                    <NxCard variant="help">
+                                        <NxText>If you're looking for actual help, please go ask in our Discord server (not Vencord's)! We'll always be there to help you out.</NxText>
                                     </NxCard>
                                 </>
                             ),

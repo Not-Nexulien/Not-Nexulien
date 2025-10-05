@@ -88,7 +88,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
 
     function renderSettings() {
         if (!hasSettings || !plugin.options)
-            return <NxCard className={classes("nx-card-help", Margins.top16)}>
+            return <NxCard variant="help" className={Margins.top16}>
                 <NxText>There are no settings for this plugin.</NxText>
             </NxCard>;
 
@@ -118,7 +118,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
         });
 
         return (
-            <NxCard className={classes(Margins.top16, Margins.bottom8, "nx-card-grand")}>
+            <NxCard variant="grand" className={classes(Margins.top16, Margins.bottom8)}>
                 <div className="vc-plugins-settings">
                     {options}
                 </div>

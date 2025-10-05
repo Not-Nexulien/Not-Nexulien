@@ -211,11 +211,15 @@ export default definePlugin({
                         closeModal(modalKey);
                         VencordNative.native.openExternal("https://github.com/sponsors/Vendicated");
                     }}>
+<<<<<<< HEAD
                         {
                             //                       ↓ nxBadge?
                             //                             ↓ !nxBadge?
                             BadgeModal(badge, props, false, false)
                         }
+=======
+                        <BadgeModal badge={badge} props={props} nxBadge={false}></BadgeModal>
+>>>>>>> 3258c7ff9ca64ba4e293a76120f11fa2c6b2bb58
                     </ErrorBoundary>
                 ));
             },
@@ -242,11 +246,15 @@ export default definePlugin({
                         closeModal(modalKey);
                         VencordNative.native.openExternal("https://github.com/not-nexulien/Not-Nexulien/blob/main/src/plugins/_api/badges/index.tsx");
                     }}>
+<<<<<<< HEAD
                         {
                             //                       ↓ nxBadge?
                             //                             ↓ !nxBadge?
                             BadgeModal(badge, props, true, false)
                         }
+=======
+                        <BadgeModal badge={badge} props={props} nxBadge={true}></BadgeModal>
+>>>>>>> 3258c7ff9ca64ba4e293a76120f11fa2c6b2bb58
                     </ErrorBoundary>
                 ));
             },
