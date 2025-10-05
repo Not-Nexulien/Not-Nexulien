@@ -275,7 +275,7 @@ export default definePlugin({
                         {
                             //                       ↓ nxBadge?
                             //                             ↓ !nxBadge?
-                            BadgeModal(badge, props, false, true)
+                            BadgeModal(badge, props, true, true)
                         }
                     </ErrorBoundary>
                 ));
