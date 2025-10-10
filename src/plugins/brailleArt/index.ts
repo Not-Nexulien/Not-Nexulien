@@ -62,7 +62,7 @@ function getBrailleCharacter(image: any, xOff: number, yOff: number) {
     ];
 
     // i hate javascript
-    return brailleMap.get(JSON.stringify(thing));
+    return brailleMap.get(JSON.stringify(thing))!;
 }
 
 
@@ -132,8 +132,8 @@ export default definePlugin({
                 const ditherParam = opts.find(o => o.name === "dither");
                 const invertParam = opts.find(o => o.name === "invert");
 
-                let image = imageData.greyscale()
-                let s = "```\n";
+                let image = imageData.greyscale();
+                let s = "";
 
                 if (opts.find(o => o.name === "width")) {
                     image.resize({ w: parseInt(opts.find(o => o.name === "width")!.value) });
@@ -145,14 +145,14 @@ export default definePlugin({
 
 
                 if (ditherParam && ditherParam!.value) {
-                    const bmp = floydSteinberg(image.bitmap)
-                    image = Jimp.fromBitmap(bmp)
+                    const bmp = floydSteinberg(image.bitmap);
+                    image = Jimp.fromBitmap(bmp);
                 } else {
                     image.contrast(1).threshold({ max: 128 });
                 }
 
                 if (invertParam && invertParam!.value) {
-                    image.invert()
+                    image.invert();
                 }
 
                 // write characters
@@ -160,11 +160,13 @@ export default definePlugin({
                     for (let j = 0; j < image.width / 2; j++) {
                         s += getBrailleCharacter(image, j, i);
                     }
+
+                    s = s.replaceAll(/\u2800+$/g, "");
                     s += "\n";
                 }
 
                 sendBotMessage(ctx.channel.id, {
-                    content: s + "\n```"
+                    content: `\`\`\`\n${s}\n\`\`\``
                 });
             }
         }

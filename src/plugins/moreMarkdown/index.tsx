@@ -8,6 +8,7 @@ import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { React, useEffect, useRef } from "webpack/common/react";
+import katex from 'katex';
 
 const blockReact = (data, output, className, _) => {
     return (
@@ -134,20 +135,48 @@ const HTMLReact = (data, _1, _2, _3) => {
     );
 };
 
+const LaTeXReact = (data, _1, _2, _3) => {
+    if (!settings.store.html) {
+        return blockReact(data, _1, "invalid-mm-effect", 0);
+    }
+    let trueContent = "";
+    for (const child of data.content) {
+        if (child.type === "text") {
+            trueContent += katex.renderToString(child.content, { throwOnError: false, output: "html" });
+        }
+    }
+    return (
+        // eslint-disable-next-line react/no-children-prop
+        <ShadowDomComponent className="katex" children={{ __html: `<span>${trueContent}</span>` }} />
+    );
+};
+
 function escapeRegex(str: string): string {
     return str.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
 }
 
 const createRule = (name, order, charList, type, animLength = 0) => {
     const regex = new RegExp(`^${escapeRegex(charList[0])}([\\s\\S]+?)${escapeRegex(charList[1])}`);
-    const reactFunction =
-        type === "block" ? blockReact :
-            type === "character" ? characterReact :
-                type === "html" ? HTMLReact :
-                    type === "delay" ? delayReact :
-                        () => {
-                            throw new Error(`Unsupported type: ${type}`);
-                        };
+    let reactFunction: (data, output, className, animLength) => React.ReactNode;
+    switch (type) {
+        case "block":
+            reactFunction = blockReact;
+            break;
+        case "character":
+            reactFunction = characterReact;
+            break;
+        case "html":
+            reactFunction = HTMLReact;
+            break;
+        case "delay":
+            reactFunction = delayReact;
+            break;
+        case "latex":
+            reactFunction = LaTeXReact;
+            break;
+        default:
+            throw new Error(`Unsupported type: ${type}`);
+    }
     const rule = {
         name: name,
         order: order,
@@ -313,6 +342,7 @@ const rules = [
     createRule("html", 24, ["[[[", "]]]"], "html"),
     createRule("slam", 24, [">>", "<<"], "delay", 250),
     createRule("cursive", 24, ["&&", "&&"], "block"),
+    createRule("latex", 24, ["$", "$"], "latex"),
 ];
 
 const rulesByName = {};
@@ -336,7 +366,7 @@ const settings = definePluginSettings({
     },
     html: {
         type: OptionType.BOOLEAN,
-        description: "Whether to enable HTML effects. WARNING: This can be dangerous.",
+        description: "Whether to enable HTML or LaTeX effects. WARNING: This can be dangerous.",
         default: false,
     }
 });
@@ -345,7 +375,7 @@ export default definePlugin({
     name: "MoreMarkdown",
     description: "More markdown capabilities for Nexulien",
     nexulien: true,
-    authors: [Devs.Zoid, Devs.Jaegerwald, Devs.SwitchedCube],
+    authors: [Devs.Zoid, Devs.Jaegerwald, Devs.SwitchedCube, Devs.Cobble],
     rulesByName: rulesByName,
     settings,
 
@@ -359,6 +389,13 @@ export default definePlugin({
         },
     ],
     start: () => {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css";
+        link.integrity = "sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP";
+        link.crossOrigin = "anonymous";
+        document.head.appendChild(link);
+
         styles = document.createElement("style");
         styles.id = "moreMarkdownStyles";
         document.head.appendChild(styles);
@@ -369,6 +406,25 @@ export default definePlugin({
         const script = document.createElement("script");
         script.src = "https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js";
         document.head.appendChild(script);
+
+        const families = ['KaTeX_AMS', 'KaTeX_Caligraphic', 'KaTeX_Fraktur',
+            'KaTeX_Main', 'KaTeX_Math', 'KaTeX_Script',
+            'KaTeX_SansSerif', 'KaTeX_Size1', 'KaTeX_Size2', 'KaTeX_Size3',
+            'KaTeX_Size4', 'KaTeX_Typewriter']
+        const stylez = ["Regular", "Bold", "Italic", "BoldItalic"];
+
+        families.forEach(family => {
+            stylez.forEach(style => {
+                const fontLink = document.createElement("link");
+                fontLink.rel = "preload";
+                fontLink.as = "font";
+                fontLink.type = "font/woff2";
+                fontLink.href = `https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/fonts/${family}-${style}.woff2`;
+                fontLink.crossOrigin = "anonymous";
+                document.head.appendChild(fontLink);
+            })
+        });
+
     },
 
     stop: () => styles.remove()
