@@ -116,62 +116,62 @@ function VencordSettings() {
         <>
             <SettingsTab title="Nexulien Settings">
                 <HeaderCard />
+
                 {isPluginDev(user?.id) && !hideContributorCard && (
                     <SpecialCard
-                        title="Thank you for contributing!"
+                        title="Contributions"
+                        subtitle="Thank you for contributing!"
                         description="Since you've contributed to Nexulien, you now have a cool new badge!"
                         cardImage={CONTRIB_IMAGE}
                         backgroundImage={CONTRIB_BACKGROUND_IMAGE}
                         backgroundGradient="linear-gradient(to left, var(--nx-green), var(--nx-purple))"
                     />
                 )}
-                <QuickActionContainer title="Quick Actions" columns="2">
-                    <QuickAction
-                        Icon={PaintbrushIcon}
-                        text="Edit QuickCSS"
-                        action={() => VencordNative.quickCss.openEditor()}
-                    />
-                    {!IS_WEB && (<>
-                        <QuickAction
-                            Icon={RestartIcon}
-                            text="Relaunch Discord"
-                            action={relaunch}
-                        />
-                        <QuickAction
-                            Icon={FolderIcon}
-                            text="Settings Folder"
-                            action={() => VencordNative.settings.openFolder()}
-                        />
-                    </>
-                    )}
-                    <QuickAction
-                        Icon={GithubIcon}
-                        text="View Source Code"
-                        action={() => VencordNative.native.openExternal("https://github.com/" + gitRemote)}
-                    />
-                </QuickActionContainer>
 
-                <Forms.FormSection className={Margins.top16} title="Settings" tag="h5">
+                <section>
+                    <QuickActionContainer title="Quick Actions" columns="2">
+                        <QuickAction
+                            Icon={PaintbrushIcon}
+                            text="Edit QuickCSS"
+                            action={() => VencordNative.quickCss.openEditor()}
+                        />
+                        {!IS_WEB && (<>
+                            <QuickAction
+                                Icon={RestartIcon}
+                                text="Relaunch Discord"
+                                action={relaunch}
+                            />
+                            <QuickAction
+                                Icon={FolderIcon}
+                                text="Settings Folder"
+                                action={() => VencordNative.settings.openFolder()}
+                            />
+                        </>
+                        )}
+                        <QuickAction
+                            Icon={GithubIcon}
+                            text="View Source Code"
+                            action={() => VencordNative.native.openExternal("https://github.com/" + gitRemote)}
+                        />
+                    </QuickActionContainer>
+                </section>
+
+                <section className={Margins.top16}>
+                    <Forms.FormTitle tag="h5">Settings</Forms.FormTitle>
                     {showHint ?
                         <NxCard variant="help" size="small" className={Margins.bottom16}>
                             <NxText size="small">
                                 If you'd like to change the position of the Nexulien section, change the header card size, or just hide this hint, you can do so in the
-                                {" "}<button
-                                    style={{ all: undefined, color: "var(--text-link)", display: "inline-block", backgroundColor: "transparent", padding: 0, fontSize: 14 }}
-                                    onClick={() => openPluginModal(Vencord.Plugins.plugins.Settings)}
-                                >
+                                {" "}<a onClick={() => openPluginModal(Vencord.Plugins.plugins.Settings)}>
                                     settings of the Settings plugin
-                                </button>!
+                                </a>!
                             </NxText>
                         </NxCard> : <></>}
-
                     <Switches />
-                </Forms.FormSection>
-
-
-                {needsVibrancySettings && <VibrancySettings />}
+                    {needsVibrancySettings && <VibrancySettings />}
+                </section>
+                {BackupAndRestoreTab()}
             </SettingsTab>
-            {BackupAndRestoreTab()}
         </>
     );
 }
