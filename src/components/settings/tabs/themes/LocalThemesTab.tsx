@@ -111,7 +111,9 @@ export function LocalThemesTab() {
                 </NxText>
             </NxCard>
 
-            <Forms.FormSection title="Local Themes">
+
+            <section>
+                <Forms.FormTitle tag="h5">Local Themes</Forms.FormTitle>
                 <QuickActionContainer title="Manage Local Themes">
                     <>
                         {IS_WEB ?
@@ -176,7 +178,7 @@ export function LocalThemesTab() {
                         />
                     ))}
                 </div>
-            </Forms.FormSection>
+            </section>
         </>
     );
 }
