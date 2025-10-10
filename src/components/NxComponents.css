@@ -6,6 +6,15 @@
     color: var(--text-secondary);
 }
 
+.nx-card-small {
+    padding: 12px !important;
+}
+
+.nx-card-grand {
+    background-color: var(--background-base-lower) !important;
+    box-shadow: var(--elevation-low);
+}
+
 .nx-card-warning {
     background-color: var(--background-feedback-warning) !important;
 }
@@ -28,7 +37,7 @@
     background-color: unset !important;
 }
 
-.nx-card-title {
+.nx-title {
     font-family: var(--font-display);
     font-size: 16px;
     font-weight: 700;
@@ -38,4 +47,12 @@
     justify-content: space-between;
     line-height: 2;
     margin-top: -8px;
+}
+
+.nx-text {
+    color: var(--text-secondary);
+}
+
+.nx-text-small {
+    color: var(--text-muted) !important;
 }

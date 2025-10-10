@@ -1,4 +1,4 @@
-.nx-addon-card {
+.vc-addon-card {
     background-color: var(--background-secondary-alt);
     color: var(--interactive-active);
     border-radius: 8px;
@@ -12,27 +12,27 @@
     box-sizing: border-box;
 }
 
-.visual-refresh .nx-addon-card {
+.visual-refresh .vc-addon-card {
     background-color: var(--card-primary-bg);
     border: 1px solid var(--border-subtle);
 }
 
-.nx-addon-card-disabled {
+.vc-addon-card-disabled {
     opacity: 0.6;
 }
 
-.nx-addon-card:hover {
+.vc-addon-card:hover {
     background-color: var(--background-tertiary);
     transform: translateY(-1px);
     box-shadow: var(--elevation-high);
 }
 
-.visual-refresh .nx-addon-card:hover {
+.visual-refresh .vc-addon-card:hover {
     /* same as non-hover, here to overwrite the non-refresh hover background */
     background-color: var(--card-primary-bg);
 }
 
-.nx-addon-header {
+.vc-addon-header {
     margin-top: auto;
     display: flex;
     width: 100%;
@@ -42,7 +42,7 @@
     margin-bottom: 0.5em;
 }
 
-.nx-addon-note {
+.vc-addon-note {
     height: 36px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -54,11 +54,11 @@
     box-orient: vertical;
 }
 
-.nx-addon-name-author {
+.vc-addon-name-author {
     width: 100%;
 }
 
-.nx-addon-name {
+.vc-addon-name {
     display: flex;
     width: 100%;
     align-items: center;
@@ -66,22 +66,22 @@
     gap: 8px;
 }
 
-.nx-addon-author {
+.vc-addon-author {
     font-size: 0.8em;
 }
 
-.nx-addon-author::before {
+.vc-addon-author::before {
     content: "by ";
 }
 
-.nx-addon-title-container {
+.vc-addon-title-container {
     width: 100%;
     overflow: hidden;
     height: 1.25em;
     position: relative;
 }
 
-.nx-addon-title {
+.vc-addon-title {
     position: absolute;
     inset: 0;
     overflow: hidden;
@@ -102,7 +102,7 @@
     }
 }
 
-.nx-addon-title:hover {
+.vc-addon-title:hover {
     overflow: visible;
     animation: vc-addon-title var(--duration) linear infinite;
 }

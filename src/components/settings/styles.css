@@ -1,10 +1,30 @@
 :root {
     --nx-green: #0f9;
     --nx-purple: #70e;
+    --nx-vc-pink: #d3869b;
     --nx-green-background: #00ff9914;
     --nx-purple-background: #7700ee14;
+    --nx-vc-pink-background: #d3869b14;
 }
 
-.nx-removeSwitchDivider div[class*="divider"] {
-    display: none;
+.nx-code {
+    border-radius: 4px;
+    font-size: 85%;
+    height: auto;
+    margin: -.2em 0;
+    padding: 0 .2em;
+    text-indent: 0;
+    white-space: pre-wrap;
+    background: var(--background-base-lowest);
+}
+
+.nx-code-new {
+    border-radius: 4px;
+    background: var(--background-code);
+    border: 1px solid var(--border-normal);
+    font-size: .875rem;
+    line-height: 1.125rem;
+    text-indent: 0;
+    white-space: pre-wrap;
+    font-family: var(--font-code);
 }

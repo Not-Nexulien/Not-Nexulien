@@ -1,36 +1,34 @@
+.nx-badge-modal-root {
+    background: linear-gradient(var(--nx-green-background), transparent 75%), var(--modal-background);
+    background-origin: border-box !important;
+}
+
 .nx-badge-modal-header {
     display: flex;
     flex-direction: row;
-    margin: 16px;
     gap: 16px;
     margin-bottom: 16px;
+    padding: 8px 16px;
 }
 
 .nx-badge-modal-badge {
     display: flex;
-    background: linear-gradient(135deg, #70e, #0f9);
+
+    /* background: linear-gradient(135deg, #70e, #0f9); */
     border-radius: 50%;
     height: 96px;
-    width: 96px;
-    min-width: 96px;
     align-items: center;
     justify-content: center;
-}
-
-.nx-badge-modal-badge::after {
-    position: absolute;
-    content: "";
-    width: 88px;
-    height: 88px;
-    border-radius: 50%;
-    background-color: var(--modal-background);;
-    z-index: 1;
+    margin-left: 8px;
+    align-self: center;
 }
 
 .nx-badge-modal-badge > img {
     display: block;
     height: 64px;
+    width: 64px;
     z-index: 2;
+    border-radius: 2px;
 }
 
 .nx-badge-modal-header > div {
@@ -40,14 +38,21 @@
     margin-bottom: 16px;
 }
 
-.nx-badge-modal-description {
-    padding: 16px;
-    background-color: var(--input-background);
-    border-radius: 8px;
-    border: 1px solid var(--input-border);
-    color: var(--text-normal);
+.nx-badge-modal-header > div > div[data-text-variant="text-sm/normal"] {
+    color: var(--text-secondary) !important;
 }
 
-.nx-badge-modal-badge.yucky-vencord {
-    background: none;
+.nx-badge-modal-badge-divider {
+    width: 1px;
+    height: 48px;
+    background-color: var(--border-subtle);
+    align-self: center;
+}
+
+.nx-badge-modal-root-vc {
+    background: linear-gradient(var(--nx-vc-pink-background), transparent 50%), var(--modal-background);
+}
+
+.nx-badge-modal-root-vc .nx-badge-modal-description {
+    background-color: var(--nx-vc-pink-background) !important;
 }

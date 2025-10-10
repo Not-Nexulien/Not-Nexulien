@@ -1,4 +1,4 @@
-.nx-settings-quickActions-container {
+.vc-settings-quickActions-container {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
@@ -6,7 +6,7 @@
     margin-bottom: 1em;
 }
 
-.nx-settings-quickActions-title {
+.vc-settings-quickActions-title {
     color: var(--text-primary);
     display: flex;
     flex-direction: row;
@@ -14,36 +14,36 @@
     padding-bottom: 12px;
 }
 
-.nx-settings-quickActions-containerButtons-2 {
+.vc-settings-quickActions-containerButtons-2 {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 0.5em;
 }
 
-.nx-settings-quickActions-containerButtons-3 {
+.vc-settings-quickActions-containerButtons-3 {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 0.5em;
 }
 
-.nx-settings-quickActions-button {
+.vc-settings-quickActions-button {
     display: flex;
     align-items: center;
     gap: 0.5em;
 }
 
-.nx-settings-quickActions-button:focus-visible {
+.vc-settings-quickActions-button:focus-visible {
     outline: 2px solid var(--focus-primary);
     outline-offset: 2px;
     transition-duration: 0s;
 }
 
-.nx-settings-quickActions-img {
+.vc-settings-quickActions-img {
     width: 24px !important;
     height: 24px !important;
 }
 
-.nx-settings-quickActions-info-button {
+.vc-settings-quickActions-info-button {
     height: 24px;
     width: 24px;
     padding: 0;
@@ -54,17 +54,17 @@
     margin-top: -2px !important;
 }
 
-.nx-settings-quickActions-info-button:hover {
+.vc-settings-quickActions-info-button:hover {
     color: var(--text-muted);
 }
 
-.nx-settings-quickActions-info-button:focus-visible {
+.vc-settings-quickActions-info-button:focus-visible {
     border-radius: 100%;
     outline: 2px solid var(--focus-primary);
     outline-offset: -2px;
 }
 
-.nx-settings-quickActions-help {
+.vc-settings-quickActions-help {
     display: flex;
     flex-direction: column;
     align-items: center;

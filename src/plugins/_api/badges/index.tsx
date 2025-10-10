@@ -17,25 +17,19 @@
 */
 
 import "./fixDiscordBadgePadding.css";
-import "./badgeModal.css";
 
 import { _getBadges, BadgePosition, BadgeUserArgs, ProfileBadge } from "@api/Badges";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { Flex } from "@components/Flex";
-import { Heart } from "@components/Heart";
-import { Link } from "@components/Link";
-import DonateButton from "@components/settings/DonateButton";
 import { openContributorModal } from "@components/settings/tabs";
 import { Devs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
-import { Margins } from "@utils/margins";
 import { copyWithToast, shouldShowContributorBadge } from "@utils/misc";
-import { closeModal, ModalContent, ModalFooter, ModalHeader, ModalRoot, openModal } from "@utils/modal";
+import { closeModal, openModal } from "@utils/modal";
 import definePlugin from "@utils/types";
 import { User } from "@vencord/discord-types";
-import { ContextMenuApi, Forms, Menu, Toasts, UserStore } from "@webpack/common";
+import { ContextMenuApi, Menu, Toasts, UserStore } from "@webpack/common";
 
-import { NxSpark } from "./NxSpark";
+import { BadgeModal } from "./BadgeModal";
 
 
 const CONTRIBUTOR_BADGE = "https://raw.githubusercontent.com/Nexulien/assets/main/badges/contributor.png";
@@ -124,6 +118,13 @@ export default definePlugin({
                     replace: "...$self.getBadgeMouseEventHandlers($1),$&"
                 }
             ]
+        },
+        {
+            find: "profileCardUsernameRow,children:",
+            replacement: {
+                match: /badges:(\i)(?<=displayProfile:(\i).+?)/,
+                replace: "badges:[...$self.getBadges($2),...$1]"
+            }
         }
     ],
 
@@ -189,75 +190,27 @@ export default definePlugin({
     },
 
     getDonorBadges(userId: string) {
-        if (userId !== "343383572805058560") {
-            return DonorBadges[userId]?.map(badge => ({
-                image: badge.badge,
-                description: badge.tooltip,
-                position: BadgePosition.START,
-                props: {
-                    style: {
-                        borderRadius: "50%",
-                        transform: "scale(0.9)" // The image is a bit too big compared to default badges
-                    }
-                },
-                onClick() {
-                    const modalKey = openModal(props => (
-                        <ErrorBoundary noop onError={() => {
-                            closeModal(modalKey);
-                            VencordNative.native.openExternal("https://github.com/sponsors/Vendicated");
-                        }}>
-                            <ModalRoot {...props}>
-                                <ModalHeader>
-                                    <Flex style={{ width: "100%", justifyContent: "center" }}>
-                                        <Forms.FormTitle
-                                            tag="h2"
-                                            style={{
-                                                width: "100%",
-                                                textAlign: "center",
-                                                margin: 0
-                                            }}
-                                        >
-                                            <Heart />
-                                            Vencord Donor
-                                        </Forms.FormTitle>
-                                    </Flex>
-                                </ModalHeader>
-                                <ModalContent className={Margins.bottom16}>
-                                    <div className="nx-badge-modal-header">
-                                        <span className="nx-badge-modal-badge yucky-vencord">
-                                            <img src={badge.badge} draggable="false"></img>
-                                        </span>
-                                        <div>
-                                            <Forms.FormTitle
-                                                tag="h1"
-                                                style={{
-                                                    margin: 0
-                                                }}
-                                            >
-                                                {badge.tooltip}
-                                            </Forms.FormTitle>
-                                            <Forms.FormText>
-                                                This Badge was given to this user as a special perk for Vencord Donors.
-                                            </Forms.FormText>
-                                        </div>
-                                    </div>
-                                    <div className="nx-badge-modal-description">
-                                        <Forms.FormText>
-                                            Please consider supporting the development of Vencord by becoming a donor. It would mean a lot to them!
-                                        </Forms.FormText>
-                                    </div>
-                                </ModalContent>
-                                <ModalFooter>
-                                    <Flex style={{ width: "100%", justifyContent: "center" }}>
-                                        <DonateButton />
-                                    </Flex>
-                                </ModalFooter>
-                            </ModalRoot>
-                        </ErrorBoundary>
-                    ));
-                },
-            }));
-        }
+        return DonorBadges[userId]?.map(badge => ({
+            image: badge.badge,
+            description: badge.tooltip,
+            position: BadgePosition.START,
+            props: {
+                style: {
+                    borderRadius: "50%",
+                    transform: "scale(0.9)" // The image is a bit too big compared to default badges
+                }
+            },
+            onClick() {
+                const modalKey = openModal(props => (
+                    <ErrorBoundary noop onError={() => {
+                        closeModal(modalKey);
+                        VencordNative.native.openExternal("https://github.com/sponsors/Vendicated");
+                    }}>
+                        <BadgeModal badge={badge} props={props} nxBadge={false}></BadgeModal>
+                    </ErrorBoundary>
+                ));
+            },
+        }));
     },
 
     getNexulienBadges(userId: string) {
@@ -280,54 +233,7 @@ export default definePlugin({
                         closeModal(modalKey);
                         VencordNative.native.openExternal("https://github.com/Nexulien/assets/blob/main/badges.json");
                     }}>
-                        <ModalRoot {...props}>
-                            <ModalHeader>
-                                <Flex style={{ width: "100%", justifyContent: "center" }}>
-                                    <Forms.FormTitle
-                                        tag="h2"
-                                        style={{
-                                            width: "100%",
-                                            textAlign: "center",
-                                            margin: 0
-                                        }}
-                                    >
-                                        Special Badge
-                                    </Forms.FormTitle>
-                                </Flex>
-                            </ModalHeader>
-                            <ModalContent className={Margins.bottom16}>
-                                <div className="nx-badge-modal-header">
-                                    <span className="nx-badge-modal-badge">
-                                        <img src={badge.badge} draggable="false"></img>
-                                    </span>
-                                    <div>
-                                        <Forms.FormTitle
-                                            tag="h1"
-                                            style={{
-                                                margin: 0
-                                            }}
-                                        >
-                                            {badge.tooltip} <NxSpark />
-                                        </Forms.FormTitle>
-                                        <Forms.FormText>
-                                            This Badge was granted to this user by the owner of Nexulien.
-                                        </Forms.FormText>
-                                    </div>
-                                </div>
-                                <div className="nx-badge-modal-description">
-                                    <Forms.FormText>
-                                        Currently the only way to get one is by asking @thezoidmaster, or getting a PR accepted in the assets repo.
-                                    </Forms.FormText>
-                                </div>
-                            </ModalContent>
-                            <ModalFooter>
-                                <Flex style={{ width: "100%", justifyContent: "center" }}>
-                                    <Forms.FormText>
-                                        <Link href="https://github.com/Nexulien/assets">Visit the assets repo</Link>
-                                    </Forms.FormText>
-                                </Flex>
-                            </ModalFooter>
-                        </ModalRoot>
+                        <BadgeModal badge={badge} props={props} nxBadge={true}></BadgeModal>
                     </ErrorBoundary>
                 ));
             },

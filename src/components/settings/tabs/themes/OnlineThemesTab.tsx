@@ -5,9 +5,8 @@
  */
 
 import { useSettings } from "@api/Settings";
-import { NxCard, NxCardTitle } from "@components/NxCard";
+import { NxCard, NxText, NxTitle } from "@components/NxComponents";
 import { Margins } from "@utils/margins";
-import { classes } from "@utils/misc";
 import { Forms, TextArea, useState } from "@webpack/common";
 
 export function OnlineThemesTab() {
@@ -28,30 +27,33 @@ export function OnlineThemesTab() {
 
     return (
         <>
-            <NxCard className={`${classes("nx-card-warning", Margins.bottom16)}`}>
-                <span>
+            <NxCard variant="warning" className={Margins.bottom16}>
+                <NxText>
                     This section is for advanced users. If you are having difficulties using it, use the
                     Local Themes tab instead.
-                </span>
+                </NxText>
             </NxCard>
-            <NxCard className="nx-settings-card">
-                <NxCardTitle tag="h5">Paste links to css files here</NxCardTitle>
-                <span>One link per line</span><br></br>
-                <span>You can prefix lines with @light or @dark to toggle them based on your Discord theme</span><br></br>
-                <span>Make sure to use direct links to files (raw or github.io)!</span>
+            <NxCard className="vc-settings-card">
+                <NxTitle>Paste links to css files here</NxTitle>
+                <NxText>
+                    <span>&mdash;&nbsp;One link per line</span><br></br>
+                    <span>&mdash;&nbsp;You can prefix lines with <code className="nx-code-new">@light</code> or <code className="nx-code-new">@dark</code> to toggle them based on your Discord theme</span><br></br>
+                    <span>&mdash;&nbsp;Make sure to use direct links to files (raw or github.io)!</span>
+                </NxText>
             </NxCard>
 
-            <Forms.FormSection title="Online Themes" tag="h5">
+            <section>
+                <Forms.FormTitle tag="h5">Online Themes</Forms.FormTitle>
                 <TextArea
                     value={themeText}
                     onChange={setThemeText}
-                    className={"nx-settings-theme-links"}
+                    className={"vc-settings-theme-links"}
                     placeholder="Enter Theme Links..."
                     spellCheck={false}
                     onBlur={onBlur}
                     rows={10}
                 />
-            </Forms.FormSection>
+            </section>
         </>
     );
 }

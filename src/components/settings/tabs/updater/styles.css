@@ -1,4 +1,4 @@
-.nx-updater-changes {
+.vc-updater-changes {
     background: var(--background-code);
     border: 1px solid var(--border-normal);
     margin-top: 16px !important;
@@ -6,21 +6,10 @@
     border-radius: 4px;
 }
 
-.nx-updater-modal {
+.vc-updater-modal {
     padding: 1.5em !important;
 }
 
-.nx-updater-modal-close-button {
+.vc-updater-modal-close-button {
     float: right;
-}
-
-.nx-updater-repo-hash {
-    border-radius: 4px;
-    font-size: 85%;
-    height: auto;
-    margin: -.2em 0;
-    padding: 0 .2em;
-    text-indent: 0;
-    white-space: pre-wrap;
-    background: var(--background-base-lowest);
 }

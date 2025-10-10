@@ -67,18 +67,18 @@ function NotificationsTab() {
         <TabBar
             type="top"
             look="brand"
-            className={classes("nx-settings-tab-bar", Margins.top16)}
+            className={classes("nx-notifications-tab-bar", Margins.top16)}
             selectedItem={currentTab}
             onItemSelect={setCurrentTab}
         >
             <TabBar.Item
-                className="nx-settings-tab-bar-item"
+                className="nx-notifications-tab-bar-item"
                 id={NotificationTab.LOG}
             >
                 Notification Log
             </TabBar.Item>
             <TabBar.Item
-                className="nx-settings-tab-bar-item"
+                className="nx-notifications-tab-bar-item"
                 id={NotificationTab.SETTINGS}
             >
                 Settings

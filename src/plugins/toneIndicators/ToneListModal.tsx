@@ -6,7 +6,7 @@
 
 import "./style.css";
 
-import { NxCard } from "@components/NxCard";
+import { NxCard } from "@components/NxComponents";
 import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
 import { ModalCloseButton, ModalContent, ModalHeader, ModalProps, ModalRoot, ModalSize } from "@utils/modal";

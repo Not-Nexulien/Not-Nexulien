@@ -8,12 +8,11 @@ import { Settings, useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
 import { FolderIcon, PaintbrushIcon, PencilIcon, PlusIcon, RestartIcon } from "@components/Icons";
 import { Link } from "@components/Link";
-import { NxCard, NxCardTitle } from "@components/NxCard";
+import { NxCard, NxText, NxTitle } from "@components/NxComponents";
 import { QuickAction, QuickActionContainer } from "@components/settings/QuickAction";
 import { openPluginModal } from "@components/settings/tabs/plugins/PluginModal";
 import { UserThemeHeader } from "@main/themes";
 import { Margins } from "@utils/margins";
-import { classes } from "@utils/misc";
 import { findLazy } from "@webpack";
 import { Forms, useEffect, useRef, useState } from "@webpack/common";
 import ClientThemePlugin from "plugins/clientTheme";
@@ -21,7 +20,7 @@ import type { ComponentType, Ref, SyntheticEvent } from "react";
 
 import { ThemeCard } from "./ThemeCard";
 
-const cl = classNameFactory("nx-settings-theme-");
+const cl = classNameFactory("vc-settings-theme-");
 
 type FileInput = ComponentType<{
     ref: Ref<HTMLInputElement>;
@@ -86,7 +85,7 @@ export function LocalThemesTab() {
     return (
         <>
             <NxCard className={cl("info-card")}>
-                <NxCardTitle>Find Themes:</NxCardTitle>
+                <NxTitle>Find Themes:</NxTitle>
                 <div style={{ marginBottom: ".5em", display: "flex", flexDirection: "column" }}>
                     <ul>
                         <li>
@@ -101,16 +100,20 @@ export function LocalThemesTab() {
                         </li>
                     </ul>
                 </div>
-                <span>If using the BD site, click on "Download" and place the downloaded .theme.css file into your themes folder.</span>
+                <NxText>If using the BD site, click on "Download" and place the downloaded <code className="nx-code-new">.theme.css</code> file into your themes folder.</NxText>
             </NxCard>
 
-            <NxCard className={classes("nx-card-help", Margins.bottom16)}>
-                <NxCardTitle>External Resources</NxCardTitle>
-                <span>For security reasons, loading resources (styles, fonts, images, ...) from most sites is blocked.</span>
-                <span> Make sure all your assets are hosted on GitHub, GitLab, Codeberg, Imgur, Discord or Google Fonts.</span>
+            <NxCard variant="help" className={Margins.bottom16}>
+                <NxTitle>External Resources</NxTitle>
+                <NxText>
+                    For security reasons, loading resources (styles, fonts, images, ...) from most sites is blocked.
+                    Make sure all your assets are hosted on GitHub, GitLab, Codeberg, Imgur, Discord or Google Fonts.
+                </NxText>
             </NxCard>
 
-            <Forms.FormSection title="Local Themes">
+
+            <section>
+                <Forms.FormTitle tag="h5">Local Themes</Forms.FormTitle>
                 <QuickActionContainer title="Manage Local Themes">
                     <>
                         {IS_WEB ?
@@ -175,7 +178,7 @@ export function LocalThemesTab() {
                         />
                     ))}
                 </div>
-            </Forms.FormSection>
+            </section>
         </>
     );
 }

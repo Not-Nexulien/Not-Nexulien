@@ -31,7 +31,7 @@ type IconProps = JSX.IntrinsicElements["svg"];
 function Icon({ height = 24, width = 24, className, children, viewBox, ...svgProps }: PropsWithChildren<BaseIconProps>) {
     return (
         <svg
-            className={classes(className, "nx-icon")}
+            className={classes(className, "vc-icon")}
             role="img"
             width={width}
             height={height}
@@ -51,7 +51,7 @@ export function LinkIcon({ height = 24, width = 24, className }: IconProps) {
         <Icon
             height={height}
             width={width}
-            className={classes(className, "nx-link-icon")}
+            className={classes(className, "vc-link-icon")}
             viewBox="0 0 24 24"
         >
             <g fill="none" fillRule="evenodd">
@@ -69,7 +69,7 @@ export function CopyIcon(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-copy-icon")}
+            className={classes(props.className, "vc-copy-icon")}
             viewBox="0 0 24 24"
         >
             <g fill="currentColor">
@@ -88,7 +88,7 @@ export function OpenExternalIcon(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-open-external-icon")}
+            className={classes(props.className, "vc-open-external-icon")}
             viewBox="0 0 24 24"
         >
             <polygon
@@ -104,7 +104,7 @@ export function ImageIcon(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-image-icon")}
+            className={classes(props.className, "vc-image-icon")}
             viewBox="0 0 24 24"
         >
             <path fill="currentColor" d="M21,19V5c0,-1.1 -0.9,-2 -2,-2H5c-1.1,0 -2,0.9 -2,2v14c0,1.1 0.9,2 2,2h14c1.1,0 2,-0.9 2,-2zM8.5,13.5l2.5,3.01L14.5,12l4.5,6H5l3.5,-4.5z" />
@@ -116,7 +116,7 @@ export function InfoIcon(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-info-icon")}
+            className={classes(props.className, "vc-info-icon")}
             viewBox="0 0 24 24"
         >
             <path
@@ -133,7 +133,7 @@ export function OwnerCrownIcon(props: IconProps) {
         <Icon
             aria-label={getIntlMessage("GUILD_OWNER")}
             {...props}
-            className={classes(props.className, "nx-owner-crown-icon")}
+            className={classes(props.className, "vc-owner-crown-icon")}
             role="img"
             viewBox="0 0 16 16"
         >
@@ -154,7 +154,7 @@ export function ScreenshareIcon(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-screenshare-icon")}
+            className={classes(props.className, "vc-screenshare-icon")}
             viewBox="0 0 24 24"
         >
             <path
@@ -169,7 +169,7 @@ export function ImageVisible(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-image-visible")}
+            className={classes(props.className, "vc-image-visible")}
             viewBox="0 0 24 24"
         >
             <path fill="currentColor" d="M5 21q-.825 0-1.413-.587Q3 19.825 3 19V5q0-.825.587-1.413Q4.175 3 5 3h14q.825 0 1.413.587Q21 4.175 21 5v14q0 .825-.587 1.413Q19.825 21 19 21Zm0-2h14V5H5v14Zm1-2h12l-3.75-5-3 4L9 13Zm-1 2V5v14Z" />
@@ -181,7 +181,7 @@ export function ImageInvisible(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-image-invisible")}
+            className={classes(props.className, "vc-image-invisible")}
             viewBox="0 0 24 24"
         >
             <path fill="currentColor" d="m21 18.15-2-2V5H7.85l-2-2H19q.825 0 1.413.587Q21 4.175 21 5Zm-1.2 4.45L18.2 21H5q-.825 0-1.413-.587Q3 19.825 3 19V5.8L1.4 4.2l1.4-1.4 18.4 18.4ZM6 17l3-4 2.25 3 .825-1.1L5 7.825V19h11.175l-2-2Zm7.425-6.425ZM10.6 13.4Z" />
@@ -193,7 +193,7 @@ export function Microphone(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-microphone")}
+            className={classes(props.className, "vc-microphone")}
             viewBox="0 0 24 24"
         >
             <path fillRule="evenodd" clipRule="evenodd" d="M14.99 11C14.99 12.66 13.66 14 12 14C10.34 14 9 12.66 9 11V5C9 3.34 10.34 2 12 2C13.66 2 15 3.34 15 5L14.99 11ZM12 16.1C14.76 16.1 17.3 14 17.3 11H19C19 14.42 16.28 17.24 13 17.72V21H11V17.72C7.72 17.23 5 14.41 5 11H6.7C6.7 14 9.24 16.1 12 16.1ZM12 4C11.2 4 11 4.66667 11 5V11C11 11.3333 11.2 12 12 12C12.8 12 13 11.3333 13 11V5C13 4.66667 12.8 4 12 4Z" fill="currentColor" />
@@ -206,7 +206,7 @@ export function CogWheel(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-cog-wheel")}
+            className={classes(props.className, "vc-cog-wheel")}
             viewBox="0 0 24 24"
         >
             <path
@@ -223,7 +223,7 @@ export function ReplyIcon(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-reply-icon")}
+            className={classes(props.className, "vc-reply-icon")}
             viewBox="0 0 24 24"
         >
             <path
@@ -238,7 +238,7 @@ export function DeleteIcon(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-delete-icon")}
+            className={classes(props.className, "vc-delete-icon")}
             viewBox="0 0 24 24"
         >
             <path
@@ -257,7 +257,7 @@ export function PlusIcon(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-plus-icon")}
+            className={classes(props.className, "vc-plus-icon")}
             viewBox="0 0 18 18"
         >
             <polygon
@@ -273,7 +273,7 @@ export function NoEntrySignIcon(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-no-entry-sign-icon")}
+            className={classes(props.className, "vc-no-entry-sign-icon")}
             viewBox="0 0 24 24"
         >
             <path
@@ -292,7 +292,7 @@ export function SafetyIcon(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-safety-icon")}
+            className={classes(props.className, "vc-safety-icon")}
             viewBox="0 0 24 24"
         >
             <path
@@ -310,7 +310,7 @@ export function NotesIcon(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-notes-icon")}
+            className={classes(props.className, "vc-notes-icon")}
             viewBox="0 0 24 24"
         >
             <path
@@ -331,7 +331,7 @@ export function FolderIcon(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-folder-icon")}
+            className={classes(props.className, "vc-folder-icon")}
             viewBox="0 0 24 24"
         >
             <path
@@ -346,7 +346,7 @@ export function LogIcon(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-log-icon")}
+            className={classes(props.className, "vc-log-icon")}
             viewBox="0 0 24 24"
         >
             <path
@@ -363,7 +363,7 @@ export function RestartIcon(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-restart-icon")}
+            className={classes(props.className, "vc-restart-icon")}
             viewBox="0 0 24 24"
         >
             <path
@@ -378,7 +378,7 @@ export function PaintbrushIcon(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-paintbrush-icon")}
+            className={classes(props.className, "vc-paintbrush-icon")}
             viewBox="0 0 24 24"
         >
             <path
@@ -395,7 +395,7 @@ export function PencilIcon(props: IconProps) {
     return (
         <Icon
             {...props}
-            className={classes(props.className, "nx-pencil-icon")}
+            className={classes(props.className, "vc-pencil-icon")}
             viewBox="0 0 24 24"
         >
             <path
