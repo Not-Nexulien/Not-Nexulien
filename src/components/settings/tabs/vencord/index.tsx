@@ -119,14 +119,9 @@ function VencordSettings() {
 
                 {isPluginDev(user?.id) && !hideContributorCard && (
                     <SpecialCard
-<<<<<<< HEAD
-                        title="Thank you for contributing!"
-                        description="Since you've contributed to Not-Nexulien, you now have a cool new badge!"
-=======
                         title="Contributions"
                         subtitle="Thank you for contributing!"
-                        description="Since you've contributed to Nexulien, you now have a cool new badge!"
->>>>>>> a02adc78048ee077d4082a8e14ea7ef1780b10e6
+                        description="Since you've contributed to Not-Nexulien, you now have a cool new badge!"
                         cardImage={CONTRIB_IMAGE}
                         backgroundImage={CONTRIB_BACKGROUND_IMAGE}
                         backgroundGradient="linear-gradient(to left, var(--nx-green), var(--nx-purple))"
