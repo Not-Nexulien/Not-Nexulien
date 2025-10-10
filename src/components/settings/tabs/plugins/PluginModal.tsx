@@ -106,14 +106,15 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
 
             const Component = OptionComponentMap[setting.type];
             return (
-                <Component
-                    id={key}
-                    key={key}
-                    option={setting}
-                    onChange={debounce(onChange)}
-                    pluginSettings={pluginSettings}
-                    definedSettings={plugin.settings}
-                />
+                <ErrorBoundary noop key={key}>
+                    <Component
+                        id={key}
+                        option={setting}
+                        onChange={debounce(onChange)}
+                        pluginSettings={pluginSettings}
+                        definedSettings={plugin.settings}
+                    />
+                </ErrorBoundary>
             );
         });
 
@@ -179,25 +180,25 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
             </ModalHeader>
 
             <ModalContent className={Margins.bottom16}>
-                <Forms.FormSection>
+                <section>
                     <Flex className={cl("info")}>
                         <Forms.FormText className={cl("description")}>{plugin.description}</Forms.FormText>
                     </Flex>
-                </Forms.FormSection>
+                </section>
 
                 {!!plugin.settingsAboutComponent && (
                     <div className={Margins.top16}>
-                        <Forms.FormSection>
+                        <section>
                             <ErrorBoundary message="An error occurred while rendering this plugin's custom Info Component">
                                 <plugin.settingsAboutComponent />
                             </ErrorBoundary>
-                        </Forms.FormSection>
+                        </section>
                     </div>
                 )}
 
-                <Forms.FormSection>
+                <section>
                     {renderSettings()}
-                </Forms.FormSection>
+                </section>
             </ModalContent>
         </ModalRoot>
     );
