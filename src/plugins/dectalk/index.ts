@@ -92,8 +92,15 @@ export default definePlugin({
 
             const audios: HTMLAudioElement[] = [];
 
+            for (const match of message.content.matchAll(dectalkRegex)) {
+                const text = match[1];
+                const audio = await getAudio(text);
+                if (audio) audios.push(audio);
+            }
+
             if (settings.store.playAllMessages) {
                 const text = message.content
+                    .replace(dectalkRegex, "")
                     .replace(/```[\s\S]*?```/g, "code block")
                     .replace(/`[^`]*`/g, "inline code")
                     .replace(/https?:\/\/\S+/g, "link")
@@ -109,12 +116,6 @@ export default definePlugin({
 
                 const audio = await getAudio(text);
                 if (audio) audios.push(audio);
-            } else {
-                for (const match of message.content.matchAll(dectalkRegex)) {
-                    const text = match[1];
-                    const audio = await getAudio(text);
-                    if (audio) audios.push(audio);
-                }
             }
 
             if (audios.length > 0) {
