@@ -6,7 +6,7 @@
 
 import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
-import definePlugin, { makeRange,OptionType } from "@utils/types";
+import definePlugin, { makeRange, OptionType } from "@utils/types";
 import { Message } from "@vencord/discord-types";
 import { SelectedChannelStore, UserStore } from "@webpack/common";
 
@@ -65,12 +65,11 @@ async function getAudio(text) {
         audio.onended = () => {
             URL.revokeObjectURL(url);
             audio.remove();
-            console.log("audio finished and deleted");
         };
 
         return audio;
     } catch (err) {
-        console.error("error:", err);
+        console.error("error in dectalk while fetching audio:", err);
     }
 }
 
@@ -93,21 +92,30 @@ export default definePlugin({
 
             const audios: HTMLAudioElement[] = [];
 
-            if (settings.store.playAllMessages) {
-                const text = message.content
-                    .replace(/```[\s\S]*?```/g, "")
-                    .replace(/https?:\/\/\S+/g, "")
-                    .replace(/<@!?&?\d+>/g, "")
-                    .replace(/<#[0-9]+>/g, "")
-                    .replace(/:[^:\s]*(?:::[^:\s]*)*:/g, "");
+            for (const match of message.content.matchAll(dectalkRegex)) {
+                const text = match[1];
                 const audio = await getAudio(text);
                 if (audio) audios.push(audio);
-            } else {
-                for (const match of message.content.matchAll(dectalkRegex)) {
-                    const text = match[1];
-                    const audio = await getAudio(text);
-                    if (audio) audios.push(audio);
-                }
+            }
+
+            if (settings.store.playAllMessages) {
+                const text = message.content
+                    .replace(dectalkRegex, "")
+                    .replace(/```[\s\S]*?```/g, "code block")
+                    .replace(/`[^`]*`/g, "inline code")
+                    .replace(/https?:\/\/\S+/g, "link")
+                    .replace(/<@!?(\d+)>/g, (_, id) => {
+                        const user = UserStore.getUser(id);
+                        return "at " + (user ? (user.globalName || user.username) : "unknown user");
+                    })
+                    .replace(/<@&(\d+)>/g, "role mention")
+                    .replace(/<#[0-9]+>/g, "channel link")
+                    .replace(/<a?:\w+:\d+>/g, "emoji")
+                    .replace(/\s+/g, " ")
+                    .trim();
+
+                const audio = await getAudio(text);
+                if (audio) audios.push(audio);
             }
 
             if (audios.length > 0) {
@@ -116,14 +124,7 @@ export default definePlugin({
                 }));
 
                 audios.forEach(audio => { audio.play(); });
-                audios.forEach(audio => audio.currentTime = 0);
             }
         }
     },
 });
-
-const getUserId = () => {
-    const id = UserStore.getCurrentUser()?.id;
-    if (!id) throw new Error("User not yet logged in");
-    return id;
-};
