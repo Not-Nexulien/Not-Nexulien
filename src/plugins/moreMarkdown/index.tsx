@@ -99,7 +99,7 @@ const ShadowDomComponent = ({ children, ...props }) => {
         if (hostRef.current) {
             try {
                 const shadowRoot = hostRef.current.shadowRoot || hostRef.current.attachShadow({ mode: "open" });
-                shadowRoot.innerHTML = DOMPurify.sanitize(children.__html, { ADD_TAGS: ["style", "link"], FORBID_TAGS: ["video", "audio"] });
+                shadowRoot.innerHTML = DOMPurify.sanitize(children.__html, { ADD_TAGS: ["style", "link", "svg", "math"], FORBID_TAGS: ["video", "audio"] });
             } catch (e) {
                 if (!(e instanceof DOMException && e.name === "NotSupportedError")) {
                     console.error(e);
@@ -142,14 +142,33 @@ const LaTeXReact = (data, _1, _2, _3) => {
     let trueContent = "";
     for (const child of data.content) {
         if (child.type === "text") {
-            trueContent += katex.renderToString(child.content, { throwOnError: false, output: "html" });
+            trueContent += katex.renderToString(cleanBrokenLatex(child.content), { throwOnError: false, maxSize: 10, /* displayMode: _3 === 1 */ })
+            // TODO: Fix display mode rendering, this is for future Cobble
+            // if (_3 === 1) {
+            //     console.log(cleanBrokenLatex(child.content))
+            // }
         }
     }
     return (
         // eslint-disable-next-line react/no-children-prop
-        <ShadowDomComponent className="katex" children={{ __html: `<span>${trueContent}</span>` }} />
+        // <ShadowDomComponent children={{ __html: trueContent }} />
+        <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(trueContent, { ADD_TAGS: ["svg", "math"], FORBID_TAGS: ["video", "audio"] }) }}></span>
     );
 };
+
+/**
+ * Fixes broken LaTeX strings caused by Discord escaping
+ *
+ * @param brokenLatexString you'd never guess what this is
+ * @returns the cleaned LaTeX string
+ */
+function cleanBrokenLatex(brokenLatexString: string): string {
+    let cleaned = brokenLatexString
+        .replace(/\\([;{}])\|\\\1/g, '\\$1|\\$1')
+        .replace(/([;{}])\|\1/g, '\\$1|\\$1')
+        .replace(/\\\\/g, '\\\\\\\\');
+    return cleaned;
+}
 
 function escapeRegex(str: string): string {
     return str.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
@@ -342,7 +361,8 @@ const rules = [
     createRule("html", 24, ["[[[", "]]]"], "html"),
     createRule("slam", 24, [">>", "<<"], "delay", 250),
     createRule("cursive", 24, ["&&", "&&"], "block"),
-    createRule("latex", 24, ["$", "$"], "latex"),
+    // createRule("latex_display", 23, ["$$", "$$"], "latex", 1), TODO: for future Cobble
+    createRule("latex", 24, ["$", "$"], "latex", 0),
 ];
 
 const rulesByName = {};
@@ -391,8 +411,7 @@ export default definePlugin({
     start: () => {
         const link = document.createElement("link");
         link.rel = "stylesheet";
-        link.href = "https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css";
-        link.integrity = "sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP";
+        link.href = "https://raw.githubusercontent.com/HoodieRocks/NexulienAssets/refs/heads/main/katex.min.css";
         link.crossOrigin = "anonymous";
         document.head.appendChild(link);
 
@@ -406,25 +425,6 @@ export default definePlugin({
         const script = document.createElement("script");
         script.src = "https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js";
         document.head.appendChild(script);
-
-        const families = ['KaTeX_AMS', 'KaTeX_Caligraphic', 'KaTeX_Fraktur',
-            'KaTeX_Main', 'KaTeX_Math', 'KaTeX_Script',
-            'KaTeX_SansSerif', 'KaTeX_Size1', 'KaTeX_Size2', 'KaTeX_Size3',
-            'KaTeX_Size4', 'KaTeX_Typewriter']
-        const stylez = ["Regular", "Bold", "Italic", "BoldItalic"];
-
-        families.forEach(family => {
-            stylez.forEach(style => {
-                const fontLink = document.createElement("link");
-                fontLink.rel = "preload";
-                fontLink.as = "font";
-                fontLink.type = "font/woff2";
-                fontLink.href = `https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/fonts/${family}-${style}.woff2`;
-                fontLink.crossOrigin = "anonymous";
-                document.head.appendChild(fontLink);
-            })
-        });
-
     },
 
     stop: () => styles.remove()
