@@ -36,15 +36,15 @@ const CONTRIBUTOR_BADGE = "https://raw.githubusercontent.com/Nexulien/assets/mai
 
 const ContributorBadge: ProfileBadge = {
     description: "(Not) Nexulien Contributor",
-    image: CONTRIBUTOR_BADGE,
+    iconSrc: CONTRIBUTOR_BADGE,
     position: BadgePosition.START,
     shouldShow: ({ userId }) => shouldShowContributorBadge(userId),
     onClick: (_, { userId }) => openContributorModal(UserStore.getUser(userId))
 };
 
 
-let DonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
-let NexulienBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
+let DonorBadges = {} as Record<string, Array<Record<"tooltip" | "title" | "name" | "badge" | "description" | "description2" | "link" | "linkdesc", string>>>;
+let NexulienBadges = {} as Record<string, Array<Record<"tooltip" | "title" | "name" | "badge" | "description" | "description2" | "link" | "linkdesc", string>>>;
 let NotNexulienBadges = {} as Record<string, Array<Record<"tooltip" | "title" | "name" | "badge" | "description" | "description2" | "link" | "linkdesc", string>>>;
 
 async function loadBadges(noCache = false) {
@@ -56,10 +56,10 @@ async function loadBadges(noCache = false) {
     if (noCache)
         init.cache = "no-cache";
 
-    NexulienBadges = await fetch("https://raw.githubusercontent.com/defautluser0/nexassets/main/badges.json", init)
+    NexulienBadges = await fetch("https://raw.githubusercontent.com/not-nexulien/nexassets/main/badges.json", init)
         .then(r => r.json());
 
-    NotNexulienBadges = await fetch("https://raw.githubusercontent.com/defautluser0/nexassets/main/badgesnew.json", init)
+    NotNexulienBadges = await fetch("https://raw.githubusercontent.com/not-nexulien/nexassets/main/badgesnew.json", init)
         .then(r => r.json());
 
     DonorBadges = await fetch("https://badges.vencord.dev/badges.json", init)
@@ -82,11 +82,11 @@ function BadgeContextMenu({ badge }: { badge: ProfileBadge & BadgeUserArgs; }) {
                     action={() => copyWithToast(badge.description!)}
                 />
             )}
-            {badge.image && (
+            {badge.iconSrc && (
                 <Menu.MenuItem
                     id="vc-badge-copy-link"
                     label="Copy Badge Image Link"
-                    action={() => copyWithToast(badge.image!)}
+                    action={() => copyWithToast(badge.iconSrc!)}
                 />
             )}
         </Menu.Menu>
@@ -110,8 +110,8 @@ export default definePlugin({
             find: "#{intl::PROFILE_USER_BADGES}",
             replacement: [
                 {
-                    match: /(alt:" ","aria-hidden":!0,src:)(.+?)(?=,)(?<=href:(\i)\.link.+?)/,
-                    replace: (_, rest, originalSrc, badge) => `...${badge}.props,${rest}${badge}.image??(${originalSrc})`
+                    match: /alt:" ","aria-hidden":!0,src:.{0,50}(\i).iconSrc/,
+                    replace: "...$1.props,$&"
                 },
                 {
                     match: /(?<="aria-label":(\i)\.description,.{0,200})children:/,
@@ -196,7 +196,7 @@ export default definePlugin({
 
     getDonorBadges(userId: string) {
         return DonorBadges[userId]?.map(badge => ({
-            image: badge.badge,
+            iconSrc: badge.badge,
             description: badge.tooltip,
             position: BadgePosition.START,
             props: {
@@ -220,7 +220,7 @@ export default definePlugin({
 
     getNexulienBadges(userId: string) {
         return NexulienBadges[userId]?.map(badge => ({
-            image: badge.badge,
+            iconSrc: badge.badge,
             description: badge.tooltip,
             position: BadgePosition.START,
             props: {
@@ -246,7 +246,7 @@ export default definePlugin({
     },
     getNotNexulienBadges(userId: string) {
         return NotNexulienBadges[userId]?.map(badge => ({
-            image: badge.badge,
+            iconSrc: badge.badge,
             description: badge.tooltip,
             position: BadgePosition.START,
             props: {
