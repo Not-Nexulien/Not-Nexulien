@@ -107,7 +107,8 @@ export const toneIndicators = [
     ti(["vu"], "very upset"),
     ti(["w"], "warmth"),
     ti(["unin"], "unintentional"),
-    ti(["unre"], "unrelated")
+    ti(["unre"], "unrelated"),
+    ti(["nh"], "not hateful")
 ];
 const f = toneIndicators.reduce((ret, cur) => {
     return {

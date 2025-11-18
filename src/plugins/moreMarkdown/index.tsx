@@ -8,6 +8,7 @@ import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { React, useEffect, useRef } from "webpack/common/react";
+import katex from 'katex';
 
 const blockReact = (data, output, className, _) => {
     return (
@@ -98,7 +99,7 @@ const ShadowDomComponent = ({ children, ...props }) => {
         if (hostRef.current) {
             try {
                 const shadowRoot = hostRef.current.shadowRoot || hostRef.current.attachShadow({ mode: "open" });
-                shadowRoot.innerHTML = DOMPurify.sanitize(children.__html, { ADD_TAGS: ["style", "link"], FORBID_TAGS: ["video", "audio"] });
+                shadowRoot.innerHTML = DOMPurify.sanitize(children.__html, { ADD_TAGS: ["style", "link", "svg", "math"], FORBID_TAGS: ["video", "audio"] });
             } catch (e) {
                 if (!(e instanceof DOMException && e.name === "NotSupportedError")) {
                     console.error(e);
@@ -134,20 +135,67 @@ const HTMLReact = (data, _1, _2, _3) => {
     );
 };
 
+const LaTeXReact = (data, _1, _2, _3) => {
+    if (!settings.store.html) {
+        return blockReact(data, _1, "invalid-mm-effect", 0);
+    }
+    let trueContent = "";
+    for (const child of data.content) {
+        if (child.type === "text") {
+            trueContent += katex.renderToString(cleanBrokenLatex(child.content), { throwOnError: false, maxSize: 10, /* displayMode: _3 === 1 */ })
+            // TODO: Fix display mode rendering, this is for future Cobble
+            // if (_3 === 1) {
+            //     console.log(cleanBrokenLatex(child.content))
+            // }
+        }
+    }
+    return (
+        // eslint-disable-next-line react/no-children-prop
+        // <ShadowDomComponent children={{ __html: trueContent }} />
+        <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(trueContent, { ADD_TAGS: ["svg", "math"], FORBID_TAGS: ["video", "audio"] }) }}></span>
+    );
+};
+
+/**
+ * Fixes broken LaTeX strings caused by Discord escaping
+ *
+ * @param brokenLatexString you'd never guess what this is
+ * @returns the cleaned LaTeX string
+ */
+function cleanBrokenLatex(brokenLatexString: string): string {
+    let cleaned = brokenLatexString
+        .replace(/\\([;{}])\|\\\1/g, '\\$1|\\$1')
+        .replace(/([;{}])\|\1/g, '\\$1|\\$1')
+        .replace(/\\\\/g, '\\\\\\\\');
+    return cleaned;
+}
+
 function escapeRegex(str: string): string {
     return str.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
 }
 
 const createRule = (name, order, charList, type, animLength = 0) => {
     const regex = new RegExp(`^${escapeRegex(charList[0])}([\\s\\S]+?)${escapeRegex(charList[1])}`);
-    const reactFunction =
-        type === "block" ? blockReact :
-            type === "character" ? characterReact :
-                type === "html" ? HTMLReact :
-                    type === "delay" ? delayReact :
-                        () => {
-                            throw new Error(`Unsupported type: ${type}`);
-                        };
+    let reactFunction: (data, output, className, animLength) => React.ReactNode;
+    switch (type) {
+        case "block":
+            reactFunction = blockReact;
+            break;
+        case "character":
+            reactFunction = characterReact;
+            break;
+        case "html":
+            reactFunction = HTMLReact;
+            break;
+        case "delay":
+            reactFunction = delayReact;
+            break;
+        case "latex":
+            reactFunction = LaTeXReact;
+            break;
+        default:
+            throw new Error(`Unsupported type: ${type}`);
+    }
     const rule = {
         name: name,
         order: order,
@@ -313,6 +361,8 @@ const rules = [
     createRule("html", 24, ["[[[", "]]]"], "html"),
     createRule("slam", 24, [">>", "<<"], "delay", 250),
     createRule("cursive", 24, ["&&", "&&"], "block"),
+    // createRule("latex_display", 23, ["$$", "$$"], "latex", 1), TODO: for future Cobble
+    createRule("latex", 24, ["$", "$"], "latex", 0),
 ];
 
 const rulesByName = {};
@@ -336,7 +386,7 @@ const settings = definePluginSettings({
     },
     html: {
         type: OptionType.BOOLEAN,
-        description: "Whether to enable HTML effects. WARNING: This can be dangerous.",
+        description: "Whether to enable HTML or LaTeX effects. WARNING: This can be dangerous.",
         default: false,
     }
 });
@@ -345,7 +395,7 @@ export default definePlugin({
     name: "MoreMarkdown",
     description: "More markdown capabilities for Nexulien",
     nexulien: true,
-    authors: [Devs.Zoid, Devs.Jaegerwald, Devs.SwitchedCube],
+    authors: [Devs.Zoid, Devs.Jaegerwald, Devs.SwitchedCube, Devs.Cobble],
     rulesByName: rulesByName,
     settings,
 
@@ -359,6 +409,12 @@ export default definePlugin({
         },
     ],
     start: () => {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "https://raw.githubusercontent.com/HoodieRocks/NexulienAssets/refs/heads/main/katex.min.css";
+        link.crossOrigin = "anonymous";
+        document.head.appendChild(link);
+
         styles = document.createElement("style");
         styles.id = "moreMarkdownStyles";
         document.head.appendChild(styles);

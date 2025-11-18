@@ -62,7 +62,7 @@ function getBrailleCharacter(image: any, xOff: number, yOff: number) {
     ];
 
     // i hate javascript
-    return brailleMap.get(JSON.stringify(thing));
+    return brailleMap.get(JSON.stringify(thing))!;
 }
 
 
@@ -133,7 +133,7 @@ export default definePlugin({
                 const invertParam = opts.find(o => o.name === "invert");
 
                 let image = imageData.greyscale();
-                let s = "```\n";
+                let s = "";
 
                 if (opts.find(o => o.name === "width")) {
                     image.resize({ w: parseInt(opts.find(o => o.name === "width")!.value) });
@@ -160,11 +160,13 @@ export default definePlugin({
                     for (let j = 0; j < image.width / 2; j++) {
                         s += getBrailleCharacter(image, j, i);
                     }
+
+                    s = s.replaceAll(/\u2800+$/g, "");
                     s += "\n";
                 }
 
                 sendBotMessage(ctx.channel.id, {
-                    content: s + "\n```"
+                    content: `\`\`\`\n${s}\n\`\`\``
                 });
             }
         }
