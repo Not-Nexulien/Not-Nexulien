@@ -7,8 +7,8 @@
 import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
+import katex from "katex";
 import { React, useEffect, useRef } from "webpack/common/react";
-import katex from 'katex';
 
 const blockReact = (data, output, className, _) => {
     return (
@@ -142,7 +142,7 @@ const LaTeXReact = (data, _1, _2, _3) => {
     let trueContent = "";
     for (const child of data.content) {
         if (child.type === "text") {
-            trueContent += katex.renderToString(cleanBrokenLatex(child.content), { throwOnError: false, maxSize: 10, /* displayMode: _3 === 1 */ })
+            trueContent += katex.renderToString(cleanBrokenLatex(child.content), { throwOnError: false, maxSize: 10, /* displayMode: _3 === 1 */ });
             // TODO: Fix display mode rendering, this is for future Cobble
             // if (_3 === 1) {
             //     console.log(cleanBrokenLatex(child.content))
@@ -150,7 +150,7 @@ const LaTeXReact = (data, _1, _2, _3) => {
         }
     }
     return (
-        // eslint-disable-next-line react/no-children-prop
+
         // <ShadowDomComponent children={{ __html: trueContent }} />
         <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(trueContent, { ADD_TAGS: ["svg", "math"], FORBID_TAGS: ["video", "audio"] }) }}></span>
     );
@@ -163,10 +163,10 @@ const LaTeXReact = (data, _1, _2, _3) => {
  * @returns the cleaned LaTeX string
  */
 function cleanBrokenLatex(brokenLatexString: string): string {
-    let cleaned = brokenLatexString
-        .replace(/\\([;{}])\|\\\1/g, '\\$1|\\$1')
-        .replace(/([;{}])\|\1/g, '\\$1|\\$1')
-        .replace(/\\\\/g, '\\\\\\\\');
+    const cleaned = brokenLatexString
+        .replace(/\\([;{}])\|\\\1/g, "\\$1|\\$1")
+        .replace(/([;{}])\|\1/g, "\\$1|\\$1")
+        .replace(/\\\\/g, "\\\\\\\\");
     return cleaned;
 }
 
