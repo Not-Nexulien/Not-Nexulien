@@ -19,8 +19,10 @@
 import "./styles.css";
 
 import * as DataStore from "@api/DataStore";
+import { isPluginEnabled } from "@api/PluginManager";
 import { useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
+import { Card } from "@components/Card";
 import { Divider } from "@components/Divider";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
@@ -29,6 +31,7 @@ import { NxCard, NxText, NxTitle } from "@components/NxComponents";
 import { Paragraph } from "@components/Paragraph";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
 import { ChangeList } from "@utils/ChangeList";
+import { isTruthy } from "@utils/guards";
 import { Logger } from "@utils/Logger";
 import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
@@ -36,9 +39,10 @@ import { useAwaiter, useCleanupEffect } from "@utils/react";
 import { Alerts, Button, lodash, Parser, React, Select, TextInput, Tooltip, useMemo, useState } from "@webpack/common";
 import { JSX } from "react";
 
-import Plugins, { ExcludedPlugins } from "~plugins";
+import Plugins, { ExcludedPlugins, PluginMeta } from "~plugins";
 
 import { PluginCard } from "./PluginCard";
+import { UIElementsButton } from "./UIElements";
 
 export const cl = classNameFactory("vc-plugins-");
 export const logger = new Logger("PluginSettings", "#a6d189");
@@ -60,9 +64,6 @@ function ReloadRequiredCard({ required }: { required: boolean; }) {
                             <NxTitle>Restart required!</NxTitle>
                             <NxText>Restart now to apply new plugins and their settings</NxText>
                         </div>
-                        <Button onClick={() => location.reload()} className={cl("restart-button")}>
-                            Restart
-                        </Button>
                     </Flex>
                 </NxCard>
             ) : (<></>)}
@@ -76,12 +77,16 @@ const enum SearchStatus {
     DISABLED,
     NEW,
     NEXULIEN,
-    NEXULIEN_BUNDLED
+    NEXULIEN_BUNDLED,
+    USER_PLUGINS,
+    API_PLUGINS
 }
 
 function ExcludedPluginsList({ search }: { search: string; }) {
-    const matchingExcludedPlugins = Object.entries(ExcludedPlugins)
-        .filter(([name]) => name.toLowerCase().includes(search));
+    const matchingExcludedPlugins = search
+        ? Object.entries(ExcludedPlugins)
+            .filter(([name]) => name.toLowerCase().includes(search))
+        : [];
 
     const ExcludedReasons: Record<"web" | "discordDesktop" | "vesktop" | "desktop" | "dev", string> = {
         desktop: "Discord Desktop app or Vesktop",
@@ -154,6 +159,8 @@ function PluginSettings() {
         []
     );
 
+    const hasUserPlugins = useMemo(() => !IS_STANDALONE && Object.values(PluginMeta).some(m => m.userPlugin), []);
+
     const [searchValue, setSearchValue] = useState({ value: "", status: SearchStatus.ALL });
 
     const search = searchValue.value.toLowerCase();
@@ -162,7 +169,7 @@ function PluginSettings() {
 
     const pluginFilter = (plugin: typeof Plugins[keyof typeof Plugins]) => {
         const { status } = searchValue;
-        const enabled = Vencord.Plugins.isPluginEnabled(plugin.name);
+        const enabled = isPluginEnabled(plugin.name);
 
         switch (status) {
             case SearchStatus.DISABLED:
@@ -179,6 +186,12 @@ function PluginSettings() {
                 break;
             case SearchStatus.NEXULIEN_BUNDLED:
                 if (!plugin.nexulienBundled) return false;
+                break;
+            case SearchStatus.USER_PLUGINS:
+                if (!PluginMeta[plugin.name]?.userPlugin) return false;
+                break;
+            case SearchStatus.API_PLUGINS:
+                if (!plugin.name.endsWith("API")) return false;
                 break;
         }
 
@@ -211,7 +224,7 @@ function PluginSettings() {
     const plugins = [] as JSX.Element[];
     const requiredPlugins = [] as JSX.Element[];
 
-    const showApi = searchValue.value.includes("API");
+    const showApi = searchValue.status === SearchStatus.API_PLUGINS;
     for (const p of sortedPlugins) {
         if (p.hidden || (!p.options && p.name.endsWith("API") && !showApi))
             continue;
@@ -256,6 +269,12 @@ function PluginSettings() {
         <SettingsTab title="Plugins">
             <ReloadRequiredCard required={changes.hasChanges} />
 
+            <UIElementsButton />
+
+            <HeadingTertiary className={classes(Margins.top20, Margins.bottom8)}>
+                Filters
+            </HeadingTertiary>
+
             <div className={classes(Margins.bottom20, cl("filter-controls"))}>
                 <ErrorBoundary noop>
                     <TextInput autoFocus value={searchValue.value} placeholder="Search for a plugin..." onChange={onSearch} />
@@ -269,8 +288,10 @@ function PluginSettings() {
                                 { label: "Show Disabled", value: SearchStatus.DISABLED },
                                 { label: "Show New", value: SearchStatus.NEW },
                                 { label: "Nexulien-Exclusives", value: SearchStatus.NEXULIEN },
-                                { label: "Nexulien-Bundled", value: SearchStatus.NEXULIEN_BUNDLED }
-                            ]}
+                                { label: "Nexulien-Bundled", value: SearchStatus.NEXULIEN_BUNDLED },
+                                hasUserPlugins && { label: "Show UserPlugins", value: SearchStatus.USER_PLUGINS },
+                                { label: "Show API Plugins", value: SearchStatus.API_PLUGINS },
+                            ].filter(isTruthy)}
                             serialize={String}
                             select={onStatusChange}
                             isSelected={v => v === searchValue.status}

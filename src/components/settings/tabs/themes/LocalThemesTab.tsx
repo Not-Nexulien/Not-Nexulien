@@ -4,8 +4,11 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+import { isPluginEnabled } from "@api/PluginManager";
 import { Settings, useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
+import { Card } from "@components/Card";
+import { Flex } from "@components/Flex";
 import { FolderIcon, PaintbrushIcon, PencilIcon, PlusIcon, RestartIcon } from "@components/Icons";
 import { Link } from "@components/Link";
 import { NxCard, NxText, NxTitle } from "@components/NxComponents";
@@ -15,7 +18,7 @@ import { UserThemeHeader } from "@main/themes";
 import { Margins } from "@utils/margins";
 import { findLazy } from "@webpack";
 import { Forms, useEffect, useRef, useState } from "@webpack/common";
-import ClientThemePlugin from "plugins/clientTheme";
+import ClientThemePlugin from "@plugins/clientTheme";
 import type { ComponentType, Ref, SyntheticEvent } from "react";
 
 import { ThemeCard } from "./ThemeCard";
@@ -153,7 +156,7 @@ export function LocalThemesTab() {
                             Icon={PaintbrushIcon}
                         />
 
-                        {Vencord.Plugins.isPluginEnabled(ClientThemePlugin.name) && (
+                        {isPluginEnabled(ClientThemePlugin.name) && (
                             <QuickAction
                                 text="Edit ClientTheme"
                                 action={() => openPluginModal(ClientThemePlugin)}

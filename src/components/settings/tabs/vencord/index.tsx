@@ -257,6 +257,7 @@ function HeaderCard() {
                         </span>
 
                         {headerCardSize === "default" ? <NxText>
+                            {/*                   ↓ wrong information                */}
                             {/*                  ↓ Factual Information               */}
                             <span>...the best (worst) discord client mod.</span><br /><br />
                             <span>Nexulien doesn't need donations! Please go support <a href="https://github.com/sponsors/Vendicated" target="_blank" rel="noreferrer">Vendicated</a> instead!</span>
