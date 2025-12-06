@@ -35,7 +35,7 @@ import { Logger } from "@utils/Logger";
 import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
 import { useAwaiter, useCleanupEffect } from "@utils/react";
-import { Alerts, lodash, Parser, React, Select, TextInput, Tooltip, useMemo, useState } from "@webpack/common";
+import { Alerts, Button, lodash, Parser, React, Select, TextInput, Tooltip, useMemo, useState } from "@webpack/common";
 import { JSX } from "react";
 
 import Plugins, { ExcludedPlugins, PluginMeta } from "~plugins";
@@ -63,6 +63,9 @@ function ReloadRequiredCard({ required }: { required: boolean; }) {
                             <NxTitle>Restart required!</NxTitle>
                             <NxText>Restart now to apply new plugins and their settings</NxText>
                         </div>
+                        <Button onClick={() => location.reload()} className={cl("restart-button")}>
+                            Restart
+                        </Button>
                     </Flex>
                 </NxCard>
             ) : (<></>)}
