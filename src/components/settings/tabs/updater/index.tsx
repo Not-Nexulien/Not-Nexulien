@@ -20,8 +20,8 @@ import "./styles.css";
 
 import { useSettings } from "@api/Settings";
 import { FormSwitch } from "@components/FormSwitch";
-import { handleSettingsTabError, SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
-import { ModalCloseButton, ModalContent, ModalProps, ModalRoot, ModalSize, openModal } from "@utils/modal";
+import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
+import { Margins } from "@utils/margins";
 import { useAwaiter } from "@utils/react";
 import { getRepo, isNewer, UpdateLogger } from "@utils/updater";
 import { Forms, React } from "@webpack/common";
@@ -44,7 +44,7 @@ function Updater() {
 
     return (
         <SettingsTab title="Not-Nexulien Updater">
-            <Forms.FormTitle tag="h5">Updater Settings</Forms.FormTitle>
+            <Forms.FormTitle tag="h5" className={Margins.bottom16}>Updater Settings</Forms.FormTitle>
 
             <FormSwitch
                 title="Automatically update"
@@ -75,22 +75,3 @@ function Updater() {
 export default IS_UPDATER_DISABLED
     ? null
     : wrapTab(Updater, "Updater");
-
-export const openUpdaterModal = IS_UPDATER_DISABLED
-    ? null
-    : function () {
-        const UpdaterTab = wrapTab(Updater, "Updater");
-
-        try {
-            openModal(wrapTab((modalProps: ModalProps) => (
-                <ModalRoot {...modalProps} size={ModalSize.MEDIUM}>
-                    <ModalContent className="vc-updater-modal">
-                        <ModalCloseButton onClick={modalProps.onClose} className="vc-updater-modal-close-button" />
-                        <UpdaterTab />
-                    </ModalContent>
-                </ModalRoot>
-            ), "UpdaterModal"));
-        } catch {
-            handleSettingsTabError();
-        }
-    };

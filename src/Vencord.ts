@@ -9,31 +9,27 @@ console.log("fres is fake");
 import "~plugins";
 
 export * as Api from "./api";
+export * as Plugins from "./api/PluginManager";
 export * as Components from "./components";
-export * as Plugins from "./plugins";
 export * as Util from "./utils";
-export * as QuickCss from "./utils/quickCss";
 export * as Updater from "./utils/updater";
 export * as Webpack from "./webpack";
 export * as WebpackPatcher from "./webpack/patchWebpack";
 export { PlainSettings, Settings };
 
-import "./utils/quickCss";
-import "./webpack/patchWebpack";
-
 import { addVencordUiStyles } from "@components/css";
-import { openUpdaterModal } from "@components/settings/tabs/updater";
+import { openSettingsTabModal, UpdaterTab } from "@components/settings";
+import { debounce } from "@shared/debounce";
 import { IS_WINDOWS } from "@utils/constants";
 import { createAndAppendStyle } from "@utils/css";
 import { StartAt } from "@utils/types";
 
 import { get as dsGet } from "./api/DataStore";
 import { NotificationData, showNotification } from "./api/Notifications";
-import { PlainSettings, Settings } from "./api/Settings";
-import { patches, PMLogger, startAllPlugins } from "./plugins";
+import { initPluginManager, PMLogger, startAllPlugins } from "./api/PluginManager";
+import { PlainSettings, Settings, SettingsStore } from "./api/Settings";
 import { localStorage } from "./utils/localStorage";
 import { relaunch } from "./utils/native";
-import { getCloudSettings, putCloudSettings } from "./utils/settingsSync";
 import {
     checkForUpdates,
     checkImportantUpdate,
@@ -42,6 +38,7 @@ import {
 } from "./utils/updater";
 import { onceReady } from "./webpack";
 import { SettingsRouter } from "./webpack/common";
+import { patches } from "./webpack/patchWebpack";
 
 if (IS_REPORTER) {
     require("./debug/runReporter");
@@ -86,11 +83,25 @@ async function syncSettings() {
             });
         }
     }
+
+    const saveSettingsOnFrequentAction = debounce(async () => {
+        if (Settings.cloud.settingsSync && Settings.cloud.authenticated) {
+            await putCloudSettings();
+            delete localStorage.Vencord_settingsDirty;
+        }
+    }, 60_000);
+
+    SettingsStore.addGlobalChangeListener(() => {
+        localStorage.Vencord_settingsDirty = true;
+        saveSettingsOnFrequentAction();
+    });
 }
 
 let notifiedForUpdatesThisSession = false;
 
 async function runUpdateCheck() {
+    if (IS_UPDATER_DISABLED) return;
+
     const notify = (data: NotificationData) => {
         if (notifiedForUpdatesThisSession) return;
         notifiedForUpdatesThisSession = true;
@@ -125,7 +136,7 @@ async function runUpdateCheck() {
         notify({
             title: "A Not-Nexulien update is available!",
             body: "Click here to view the update",
-            onClick: openUpdaterModal!,
+            onClick: () => openSettingsTabModal(UpdaterTab!)
         });
     } catch (err) {
         UpdateLogger.error("Failed to check for updates", err);
@@ -205,6 +216,7 @@ async function init() {
     }
 }
 
+initPluginManager();
 startAllPlugins(StartAt.Init);
 init();
 

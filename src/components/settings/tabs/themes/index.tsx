@@ -70,7 +70,7 @@ function ThemesTab() {
 function UserscriptThemesTab() {
     return (
         <SettingsTab title="Themes">
-            <NxCard>
+            <NxCard variant="danger">
                 <NxTitle>Themes are not supported on the Userscript!</NxTitle>
                 <span>
                     You can instead install themes with the <Link href={getStylusWebStoreUrl()}>Stylus extension</Link>!
