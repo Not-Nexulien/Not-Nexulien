@@ -7,18 +7,16 @@
 import { isPluginEnabled } from "@api/PluginManager";
 import { Settings, useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
-import { Card } from "@components/Card";
-import { Flex } from "@components/Flex";
 import { FolderIcon, PaintbrushIcon, PencilIcon, PlusIcon, RestartIcon } from "@components/Icons";
 import { Link } from "@components/Link";
 import { NxCard, NxText, NxTitle } from "@components/NxComponents";
 import { QuickAction, QuickActionContainer } from "@components/settings/QuickAction";
 import { openPluginModal } from "@components/settings/tabs/plugins/PluginModal";
 import { UserThemeHeader } from "@main/themes";
+import ClientThemePlugin from "@plugins/clientTheme";
 import { Margins } from "@utils/margins";
 import { findLazy } from "@webpack";
 import { Forms, useEffect, useRef, useState } from "@webpack/common";
-import ClientThemePlugin from "@plugins/clientTheme";
 import type { ComponentType, Ref, SyntheticEvent } from "react";
 
 import { ThemeCard } from "./ThemeCard";

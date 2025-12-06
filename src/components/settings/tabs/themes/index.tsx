@@ -18,12 +18,11 @@
 
 import "./styles.css";
 
-import { Card } from "@components/Card";
 import { Link } from "@components/Link";
 import { NxCard, NxTitle } from "@components/NxComponents";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
 import { getStylusWebStoreUrl } from "@utils/web";
-import { Forms, React, TabBar, useState } from "@webpack/common";
+import { React, TabBar, useState } from "@webpack/common";
 
 import { CspErrorCard } from "./CspErrorCard";
 import { LocalThemesTab } from "./LocalThemesTab";

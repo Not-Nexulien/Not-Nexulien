@@ -19,8 +19,8 @@
 import "./SpecialCard.css";
 
 import { classNameFactory } from "@api/Styles";
-import { React, Forms } from "@webpack/common";
 import { Card } from "@components/Card";
+import { Forms,React } from "@webpack/common";
 import type { PropsWithChildren } from "react";
 
 const cl = classNameFactory("vc-special-");
