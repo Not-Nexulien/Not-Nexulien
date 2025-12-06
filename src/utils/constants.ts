@@ -31,6 +31,9 @@ const platform = navigator.platform.toLowerCase();
 export const IS_WINDOWS = platform.startsWith("win");
 export const IS_MAC = platform.startsWith("mac");
 export const IS_LINUX = platform.startsWith("linux");
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent#mobile_tablet_or_desktop
+// "In summary, we recommend looking for the string Mobi anywhere in the User Agent to detect a mobile device."
+export const IS_MOBILE = navigator.userAgent.includes("Mobi");
 
 export interface Dev {
     name: string;
@@ -615,7 +618,10 @@ export const Devs = /* #__PURE__*/ Object.freeze({
         name: "Tech-Tac",
         id: 730090182715375666n,
     },
-    ryanamay: { name: "ryanamay", id: 1262793452236570667n },
+    ryanamay: {
+        name: "ryanamay",
+        id: 1262793452236570667n
+    },
     samsam: {
         name: "samsam",
         id: 400482410279469056n,
@@ -635,6 +641,10 @@ export const Devs = /* #__PURE__*/ Object.freeze({
     alfred: {
         name: "alfred",
         id: 1038466644353232967n
+    },
+    defautluser0: {
+        name: "defautluser0",
+        id: 912035400485330954n
     }
 } satisfies Record<string, Dev>);
 
@@ -643,7 +653,7 @@ export const DevsById = /* #__PURE__*/ (() =>
     Object.freeze(
         Object.fromEntries(
             Object.entries(Devs)
-                .filter((d) => d[1].id !== 0n)
+                .filter(d => d[1].id !== 0n)
                 .map(([_, v]) => [v.id, v] as const)
         )
     ))() as Record<string, Dev>;
