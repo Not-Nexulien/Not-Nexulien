@@ -268,7 +268,7 @@ function PluginSettings() {
     }
 
     return (
-        <SettingsTab title="Plugins">
+        <SettingsTab>
             <ReloadRequiredCard required={changes.hasChanges} />
 
             <UIElementsButton />

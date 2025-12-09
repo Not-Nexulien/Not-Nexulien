@@ -21,7 +21,6 @@ import "./styles.css";
 import { useSettings } from "@api/Settings";
 import { FormSwitch } from "@components/FormSwitch";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
-import { Margins } from "@utils/margins";
 import { useAwaiter } from "@utils/react";
 import { getRepo, isNewer, UpdateLogger } from "@utils/updater";
 import { Forms, React } from "@webpack/common";
@@ -43,18 +42,16 @@ function Updater() {
     };
 
     return (
-        <SettingsTab title="Nexulien Updater">
-            <Forms.FormTitle tag="h5" className={Margins.bottom16}>Updater Settings</Forms.FormTitle>
-
+        <SettingsTab>
             <FormSwitch
                 title="Automatically update"
-                description="Automatically update Vencord without confirmation prompt"
+                description="Automatically update Nexulien without confirmation prompt"
                 value={settings.autoUpdate}
                 onChange={(v: boolean) => settings.autoUpdate = v}
             />
             <FormSwitch
                 title="Get notified when an automatic update completes"
-                description="Show a notification when Vencord automatically updates"
+                description="Show a notification when Nexulien automatically updates"
                 value={settings.autoUpdateNotification}
                 onChange={(v: boolean) => settings.autoUpdateNotification = v}
                 disabled={!settings.autoUpdate}

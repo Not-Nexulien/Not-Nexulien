@@ -85,7 +85,7 @@ export function QuickActionContainer({ title, children, columns = "3" }: PropsWi
                     <InfoIcon />
                 </button>
             </NxTitle>
-            <span className={cl("containerButtons-" + columns)}>{children}</span>
+            <span className={cl(`containerButtons-${columns}`)}>{children}</span>
         </NxCard>
     );
 }

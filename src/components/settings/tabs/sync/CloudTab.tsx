@@ -28,7 +28,7 @@ import { NxCard, NxText, NxTitle } from "@components/NxComponents";
 import { Paragraph } from "@components/Paragraph";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
 import { Margins } from "@utils/margins";
-import { Alerts, Button, Forms, Tooltip } from "@webpack/common";
+import { Alerts, Button, Tooltip } from "@webpack/common";
 
 function validateUrl(url: string) {
     try {
@@ -98,16 +98,14 @@ function CloudTab() {
     const settings = useSettings(["cloud.authenticated", "cloud.url"]);
 
     return (
-        <SettingsTab title="Vencord Cloud">
+        <SettingsTab>
             <section className={Margins.top16}>
-                <NxCard className={Margins.bottom20}>
-                    <NxText>
-                        Vencord comes with a cloud integration that adds goodies like settings sync across devices.
-                        It <Link href="https://vencord.dev/cloud/privacy">respects your privacy</Link>, and
-                        the <Link href="https://github.com/Vencord/Backend">source code</Link> is AGPL 3.0 licensed so you
-                        can host it yourself. It may or may not work with Nexulien; use with caution.
-                    </NxText>
-                </NxCard>
+                <NxText size="medium" className={Margins.bottom20}>
+                    Nexulien comes with a cloud integration that adds goodies like settings sync across devices.
+                    It <Link href="https://vencord.dev/cloud/privacy">respects your privacy</Link>, and
+                    the <Link href="https://github.com/Vencord/Backend">source code</Link> is AGPL 3.0 licensed so you
+                    can host it yourself.
+                </NxText>
                 <FormSwitch
                     key="backend"
                     title="Enable Cloud Integrations"
@@ -119,15 +117,28 @@ function CloudTab() {
                         else
                             settings.cloud.authenticated = v;
                     }}
-                    hideBorder={!settings.cloud.authenticated}
+                />
+                <NxTitle tag="h5" className={Margins.top16}>Backend URL</NxTitle>
+                <NxText className={Margins.bottom8}>
+                    Which backend to use when using cloud integrations.
+                </NxText>
+                <CheckedTextInput
+                    key="backendUrl"
+                    value={settings.cloud.url}
+                    onChange={async v => {
+                        settings.cloud.url = v;
+                        settings.cloud.authenticated = false;
+                        deauthorizeCloud();
+                    }}
+                    validate={validateUrl}
                 />
 
                 {settings.cloud.authenticated ? <>
                     <NxCard>
                         <NxTitle>Backend URL</NxTitle>
-                        <Forms.FormText className={Margins.bottom8}>
+                        <NxText className={Margins.bottom8}>
                             Which backend to use when using cloud integrations.
-                        </Forms.FormText>
+                        </NxText>
                         <CheckedTextInput
                             key="backendUrl"
                             value={settings.cloud.url}
