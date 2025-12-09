@@ -63,7 +63,7 @@ function NotificationsTab() {
         );
     }
 
-    return <SettingsTab title="Not-Nexulien Notifications">
+    return <SettingsTab>
         <TabBar
             type="top"
             look="brand"
