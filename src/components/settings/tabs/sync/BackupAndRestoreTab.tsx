@@ -29,7 +29,7 @@ import { Button,Text } from "@webpack/common";
 
 export function BackupAndRestoreTab() {
     return (
-        <SettingsTab title="Backup & Restore">
+        <SettingsTab>
             <Flex flexDirection="column" gap="0.5em">
                 <NxCard variant="warning">
                     <Heading tag="h4">Warning</Heading>

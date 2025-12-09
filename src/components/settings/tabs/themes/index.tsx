@@ -37,7 +37,7 @@ function ThemesTab() {
     const [currentTab, setCurrentTab] = useState(ThemeTab.LOCAL);
 
     return (
-        <SettingsTab title="Themes">
+        <SettingsTab>
             <TabBar
                 type="top"
                 look="brand"
@@ -69,9 +69,10 @@ function ThemesTab() {
 
 function UserscriptThemesTab() {
     return (
-        <SettingsTab title="Themes">
+        <SettingsTab>
             <NxCard variant="danger">
-                <NxTitle>Themes are not supported on the Userscript!</NxTitle>
+                <NxTitle tag="h5">Themes are not supported on the Userscript!</NxTitle>
+
                 <span>
                     You can instead install themes with the <Link href={getStylusWebStoreUrl()}>Stylus extension</Link>!
                 </span>

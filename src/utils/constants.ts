@@ -659,6 +659,10 @@ export const Devs = /* #__PURE__*/ Object.freeze({
     defautluser0: {
         name: "defautluser0",
         id: 912035400485330954n
+    },
+    vv: {
+        name: "VV",
+        id: 254866377087778816n
     }
 } satisfies Record<string, Dev>);
 

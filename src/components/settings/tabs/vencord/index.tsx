@@ -135,7 +135,7 @@ function VencordSettings() {
     const user = UserStore?.getCurrentUser();
 
     return (
-        <SettingsTab title="Not-Nexulien Settings">
+        <SettingsTab>
             <HeaderCard />
 
             {isPluginDev(user?.id) && !hideContributorCard && (

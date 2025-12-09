@@ -21,7 +21,6 @@ import "./styles.css";
 import { useSettings } from "@api/Settings";
 import { FormSwitch } from "@components/FormSwitch";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
-import { Margins } from "@utils/margins";
 import { useAwaiter } from "@utils/react";
 import { getRepo, isNewer, UpdateLogger } from "@utils/updater";
 import { Forms, React } from "@webpack/common";
@@ -43,9 +42,7 @@ function Updater() {
     };
 
     return (
-        <SettingsTab title="Not-Nexulien Updater">
-            <Forms.FormTitle tag="h5" className={Margins.bottom16}>Updater Settings</Forms.FormTitle>
-
+        <SettingsTab>
             <FormSwitch
                 title="Automatically update"
                 description="Automatically update Not-Nexulien without confirmation prompt"
