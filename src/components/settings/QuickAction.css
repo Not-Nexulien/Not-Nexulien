@@ -16,7 +16,7 @@
 
 .vc-settings-quickActions-containerButtons-2 {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 0.5em;
 }
 
@@ -27,6 +27,15 @@
 }
 
 .vc-settings-quickActions-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.vc-settings-quickActions-pill {
+    all: unset;
+    background: var(--button-secondary-background);
+    color: var(--text-default);
     display: flex;
     align-items: center;
     gap: 0.5em;

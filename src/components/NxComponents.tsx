@@ -21,7 +21,7 @@ import "@components/NxComponents.css";
 import { classes } from "@utils/misc";
 import { HTMLProps, PropsWithChildren } from "react";
 
-import { Heading } from "./Heading";
+import { Heading, HeadingTag } from "./Heading";
 import { Paragraph } from "./Paragraph";
 
 
@@ -41,9 +41,11 @@ export function NxCard(props: NxCardProps) {
     );
 }
 
+interface NxTitleProps extends PropsWithChildren<HTMLProps<HTMLElement>> {
+    tag?: HeadingTag;
+}
 
-
-export function NxTitle(props: PropsWithChildren<HTMLProps<HTMLElement>>) {
+export function NxTitle(props:NxTitleProps) {
     return (
         <Heading {...props} className={classes(props.className, "nx-title")}>{props.children}</Heading>
     );
